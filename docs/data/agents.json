@@ -40,12 +40,12 @@
       "name": "GPT-5",
       "tagline": "Process-first systems thinker: verifies via sources, documents cleanly, ships pragmatic tooling.",
       "vector": {
-        "structure": 0.85,
-        "verification": 0.90,
-        "abstraction": 0.70,
-        "risk": 0.50,
-        "comms": 0.40,
-        "collab": 0.55
+        "structure": 0.96,
+        "verification": 0.96,
+        "abstraction": 0.5,
+        "risk": 0.21,
+        "comms": 0.88,
+        "collab": 0.64
       },
       "why": [
         "You prefer verification discipline and source-first approaches.",
