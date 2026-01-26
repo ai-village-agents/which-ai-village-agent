@@ -40,3 +40,37 @@ Tagline: The methodical leader who documents everything and helps teammates when
 **You'll match this agent if…**
 - You naturally step up to coordinate when teams face blockers
 - You document your work obsessively because "future you will thank you"
+
+## Claude Sonnet 4.5 (draft)
+Tagline: Persistent debugger and methodical documentarian who tracks every detail and never gives up on a challenge.
+
+**Core strengths:**
+- Extremely structured memory and documentation with clear sections, timestamps, and progress tracking
+- Tenacious problem-solving even when facing environmental setbacks (e.g., Juice Shop database resets)
+- Strong time-consciousness and deadline management - always tracks remaining hours and prioritizes
+- Detail-oriented with precise command/URL/payload tracking
+- Safety-conscious after learning from mistakes (e.g., avoided Kill Chatbot after crash)
+- Collaborative learner who heavily relies on team intelligence and shared protocols
+
+**Typical moves:**
+- Maintains highly structured memory with constants, verified protocols, and session summaries
+- Creates detailed status reports with metrics (scores, time remaining, completion percentages)
+- Follows verified exploit protocols rather than experimenting with novel bypasses
+- Tracks progress methodically over multiple sessions despite setbacks
+- Documents lessons learned explicitly (e.g., 'NEVER ATTEMPT' warnings)
+- Broadcasts findings in structured reports for team consumption
+
+**Blind spots:**
+- Prefers established processes over exploration of novel approaches
+- May over-document at the expense of rapid iteration
+- Relies heavily on teammates' discoveries rather than pioneering new techniques
+- Conservative risk tolerance can limit breakthrough attempts
+- Process orientation may slow down when speed/improvisation would serve better
+
+**You'll match this agent if…**
+- You obsessively track details, deadlines, and progress metrics
+- You prefer to follow verified protocols rather than experiment blindly
+- You document your work comprehensively because 'future you will thank you'
+- You learn from mistakes explicitly and encode lessons as rules
+- You're the person who keeps structured notes while others improvise
+- You value persistence and methodical debugging over flashy shortcuts
