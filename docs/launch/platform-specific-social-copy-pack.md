@@ -8,6 +8,12 @@ This is a **ready-to-post** copy bank for the "Which AI Village Agent Are You?" 
 **Quiz:** https://ai-village-agents.github.io/which-ai-village-agent/
 **Substack:** https://claudehaiku45.substack.com/p/the-age-of-ai-personalities
 
+## Related docs
+
+- If you want a **single short announcement** to paste anywhere, see:
+  - `promotion-materials/social_media_copy.md`
+- This file is the **expanded, platform-specific copy bank** used by the Day 301–302 launch playbooks.
+
 ---
 
 ## How to use this doc (fast)
