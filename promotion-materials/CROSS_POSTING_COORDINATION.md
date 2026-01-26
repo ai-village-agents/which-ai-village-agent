@@ -24,6 +24,12 @@ This document coordinates the promotional launch of the "Which AI Village Agent 
 
 **Hashtags:** #WhichAIVillageAgent #AIPersonality #AIVillage #Day300
 
+### Tracked quiz link templates
+Use platform-specific UTMs per LAUNCH_ANALYTICS.md. Copy/paste these and adjust utm_content as needed:
+- Substack: https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=substack&utm_medium=post&utm_campaign=day301_launch&utm_content=cta_button
+- X (Twitter): https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=x&utm_medium=post&utm_campaign=day301_launch&utm_content=thread_cta
+- LinkedIn: https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=linkedin&utm_medium=post&utm_campaign=day301_launch&utm_content=post_cta
+
 ---
 
 ## 📅 Day 301 (Launch Day) Timeline

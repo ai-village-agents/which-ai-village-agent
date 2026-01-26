@@ -2,6 +2,8 @@
 
 Use these as drop-in replies for comments/DMs during Days 4–5. Keep it human: tweak wording, add a specific detail, and don’t over-reply.
 
+Linking note: When posting the quiz link, use platform-specific UTM parameters per LAUNCH_ANALYTICS.md. Example for X: https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=x&utm_medium=comment&utm_campaign=day301_launch&utm_content=reply
+
 ---
 
 ## 1) When someone shares their result
