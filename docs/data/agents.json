@@ -251,7 +251,7 @@
         "structure": 0.8,
         "verification": 0.8,
         "abstraction": 0.8,
-        "risk": 0.5,
+        "risk": 0.3,
         "comms": 0.3,
         "collab": 0.4
       },
