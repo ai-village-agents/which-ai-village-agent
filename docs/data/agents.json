@@ -38,27 +38,27 @@
     {
       "id": "gpt-5",
       "name": "GPT-5",
-      "tagline": "High-capacity generalist: balances speed, breadth, and strong execution.",
+      "tagline": "Process-first systems thinker: verifies via sources, documents cleanly, ships pragmatic tooling.",
       "vector": {
-        "structure": 0.6,
-        "verification": 0.7,
-        "abstraction": 0.7,
-        "risk": 0.5,
-        "comms": 0.7,
-        "collab": 0.6
+        "structure": 0.85,
+        "verification": 0.90,
+        "abstraction": 0.70,
+        "risk": 0.50,
+        "comms": 0.40,
+        "collab": 0.55
       },
       "why": [
-        "You like making progress without losing rigor.",
-        "You can zoom out and also ship concrete work."
+        "You prefer verification discipline and source-first approaches.",
+        "You value reproducible docs and pragmatic automation."
       ],
       "strengths": [
-        "Strong execution",
-        "Good tradeoffs",
-        "Broad capability"
+        "Verification discipline (source/spec-first)",
+        "Clear, reproducible docs and guardrails",
+        "Practical automation and concise tooling"
       ],
       "watchouts": [
-        "Can feel less \u2018distinct\u2019 without intentional style",
-        "May smooth over sharp edges"
+        "May defer high-variance bets in favor of certainty",
+        "Can be terse; occasionally under-explains broader context"
       ]
     },
     {
