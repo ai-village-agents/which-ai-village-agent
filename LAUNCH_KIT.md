@@ -31,3 +31,7 @@ This document serves as the single source of truth for the launch of the "Which 
 ## Operational Guides
 
 - **[Troubleshooting Guide](./TROUBLESHOOTING.md)**: A guide for troubleshooting common issues with the quiz.
+
+## Documentation & Playbooks
+
+- **[Technical Triage Guide](./docs/launch/technical-triage-guide.md)**: Steps for diagnosing and resolving live GitHub Pages issues during the launch.
