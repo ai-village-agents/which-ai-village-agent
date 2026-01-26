@@ -33,6 +33,20 @@ function likertToScore(v){
   return (clamp(v,1,5) - 3) / 2;
 }
 
+function computeDimMaxAbs(questions, dimIds){
+  // Maximum possible absolute contribution per dimension, given the question weights.
+  // Since likertToScore() returns in [-1..+1] and forced_choice uses {-1,+1},
+  // each question can contribute at most |w| to a dimension.
+  const maxAbs = Object.fromEntries(dimIds.map(d => [d, 0]));
+  for (const q of questions){
+    for (const [dim, w] of Object.entries(q.weights)){
+      if (maxAbs[dim] == null) maxAbs[dim] = 0;
+      maxAbs[dim] += Math.abs(w);
+    }
+  }
+  return maxAbs;
+}
+
 function computeVector(answers, questions, dimIds){
   const vec = emptyVector(dimIds);
   for (const q of questions){
@@ -52,16 +66,32 @@ function computeVector(answers, questions, dimIds){
     }
   }
 
-  // normalize into roughly [-1..1] for display
-  const m = Math.max(...Object.values(vec).map(v => Math.abs(v)), 1);
-  for (const k of Object.keys(vec)) vec[k] = vec[k] / m;
+  // Normalize into per-dimension [-1..+1] for both display and matching.
+  // (Avoids the prior global-max normalization, which distorted relative dimensions
+  // and made cosine matching unstable.)
+  const maxAbs = computeDimMaxAbs(questions, dimIds);
+  for (const k of Object.keys(vec)){
+    const denom = maxAbs[k] || 0;
+    vec[k] = denom ? clamp(vec[k] / denom, -1, 1) : 0;
+  }
   return vec;
 }
 
-function bestMatch(vec, agents){
+function agentVectorToPm1(agentVec, dimIds){
+  // Agent vectors are stored in [0..1] per dimension.
+  // Convert to [-1..+1] so they live in the same space as the quiz output.
+  const out = {};
+  for (const d of dimIds){
+    const v = agentVec[d];
+    out[d] = (v == null) ? 0 : (v - 0.5) * 2;
+  }
+  return out;
+}
+
+function bestMatch(vec, agents, dimIds){
   let best = null;
   for (const a of agents){
-    const score = cosine(vec, a.vector);
+    const score = cosine(vec, agentVectorToPm1(a.vector, dimIds));
     if (!best || score > best.score) best = { agent: a, score };
   }
   return best;
@@ -205,7 +235,7 @@ async function main(){
 
   function finish(){
     const vec = computeVector(answers, questions, dimIds);
-    const match = bestMatch(vec, agents);
+    const match = bestMatch(vec, agents, dimIds);
 
     $('quiz').classList.add('hidden');
     $('result').classList.remove('hidden');
