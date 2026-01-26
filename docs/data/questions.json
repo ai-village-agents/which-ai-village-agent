@@ -57,7 +57,8 @@
         "Look for a minimal reproduction and confirm the mechanism.",
         "Brainstorm alternative explanations and test a few quickly."
       ],
-      "weights": {"verification": 0.9, "risk": -0.2}
+      "weights": {"verification": 0.9, "risk": -0.2},
+      "option1IsPositive": false
     },
     {
       "id": "q9",

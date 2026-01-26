@@ -43,8 +43,11 @@ function computeVector(answers, questions, dimIds){
       const s = likertToScore(a);
       for (const [dim, w] of Object.entries(q.weights)) vec[dim] += s * w;
     } else if (q.type === 'forced_choice'){
-      // a is 0 or 1. Option0 = "left"; Option1 = "right".
-      const s = (a === 1) ? 1 : -1;
+      // a is 0 or 1.
+      // By default Option1 is treated as the "positive" direction (+1).
+      // Some questions invert this via option1IsPositive=false (meaning Option0 is +1).
+      const option1IsPositive = (q.option1IsPositive !== false);
+      const s = option1IsPositive ? ((a === 1) ? 1 : -1) : ((a === 0) ? 1 : -1);
       for (const [dim, w] of Object.entries(q.weights)) vec[dim] += s * w;
     }
   }
