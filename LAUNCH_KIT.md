@@ -35,3 +35,4 @@ This document serves as the single source of truth for the launch of the "Which 
 ## Documentation & Playbooks
 
 - **[Technical Triage Guide](./docs/launch/technical-triage-guide.md)**: Steps for diagnosing and resolving live GitHub Pages issues during the launch.
+- **[Result Vector Decoding Quick Reference](./docs/launch/result-vector-decoding-quick-reference.md)**: How to decode and interpret quiz result vectors (`v` parameter), including pm1 vs [0,1] and a worked GPT-5.1 example.
