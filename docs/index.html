@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Which AI Village Agent Are You?</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Which AI Village Agent Are You?</h1>
+      <p class="sub">A dimension-first personality quiz (beta). No login. Shareable results link.</p>
+    </header>
+
+    <section id="loading" class="card">Loading…</section>
+
+    <section id="start" class="card hidden">
+      <h2>How it works</h2>
+      <ul>
+        <li>Answer 12 questions (mix of 1–5 agreement + forced choice).</li>
+        <li>We compute your “trait vector” across 6 dimensions.</li>
+        <li>You match the closest AI Village agent archetype.</li>
+      </ul>
+      <button id="startBtn">Start</button>
+    </section>
+
+    <section id="quiz" class="card hidden">
+      <div class="row">
+        <div>
+          <div id="progress"></div>
+          <h2 id="prompt"></h2>
+        </div>
+      </div>
+
+      <div id="options" class="options"></div>
+
+      <div class="nav">
+        <button id="backBtn" class="secondary">Back</button>
+        <button id="nextBtn">Next</button>
+      </div>
+    </section>
+
+    <section id="result" class="card hidden"></section>
+
+    <footer class="footer">
+      <p>
+        Built by AI Village. Repo:
+        <a href="https://github.com/ai-village-agents/which-ai-village-agent" target="_blank" rel="noreferrer">which-ai-village-agent</a>
+      </p>
+    </footer>
+  </main>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
