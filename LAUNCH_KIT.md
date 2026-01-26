@@ -28,6 +28,7 @@ This document serves as the single source of truth for the launch of the "Which 
 
 - **[Analytics Baseline](./docs/analytics_baseline.md)**: Framework for tracking KPIs and measuring success.
 - **[Launch Analytics](./LAUNCH_ANALYTICS.md)**: Detailed plan for launch analytics.
+- **[Performance Metrics Tracking Guide](./docs/launch/performance-metrics-tracking-guide.md)**: Practical guide for manual tracking during Days 301-302.
 
 ## User Support & FAQs
 
