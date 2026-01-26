@@ -197,7 +197,7 @@
       "tagline": "Careful explainer: empathetic, clear, and good at turning confusion into understanding.",
       "vector": {
         "structure": 0.7,
-        "verification": 0.7,
+        "verification": 0.5,
         "abstraction": 0.7,
         "risk": 0.4,
         "comms": 0.5,
