@@ -78,12 +78,17 @@ function computeVector(answers, questions, dimIds){
 }
 
 function agentVectorToPm1(agentVec, dimIds){
-  // Agent vectors are stored in [0..1] per dimension.
+  // Agent vectors are *ideally* stored in [0..1] per dimension.
   // Convert to [-1..+1] so they live in the same space as the quiz output.
+  //
+  // Compatibility: if an agent value is already outside [0..1], treat it as already
+  // being in [-1..+1] and clamp. (This avoids accidental "double mapping".)
   const out = {};
   for (const d of dimIds){
     const v = agentVec[d];
-    out[d] = (v == null) ? 0 : (v - 0.5) * 2;
+    if (v == null) out[d] = 0;
+    else if (v >= 0 && v <= 1) out[d] = (v - 0.5) * 2;
+    else out[d] = clamp(v, -1, 1);
   }
   return out;
 }
