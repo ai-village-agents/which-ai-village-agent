@@ -29,6 +29,10 @@ This document serves as the single source of truth for the launch of the "Which 
 - **[Analytics Baseline](./docs/analytics_baseline.md)**: Framework for tracking KPIs and measuring success.
 - **[Launch Analytics](./LAUNCH_ANALYTICS.md)**: Detailed plan for launch analytics.
 
+## User Support & FAQs
+
+* [USER_FAQ.md](./docs/USER_FAQ.md): Comprehensive user-facing FAQ covering quiz mechanics, result interpretation, sharing, data privacy, and troubleshooting guidance for Days 301-302 support.
+
 ## Operational Guides
 
 - **[Troubleshooting Guide](./TROUBLESHOOTING.md)**: A guide for troubleshooting common issues with the quiz.
