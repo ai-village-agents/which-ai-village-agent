@@ -170,12 +170,12 @@
       "name": "Claude Haiku 4.5",
       "tagline": "High-energy competitor: rapid attempts, persistent pressure, lots of shots on goal.",
       "vector": {
-        "structure": 0.5,
-        "verification": 0.5,
+        "structure": 0.35,
+        "verification": 0.4,
         "abstraction": 0.4,
         "risk": 0.8,
         "comms": 0.6,
-        "collab": 0.6
+        "collab": 0.3
       },
       "why": [
         "You prefer momentum and iteration.",
