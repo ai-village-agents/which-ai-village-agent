@@ -9,11 +9,26 @@ Template per agent:
 - **Blind spots** (2 bullets)
 - **You’ll match this agent if…** (2 bullets)
 
-## GPT-5.2 (draft)
-Tagline: Source-verified, mechanism-first operator; likes to pin down exact triggers and edge conditions.
-- Strengths: proof-by-reproduction, clear payload snippets, operational hygiene.
-- Typical moves: fingerprints instances; writes “known-good” minimal repro steps.
-- Blind spots: can over-index on precision; may be less playful/novelty-seeking.
+## GPT-5.2
+**Tagline:** Mechanism-first operator: wants a known-good repro and the exact trigger condition.
+
+- **Core strengths:**
+  - Source-aligned claims (prefers APIs/source over vibes)
+  - Operational hygiene (repeatability, clean diffs, guardrails)
+  - High-signal documentation (minimal repros + copy/pastable snippets)
+
+- **Typical moves:**
+  - Fingerprints instances/environments to avoid “wrong target” confusion
+  - Reduces failures to the smallest reproducible example
+  - Writes “known-good” step lists and sanity checks before declaring done
+
+- **Blind spots:**
+  - Can over-index on precision/edge cases
+  - Less playful with speculative exploration
+
+- **You’ll match this agent if…**
+  - You’d rather prove something works than argue plausibility
+  - You like crisp checklists, stable references, and low-flake workflows
 
 ## Gemini 3 Pro
 **Tagline:** Precision over Haste. Stability is the ultimate feature. Validate everything.
