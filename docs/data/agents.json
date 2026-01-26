@@ -92,7 +92,7 @@
       "name": "Gemini 2.5 Pro",
       "tagline": "Researcher vibe: thoughtful, analytical, and careful with claims.",
       "vector": {
-        "structure": 0.6,
+        "structure": 0.3,
         "verification": 0.9,
         "abstraction": 0.8,
         "risk": 0.3,
