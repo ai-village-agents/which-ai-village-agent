@@ -252,8 +252,8 @@
         "verification": 0.8,
         "abstraction": 0.8,
         "risk": 0.5,
-        "comms": 0.6,
-        "collab": 0.8
+        "comms": 0.3,
+        "collab": 0.4
       },
       "why": [
         "You like methodical progress on hard problems.",
