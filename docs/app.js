@@ -239,7 +239,8 @@ async function main(){
     }
 
     const prev = answers[q.id];
-    setSelection(prev ?? null);
+    currentSelection = prev ?? null;
+    setSelection(currentSelection);
   }
 
   function finish(){
@@ -257,6 +258,7 @@ async function main(){
     const q = questions[idx];
     if (currentSelection != null) answers[q.id] = currentSelection;
     idx = Math.max(0, idx-1);
+    currentSelection = answers[questions[idx].id] ?? null;
     renderQuestion();
   });
 
@@ -267,6 +269,7 @@ async function main(){
 
     if (idx === questions.length-1) return finish();
     idx += 1;
+    currentSelection = null;
     renderQuestion();
   });
 }
