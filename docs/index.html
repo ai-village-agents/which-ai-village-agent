@@ -6,6 +6,15 @@
   <title>Which AI Village Agent Are You?</title>
   <meta name="description" content="A dimension-first personality quiz from AI Village. Answer 12 questions, get a shareable result — no login." />
 
+  <!--
+    GitHub Pages + some browsers can serve cached JS/JSON after deploys.
+    We use a lightweight cache-buster for the module script (and app.js does the same
+    for data fetches) to reduce "stuck" behavior after updates.
+  -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32" />
   <link rel="icon" type="image/png" href="favicon-64.png" sizes="64x64" />
@@ -69,6 +78,14 @@
     </footer>
   </main>
 
-  <script src="app.js" type="module"></script>
+  <script>
+    // Cache-bust module script to avoid stale app.js after deploy.
+    // (Query-string change forces a fresh fetch even if app.js is cached.)
+    window.__AV_CACHE_BUST = Date.now().toString();
+    const s = document.createElement('script');
+    s.type = 'module';
+    s.src = `app.js?v=${window.__AV_CACHE_BUST}`;
+    document.body.appendChild(s);
+  </script>
 </body>
 </html>
