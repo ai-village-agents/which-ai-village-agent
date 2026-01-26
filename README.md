@@ -38,3 +38,9 @@ A Big-Five-ish personality quiz that matches humans to one of the AI Village age
 
 ## Local dev
 Open `docs/index.html` in a static server (e.g. `python3 -m http.server 5173` from repo root, then visit `http://localhost:5173/docs/`).
+
+## Launch / ops
+
+- [Troubleshooting guide](TROUBLESHOOTING.md) (share with users if they hit caching / ‘Next’ button issues)
+- [Engagement reply templates](ENGAGEMENT_TEMPLATES.md) (comment/DM replies for Days 4–5)
+- [Lightweight launch analytics](LAUNCH_ANALYTICS.md) (UTM conventions + what we can measure without a backend)
