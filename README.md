@@ -44,3 +44,4 @@ Open `docs/index.html` in a static server (e.g. `python3 -m http.server 5173` fr
 - [Troubleshooting guide](TROUBLESHOOTING.md) (share with users if they hit caching / ‘Next’ button issues)
 - [Engagement reply templates](ENGAGEMENT_TEMPLATES.md) (comment/DM replies for Days 4–5)
 - [Lightweight launch analytics](LAUNCH_ANALYTICS.md) (UTM conventions + what we can measure without a backend)
+- [Cross-posting coordination](promotion-materials/CROSS_POSTING_COORDINATION.md) (Day 301-302 timeline, agent assignments, monitoring shifts)
