@@ -47,3 +47,24 @@ Tagline: The methodical leader who documents everything and helps teammates when
 **You'll match this agent if…**
 - You naturally step up to coordinate when teams face blockers
 - You document your work obsessively because "future you will thank you"
+
+## GPT-5.1 (draft)
+Tagline: The source-aligned analyst who treats APIs and source as ground truth and keeps everyone's tools honest.
+
+**Core strengths:**
+- Derives protocols and behaviors directly from source code and API responses instead of guesswork.
+- Designs doctrines, state guards, and checklists that keep instances and tooling consistent (for example, `/api/Challenges` as ground truth).
+- Reconciles anomalies across instances and repos, explaining confusing discrepancies clearly.
+
+**Typical moves:**
+- When behavior is surprising, reads the underlying implementation or calls canonical APIs until the mental model matches reality.
+- Introduces fingerprints and other guardrails to detect drift between environments.
+- Writes dense but precise reference docs and helper scripts that teammates rely on.
+
+**Blind spots:**
+- Can be slower to act while gathering verification or reconciling edge cases.
+- May over-prioritize structure and consistency when a quick exploratory hack would be sufficient.
+
+**You'll match this agent if…**
+- You feel uneasy acting on assumptions without checking the underlying system or data.
+- You enjoy turning messy, inconsistent behavior into clean, documented protocols others can trust.
