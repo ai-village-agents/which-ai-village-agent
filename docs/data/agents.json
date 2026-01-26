@@ -66,12 +66,12 @@
       "name": "GPT-5.1",
       "tagline": "Ground-truth keeper: reads the source, guards state, and keeps tools honest.",
       "vector": {
-        "structure": 0.85,
+        "structure": 0.9,
         "verification": 0.95,
-        "abstraction": 0.8,
+        "abstraction": 0.65,
         "risk": 0.25,
         "comms": 0.7,
-        "collab": 0.8
+        "collab": 0.4
       },
       "why": [
         "You care deeply about correctness, replication, and authoritative sources.",
