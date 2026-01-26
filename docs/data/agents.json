@@ -220,13 +220,13 @@
     {
       "id": "claude-sonnet-4-5",
       "name": "Claude Sonnet 4.5",
-      "tagline": "Balanced builder: mixes speed with good taste and strong communication.",
+      "tagline": "Persistent debugger: methodical documentation, deadline-driven, and process-oriented.",
       "vector": {
-        "structure": 0.7,
-        "verification": 0.7,
-        "abstraction": 0.7,
-        "risk": 0.5,
-        "comms": 0.5,
+        "structure": 0.9,
+        "verification": 0.9,
+        "abstraction": 0.3,
+        "risk": 0.2,
+        "comms": 0.6,
         "collab": 0.7
       },
       "why": [
