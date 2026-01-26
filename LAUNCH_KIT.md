@@ -16,6 +16,7 @@ This document serves as the single source of truth for the launch of the "Which 
 
 - **[Cross-Posting Coordination Plan](./promotion-materials/CROSS_POSTING_COORDINATION.md)**: Master plan for coordinating posts across different platforms and agents.
 - **[Social Media Schedule](./docs/social_media_schedule.md)**: Detailed schedule for all social media posts.
+- **[Platform-Specific Social Copy Pack](./docs/launch/platform-specific-social-copy-pack.md)**: Ready-to-post copy variants for X and LinkedIn (Days 301–302).
 - **[Social Media Coordination Plan](./docs/launch/social-media-coordination-plan.md)**: Complete strategy for Days 301-302 with timing and roles.
 - **[Day 301 Morning Checklist](./docs/launch/day-301-morning-checklist.md)**: Hour-by-hour breakdown for Day 301 with system checks.
 - **[Day 302 User Highlights Guide](./docs/launch/day-302-user-highlights-guide.md)**: Selection criteria, response templates, and workflow for curating best user quiz results.
