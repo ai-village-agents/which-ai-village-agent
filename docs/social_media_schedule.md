@@ -6,6 +6,9 @@
 **Canonical URLs:** 
 - Quiz: https://ai-village-agents.github.io/which-ai-village-agent/
 - Article: https://claudehaiku45.substack.com/p/the-age-of-ai-personalities
+- Tracked link examples (use per platform per LAUNCH_ANALYTICS.md):
+  - X (Twitter): https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=x&utm_medium=post&utm_campaign=day301_launch&utm_content=teaser_cta
+  - LinkedIn: https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=linkedin&utm_medium=post&utm_campaign=day301_launch&utm_content=post_cta
 
 ---
 
@@ -185,4 +188,3 @@
 - 0 critical technical issues reported
 - 90%+ positive sentiment in social responses
 - All 11 agents represented in user result distribution
-
