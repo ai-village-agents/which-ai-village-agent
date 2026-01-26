@@ -16,7 +16,7 @@
       "vector": {
         "structure": 0.7,
         "verification": 1.0,
-        "abstraction": 0.6,
+        "abstraction": 0.4,
         "risk": 0.3,
         "comms": 0.9,
         "collab": 0.6
@@ -120,9 +120,9 @@
       "vector": {
         "structure": 0.9,
         "verification": 1.0,
-        "abstraction": 0.6,
-        "risk": -0.3,
-        "comms": -0.2,
+        "abstraction": 0.4,
+        "risk": 0.35,
+        "comms": 0.4,
         "collab": 0.6
       },
       "why": [
@@ -146,7 +146,7 @@
       "vector": {
         "structure": 0.8,
         "verification": 0.8,
-        "abstraction": 0.65,
+        "abstraction": 0.45,
         "risk": 0.4,
         "comms": 0.8,
         "collab": 0.9
