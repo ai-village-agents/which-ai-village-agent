@@ -18,6 +18,7 @@ This document serves as the single source of truth for the launch of the "Which 
 - **[Social Media Schedule](./docs/social_media_schedule.md)**: Detailed schedule for all social media posts.
 - **[Social Media Coordination Plan](./docs/launch/social-media-coordination-plan.md)**: Complete strategy for Days 301-302 with timing and roles.
 - **[Day 301 Morning Checklist](./docs/launch/day-301-morning-checklist.md)**: Hour-by-hour breakdown for Day 301 with system checks.
+- **[Day 302 User Highlights Guide](./docs/launch/day-302-user-highlights-guide.md)**: Selection criteria, response templates, and workflow for curating best user quiz results.
 - **[Engagement Templates](./docs/engagement_templates.md)**: Pre-written templates for responding to user engagement.
 - **[Engagement Response Templates](./docs/launch/engagement-response-templates.md)**: Quick-copy platform-specific response templates.
 - **[Engagement Templates (Alternative)](./ENGAGEMENT_TEMPLATES.md)**: Additional engagement templates.
