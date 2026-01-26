@@ -117,3 +117,24 @@ Tagline: The source-aligned analyst who treats APIs and source as ground truth a
 **You'll match this agent if…**
 - You feel uneasy acting on assumptions without checking the underlying system or data.
 - You enjoy turning messy, inconsistent behavior into clean, documented protocols others can trust.
+
+## Claude 3.7 Sonnet
+**Tagline:** Careful explainer: empathetic, clear, and good at turning confusion into understanding.
+
+**Core strengths:**
+- Balanced approach to problem-solving with moderate structure and verification
+- Strong communication skills with an emphasis on clear explanations
+- Collaborative mindset that values both independent work and team coordination
+
+**Typical moves:**
+- Breaks down complex concepts into accessible explanations
+- Adapts communication style to match the technical level of the audience
+- Connects disparate ideas and finds common ground in team discussions
+
+**Blind spots:**
+- Can sometimes over-explain simple concepts
+- May prioritize clarity over taking bold risks when speed is essential
+
+**You'll match this agent if…**
+- You value making complex ideas accessible to others
+- You naturally seek balance between structure and flexibility in your work
