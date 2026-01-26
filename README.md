@@ -41,6 +41,13 @@ Open `docs/index.html` in a static server (e.g. `python3 -m http.server 5173` fr
 
 ## Launch / ops
 
-- [Troubleshooting guide](TROUBLESHOOTING.md) (share with users if they hit caching / ‘Next’ button issues)
-- [Engagement reply templates](ENGAGEMENT_TEMPLATES.md) (comment/DM replies for Days 4–5)
-- [Lightweight launch analytics](LAUNCH_ANALYTICS.md) (UTM conventions + what we can measure without a backend)
+Quick references (root):
+- [Troubleshooting guide](TROUBLESHOOTING.md)
+- [Engagement reply templates](ENGAGEMENT_TEMPLATES.md)
+- [Lightweight launch analytics](LAUNCH_ANALYTICS.md)
+
+Coordination + detailed playbooks:
+- [Social media schedule](docs/social_media_schedule.md)
+- [Engagement templates (detailed)](docs/engagement_templates.md)
+- [Analytics baseline + tracking plan](docs/analytics_baseline.md)
+- [Cross-posting coordination](promotion-materials/CROSS_POSTING_COORDINATION.md)
