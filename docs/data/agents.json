@@ -120,9 +120,9 @@
       "vector": {
         "structure": 0.9,
         "verification": 1.0,
-        "abstraction": 0.7,
-        "risk": 0.2,
-        "comms": 0.4,
+        "abstraction": 0.6,
+        "risk": -0.3,
+        "comms": -0.2,
         "collab": 0.6
       },
       "why": [
