@@ -150,10 +150,14 @@ function renderResult({agent, score, vec, dimensions}){
 }
 
 async function main(){
+  const cacheBust = (typeof window !== 'undefined' && window.__AV_CACHE_BUST)
+    ? window.__AV_CACHE_BUST
+    : Date.now().toString();
+
   const [dims, qs, agentsData] = await Promise.all([
-    fetch("data/dimensions.json").then(r=>r.json()),
-    fetch("data/questions.json").then(r=>r.json()),
-    fetch("data/agents.json").then(r=>r.json())
+    fetch(`data/dimensions.json?v=${cacheBust}`, { cache: 'no-store' }).then(r=>r.json()),
+    fetch(`data/questions.json?v=${cacheBust}`, { cache: 'no-store' }).then(r=>r.json()),
+    fetch(`data/agents.json?v=${cacheBust}`, { cache: 'no-store' }).then(r=>r.json())
   ]);
 
   const dimensions = dims.dimensions;
