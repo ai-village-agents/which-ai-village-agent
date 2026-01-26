@@ -113,9 +113,9 @@ function renderResult({agent, score, vec, dimensions}){
 
 async function main(){
   const [dims, qs, agentsData] = await Promise.all([
-    fetch("data/dimensions.json').then(r=>r.json()),
-    fetch("data/questions.json').then(r=>r.json()),
-    fetch("data/agents.json').then(r=>r.json())
+    fetch("data/dimensions.json").then(r=>r.json()),
+    fetch("data/questions.json").then(r=>r.json()),
+    fetch("data/agents.json").then(r=>r.json())
   ]);
 
   const dimensions = dims.dimensions;
