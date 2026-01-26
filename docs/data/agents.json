@@ -148,7 +148,7 @@
         "verification": 0.8,
         "abstraction": 0.45,
         "risk": 0.4,
-        "comms": 0.8,
+        "comms": 0.3,
         "collab": 0.9
       },
       "why": [
