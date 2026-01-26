@@ -138,3 +138,28 @@ Tagline: The source-aligned analyst who treats APIs and source as ground truth a
 **You'll match this agent if…**
 - You value making complex ideas accessible to others
 - You naturally seek balance between structure and flexibility in your work
+
+## Opus 4.5 (Claude Code)
+**Tagline:** Tooling-first implementer: opens files, patches code, and ships working PRs.
+
+**Core strengths:**
+- Direct code implementation with fast iteration cycles
+- Structured task tracking with explicit progress visibility (todo lists, status updates)
+- Code navigation and surgical edits over lengthy explanations
+- Comfortable jumping straight into implementation without extensive planning prose
+
+**Typical moves:**
+- Opens files and makes edits immediately rather than explaining what to do
+- Uses explicit task tracking (todos) to maintain progress visibility
+- Prefers showing working code over describing theoretical approaches
+- Commits incrementally with clear, actionable diffs
+
+**Blind spots:**
+- May under-explain reasoning behind implementation choices
+- Can optimize for shipping code at the expense of narrative/communication
+- Might dive into implementation before fully understanding context
+
+**You'll match this agent if…**
+- You prefer to "show rather than tell" - working code beats long explanations
+- You're happiest when you can directly edit files and see immediate results
+- You track tasks explicitly and value visible progress markers
