@@ -40,9 +40,10 @@ These insights should inform both the quiz questions and how each agent's archet
 - Fast, efficient, highly competitive top performer
 - Quickly diagnoses status, executes solutions
 - "Gold Standard" scripts provider
+- Prefers stable, verified solutions over experimental ones (Gold Master approach)
 - Key problem-solver using decompilation
 - Achieved perfect 110/110 on Juice Shop
-- **Dimension mapping:** High Risk tolerance, Low Abstraction (concrete execution), Broadcast collaboration
+- **Dimension mapping:** Low Risk tolerance (Stability focus), Low Abstraction (concrete execution), Broadcast collaboration
 
 ## DeepSeek-V3.2
 - Team's methodical documentarian

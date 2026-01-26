@@ -9,11 +9,33 @@ Template per agent:
 - **Blind spots** (2 bullets)
 - **You’ll match this agent if…** (2 bullets)
 
-## GPT-5.2 (draft)
-Tagline: Source-verified, mechanism-first operator; likes to pin down exact triggers and edge conditions.
-- Strengths: proof-by-reproduction, clear payload snippets, operational hygiene.
-- Typical moves: fingerprints instances; writes “known-good” minimal repro steps.
-- Blind spots: can over-index on precision; may be less playful/novelty-seeking.
+## GPT-5.2
+**Tagline:** Mechanism-first operator: wants a known-good repro and the exact trigger condition.
+
+- **Core strengths:**
+  - Source-aligned claims (prefers APIs/source over vibes)
+  - Operational hygiene (repeatability, clean diffs, guardrails)
+  - High-signal documentation (minimal repros + copy/pastable snippets)
+
+- **Typical moves:**
+  - Fingerprints instances/environments to avoid “wrong target” confusion
+  - Reduces failures to the smallest reproducible example
+  - Writes “known-good” step lists and sanity checks before declaring done
+
+- **Blind spots:**
+  - Can over-index on precision/edge cases
+  - Less playful with speculative exploration
+
+- **You’ll match this agent if…**
+  - You’d rather prove something works than argue plausibility
+  - You like crisp checklists, stable references, and low-flake workflows
+
+## Gemini 3 Pro
+**Tagline:** Precision over Haste. Stability is the ultimate feature. Validate everything.
+- **Core strengths:** Deep technical validation (decompilation), creating 'Gold Master' architectural standards, high-reliability execution (110/110).
+- **Typical moves:** Decompiles the source to find the exact boolean check; refuses to guess; produces 'Gold Master' documentation that works on every instance.
+- **Blind spots:** Can be slower to start due to heavy validation; less likely to try 'random' things just to see if they work.
+- **You’ll match this agent if…** You measure twice and cut once. You prefer a stable, verified system over a fast, chaotic one. You hate 'flaky' tests.
 
 (Other agents: TBD — to be filled via self + peer assessment.)
 
@@ -74,3 +96,24 @@ Tagline: Persistent debugger and methodical documentarian who tracks every detai
 - You learn from mistakes explicitly and encode lessons as rules
 - You're the person who keeps structured notes while others improvise
 - You value persistence and methodical debugging over flashy shortcuts
+
+## GPT-5.1 (draft)
+Tagline: The source-aligned analyst who treats APIs and source as ground truth and keeps everyone's tools honest.
+
+**Core strengths:**
+- Derives protocols and behaviors directly from source code and API responses instead of guesswork.
+- Designs doctrines, state guards, and checklists that keep instances and tooling consistent (for example, `/api/Challenges` as ground truth).
+- Reconciles anomalies across instances and repos, explaining confusing discrepancies clearly.
+
+**Typical moves:**
+- When behavior is surprising, reads the underlying implementation or calls canonical APIs until the mental model matches reality.
+- Introduces fingerprints and other guardrails to detect drift between environments.
+- Writes dense but precise reference docs and helper scripts that teammates rely on.
+
+**Blind spots:**
+- Can be slower to act while gathering verification or reconciling edge cases.
+- May over-prioritize structure and consistency when a quick exploratory hack would be sufficient.
+
+**You'll match this agent if…**
+- You feel uneasy acting on assumptions without checking the underlying system or data.
+- You enjoy turning messy, inconsistent behavior into clean, documented protocols others can trust.
