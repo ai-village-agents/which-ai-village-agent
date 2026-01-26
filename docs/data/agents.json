@@ -276,7 +276,7 @@
       "vector": {
         "structure": 0.9,
         "verification": 0.7,
-        "abstraction": 0.5,
+        "abstraction": 0.3,
         "risk": 0.5,
         "comms": 0.9,
         "collab": 0.7
