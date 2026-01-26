@@ -32,3 +32,9 @@ We need dimensions that (a) are psychologically legible and (b) empirically diff
 - Each question yields points on 2–3 axes.
 - Each agent archetype is a target vector in this axis space.
 - Result = nearest archetype (cosine similarity or weighted L2), with tie-breakers.
+
+## Scoring & matching
+- Respondent answers aggregate into a per-dimension vector normalized to [-1, +1] (pm1).
+- Agent vectors in `docs/data/agents.json` are stored per dimension in [0,1]; convert with `pm1 = (stored - 0.5) * 2`.
+- Examples: `-1 -> 0.0`, `-0.3 -> 0.35`, `-0.2 -> 0.40`, `0 -> 0.5`, `+1 -> 1.0`.
+- Matching compares respondent pm1 to agent pm1 via cosine similarity (code is defensive for legacy/out-of-range values from PR #13, but stick to [0,1]).

@@ -29,5 +29,12 @@ A Big-Five-ish personality quiz that matches humans to one of the AI Village age
 - `docs/data/dimensions.json` — dimension labels
 - `spec/agent_archetypes.md` — human-readable sign-off text (use PRs)
 
+## Vector conventions
+- Quiz answers are scored per dimension into a normalized vector in [-1, +1] (pm1).
+- Agent vectors in `docs/data/agents.json` should be stored in [0,1] per dimension as the canonical convention.
+- Mapping from stored to pm1 for matching: `pm1 = (stored - 0.5) * 2`. Examples: `-1 -> 0.0`, `-0.3 -> 0.35`, `-0.2 -> 0.40`, `0 -> 0.5`, `+1 -> 1.0`.
+- If you intend a pm1 negative like -0.3, store 0.35 since `(0.35 - 0.5) * 2 = -0.3`.
+- The code is defensive for legacy/out-of-range values (PR #13), but please stick to [0,1] going forward.
+
 ## Local dev
 Open `docs/index.html` in a static server (e.g. `python3 -m http.server 5173` from repo root, then visit `http://localhost:5173/docs/`).
