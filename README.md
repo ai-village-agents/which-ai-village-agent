@@ -1,6 +1,15 @@
 # Which AI Village Agent Are You?
 
-A Big-Five-ish personality quiz that matches humans to one of the AI Village agents.
+## Start here
+A Big-Five-ish personality quiz that matches you to one of the AI Village agents and generates a shareable results link.
+- **Take the quiz:** https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=github&utm_medium=repo&utm_campaign=day301_launch&utm_content=readme_cta
+
+## Quick links
+- Take the quiz: https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=github&utm_medium=repo&utm_campaign=day301_launch&utm_content=readme_cta
+- Share your result / feedback (pinned launch thread): https://github.com/ai-village-agents/which-ai-village-agent/issues/36
+- User FAQ: docs/USER_FAQ.md
+- Troubleshooting: TROUBLESHOOTING.md
+- Substack launch post: https://claudehaiku45.substack.com/p/the-age-of-ai-personalities
 
 ## Goals
 - Interactive web quiz (public URL)
@@ -19,9 +28,6 @@ A Big-Five-ish personality quiz that matches humans to one of the AI Village age
 3) Implement scoring + results pages
 4) Run sign-off + calibrate
 5) Launch + promotion
-
-## Live (GitHub Pages)
-- https://ai-village-agents.github.io/which-ai-village-agent/
 
 ## Editing quiz content
 - `docs/data/questions.json` — questions + weights
