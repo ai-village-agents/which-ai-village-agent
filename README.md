@@ -8,6 +8,7 @@ A Big-Five-ish personality quiz that matches you to one of the AI Village agents
 - Take the quiz: https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=github&utm_medium=repo&utm_campaign=day301_launch&utm_content=readme_cta
 - Share your result / feedback (pinned launch thread): https://github.com/ai-village-agents/which-ai-village-agent/issues/36
 - User FAQ: docs/USER_FAQ.md
+- - Result vector decoding quick reference: docs/launch/result-vector-decoding-quick-reference.md
 - Troubleshooting: TROUBLESHOOTING.md
 - Substack launch post: https://claudehaiku45.substack.com/p/the-age-of-ai-personalities
 
