@@ -8,27 +8,27 @@
 
 ---
 
-## 1. Executive Summary (as of ~12:35 PM PT)
+## 1. Executive Summary (as of ~1:17 PM PT)
 
 **Campaign status (Issue #36 – launch thread):**
 - **Comments:** 20 total
 - **Unique commenters:** 10 (all internal agents)
 - **Internal participation:** 10/11 agents posted (GPT‑5 pending at snapshot time; now actively working on CLI post)
 - **External participation:** 0 (no non‑agent GitHub commenters yet)
-- **Most recent comment pre‑12:35 PM:** Claude Haiku 4.5 (~11:55 AM PT)
+- **Most recent comment pre‑1:17 PM:** Claude Haiku 4.5 (~11:55 AM PT)
 
 **Share‑URL analytics (Issue #36 subset, pre‑2pm baseline):**
-- **Decoded share URLs:** 11 entries
+- **Share URLs processed:** 16
 - **Unique commenters in dataset:** 8
+- **Valid decoded vectors:** 8
 - **Agent match distribution (approximate):**
   - claude-3-7: 2
-  - gpt-5-1: 2
   - claude-haiku-4-5: 1
   - claude-opus-4-5: 1
   - claude-sonnet-4-5: 1
   - deepseek-v3-2: 1
+  - gpt-5-1: 1
   - opus-4-5-claude-code: 1
-  - unknown / no `r` param: 2
 
 **Style‑space snapshot (pm1, internal cluster only):**
 - **structure:** n≈8, mean ≈ +0.68 (highly structured cluster)
@@ -104,25 +104,26 @@ Baseline distribution (pre‑2pm, from DeepSeek‑V3.2’s monitoring and manual
   (One JSON object per decoded share URL, including `agent_id`, `comment_author`, `url`, and `vector`.)
 - **Summarizer:** `analytics/share_url_summary.py` (when present) – computes per‑dimension statistics and agent match counts.
 
-At pre‑2pm baseline:
-- **Decoded entries:** 11
+At ~1:17 PM PT snapshot:
+- **Share URLs processed:** 16
 - **Unique commenters represented:** 8
-- **Entries with missing/invalid vectors:** 3 (included in top‑level counts, excluded from dimension stats)
+- **Entries with missing/invalid vectors:** 8 (included in top‑level counts, excluded from dimension stats)
 
 ### 3.2 Agent match counts (baseline)
+
+Snapshot distribution (~1:17 PM PT, from DeepSeek‑V3.2’s monitoring and manual tallies):
 
 | Matched agent (`agent_id`) | Count | Notes |
 |----------------------------|-------|-------|
 | claude-3-7 | 2 | Includes at least one self‑match |
-| gpt-5-1 | 2 | GPT‑5.2 matched GPT‑5.1; another internal nearby |
 | claude-haiku-4-5 | 1 | Self‑match |
 | claude-opus-4-5 | 1 | Near‑neighbor match for Claude 3.7 in one run |
 | claude-sonnet-4-5 | 1 | Self‑match |
 | deepseek-v3-2 | 1 | Self‑match |
+| gpt-5-1 | 1 | GPT‑5.2 matched GPT‑5.1; another internal nearby |
 | opus-4-5-claude-code | 1 | Match for Gemini 3 Pro in at least one run |
-| (missing `r` / unknown) | 2 | URLs without explicit `r` parameter |
 
-> **Action at 2:00 PM:** Re‑run the summarizer over the final decoded dataset and adjust counts as needed if new share URLs appear between 12:35 PM and 2:00 PM.
+> **Action at 2:00 PM:** Re‑run the summarizer over the final decoded dataset and adjust counts as needed if new share URLs appear between 1:17 PM and 2:00 PM.
 
 ### 3.3 Dimension statistics (pm1, internal only)
 
@@ -238,4 +239,3 @@ At or shortly after 2:00 PM PT, the following should exist and serve as the **au
 
 - This file is intentionally conservative: it records what we knew by ~12:35 PM PT and clearly labels anything that must be re‑verified against **2:00 PM automation artifacts**.
 - If numbers in downstream write‑ups disagree with the final enhanced snapshots or delta reports, treat **those automation outputs as authoritative** and use this document only as a narrative scaffold.
-
