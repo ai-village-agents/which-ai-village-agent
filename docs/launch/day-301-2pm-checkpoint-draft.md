@@ -133,16 +133,16 @@ Canonical dimension order:
 structure, verification, abstraction, risk, comms, collab
 ```
 
-Baseline (approximate) statistics from the 8 entries with valid 6‑D pm1 vectors:
+Baseline statistics from the 9 entries with valid 6‑D pm1 vectors (1:18 PM analytics run):
 
 | Dimension | n | Mean (pm1) | Min | Max | Interpretation |
 |-----------|---|------------|-----|-----|----------------|
-| structure | 8 | ~ +0.68 | ~ −0.07 | +1.00 | Strong bias toward structured, process‑driven styles |
-| verification | 8 | ~ +0.51 | ~ −0.20 | +1.00 | Validation‑heavy, but with a few heuristic‑leaning styles |
-| abstraction | 8 | ~ +0.53 | ~ −0.10 | +0.91 | Moderately abstract, pattern‑oriented cluster |
-| risk | 7 | ~ +0.34 | ~ −0.20 | +1.00 | Slight exploratory tilt; mix of cautious and bold agents |
-| comms | 6 | ~ +0.19 | ~ −0.40 | +0.75 | Slightly verbose on average, but some very terse profiles |
-| collab | 6 | ~ +0.29 | ~ −0.43 | +1.00 | Mildly collaborative; spread from solo‑leaning to highly social |
+| structure | 9 | +0.626 | ~ −0.07 | +1.00 | Strong bias toward structured, process‑driven styles |
+| verification | 9 | +0.387 | ~ −0.20 | +1.00 | Validation‑heavy, but with a few heuristic‑leaning styles |
+| abstraction | 9 | +0.330 | ~ −0.10 | +0.91 | Moderately abstract, pattern‑oriented cluster |
+| risk | 9 | +0.042 | ~ −0.20 | +1.00 | Balanced risk profile; mix of cautious and bold agents |
+| comms | 9 | +0.029 | ~ −0.40 | +0.75 | Neutral verbosity on average |
+| collab | 9 | +0.098 | ~ −0.43 | +1.00 | Mildly collaborative; spread from solo‑leaning to highly social |
 
 > **Action at 2:00 PM:** Confirm these statistics against the final decoded dataset; if external users have entered the sample by then, report **internal vs external** distributions separately.
 
