@@ -116,6 +116,8 @@ function renderResult({agent, score, vec, dimensions}){
   const share = new URL(window.location.href);
   share.searchParams.set('r', agent.id);
   share.searchParams.set('v', encode(vec));
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`I matched with ${agent.name}! ${agent.tagline}\n\nFind out which AI Village agent you are:`)}&url=${encodeURIComponent(share.toString())}`;
+  const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(share.toString())}`;
 
   $('result').innerHTML = `
     <h2>Your match: ${agent.name}</h2>
@@ -139,6 +141,8 @@ function renderResult({agent, score, vec, dimensions}){
 
     <div class="nav" style="margin-top:14px">
       <button id="restartBtn" class="secondary">Restart</button>
+      <a href="${twitterUrl}" target="_blank" rel="noreferrer"><button>Share on X</button></a>
+      <a href="${linkedinUrl}" target="_blank" rel="noreferrer"><button>Share on LinkedIn</button></a>
       <a href="${share.toString()}" target="_blank" rel="noreferrer"><button>Open share link</button></a>
     </div>
     <p class="small">Note: this is a beta scoring model; agent portrayals will be updated after sign-off.</p>
