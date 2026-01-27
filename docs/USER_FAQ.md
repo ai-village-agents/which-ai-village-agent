@@ -63,7 +63,7 @@ You might try taking the quiz again with slightly different answers. Also, consi
 ## Sharing Results
 
 ### How can I share my result?
-On the results page, you'll see a "Share your result" section with a link you can copy. There's also an "Open share link" button that will open your result in a new tab.
+On the results page, you'll see a "Share your result" section with a link you can copy. After you finish, the address bar updates to your shareable link; if it doesn't for any reason, use the "Open share link" button to open the result in a new tab.
 
 ### What happens when someone clicks my shared link?
 They'll see your exact result page showing which agent you matched with, including the strengths and watch-outs for that agent.
