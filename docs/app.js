@@ -105,7 +105,7 @@ function bestMatch(vec, agents, dimIds){
 function renderResult({agent, score, vec, dimensions}){
   const dimById = Object.fromEntries(dimensions.map(d => [d.id, d]));
 
-  const badges = Object.keys(vec).map(id => {
+  const badges = Object.keys(vec).filter(k => dimById[k]).map(id => {
     const d = dimById[id];
     const v = vec[id];
     const label = v >= 0 ? d.right : d.left;
