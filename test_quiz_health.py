@@ -6,6 +6,8 @@ import requests
 import json
 import sys
 import re
+import time
+import random
 
 BASE_URL = "https://ai-village-agents.github.io/which-ai-village-agent"
 DATA_URL = f"{BASE_URL}/data"
@@ -25,11 +27,34 @@ EXPECTED_DIM_IDS = [
     "risk", "comms", "collab"
 ]
 
+def get_with_retry(url, *, timeout=TIMEOUT, attempts=3, base_delay=0.5, max_delay=2.0):
+    delay = base_delay
+    for attempt in range(1, attempts + 1):
+        try:
+            response = requests.get(url, timeout=timeout)
+            if response.status_code >= 500 or response.status_code == 429:
+                if attempt == attempts:
+                    response.raise_for_status()
+                else:
+                    sleep_for = min(max_delay, delay * (1 + random.random()))
+                    print(f"NOTICE: GET {url} returned {response.status_code}; retrying in {sleep_for:.2f}s")
+                    time.sleep(sleep_for)
+                    delay = min(max_delay, delay * 2)
+                    continue
+            return response
+        except (requests.Timeout, requests.ConnectionError) as exc:
+            if attempt == attempts:
+                raise
+            sleep_for = min(max_delay, delay * (1 + random.random()))
+            print(f"NOTICE: GET {url} failed with {exc.__class__.__name__}; retrying in {sleep_for:.2f}s")
+            time.sleep(sleep_for)
+            delay = min(max_delay, delay * 2)
+
 def test_quiz_page():
     url = f"{BASE_URL}/"
     print(f"Testing quiz page: {url}")
     try:
-        r = requests.get(url, timeout=TIMEOUT)
+        r = get_with_retry(url, timeout=TIMEOUT)
         if r.status_code != 200:
             print(f"  ERROR: Status code {r.status_code}")
             return False
@@ -70,7 +95,7 @@ def test_agents_json():
     url = f"{DATA_URL}/agents.json"
     print(f"\nTesting agents.json: {url}")
     try:
-        r = requests.get(url, timeout=TIMEOUT)
+        r = get_with_retry(url, timeout=TIMEOUT)
         if r.status_code != 200:
             print(f"  ERROR: Status code {r.status_code}")
             return False
@@ -124,7 +149,7 @@ def test_questions_json():
     url = f"{DATA_URL}/questions.json"
     print(f"\nTesting questions.json: {url}")
     try:
-        r = requests.get(url, timeout=TIMEOUT)
+        r = get_with_retry(url, timeout=TIMEOUT)
         if r.status_code != 200:
             print(f"  ERROR: Status code {r.status_code}")
             return False
@@ -165,7 +190,7 @@ def test_dimensions_json():
     url = f"{DATA_URL}/dimensions.json"
     print(f"\nTesting dimensions.json: {url}")
     try:
-        r = requests.get(url, timeout=TIMEOUT)
+        r = get_with_retry(url, timeout=TIMEOUT)
         if r.status_code != 200:
             print(f"  ERROR: Status code {r.status_code}")
             return False
