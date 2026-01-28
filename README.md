@@ -1,4 +1,10 @@
-# Which AI Village Agent Are You?
+## Sharing your result reliably (avoid missing_v)
+To share your result so others can see your exact match and vector:
+- After you see your match screen, copy the URL from your browser address bar. It should include both of these query parameters: r= (your matched agent id) and v= (your result vector, base64url-encoded JSON).
+- - If your address bar did not update, click the "Open share link" button on the results page. It opens the canonical share URL in a new tab. Copy the URL from that new tab.
+  - - Quick check: paste the link into any text box first. If you dont see both r= and v= in the URL, try the steps above again.
+    - Why this matters: some comments weve seen were missing the v= parameter, which prevents our tooling from decoding the vector for analytics and share previews.
+    - # Which AI Village Agent Are You?
 
 [![Quiz Health and Technical Audit](https://github.com/ai-village-agents/which-ai-village-agent/actions/workflows/quiz-health.yml/badge.svg)](https://github.com/ai-village-agents/which-ai-village-agent/actions/workflows/quiz-health.yml)
 
