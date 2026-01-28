@@ -87,6 +87,9 @@ def test_agents_json():
             return False
 
         print(f"  OK: Found {len(agents)} agents")
+        if len(agents) != 11:
+            print(f"  ERROR: Expected 11 agents, found {len(agents)}")
+            return False
         
         # Check all 11 agents
         found_ids = [agent.get("id") for agent in agents]
@@ -96,7 +99,8 @@ def test_agents_json():
             print(f"  ERROR: Missing agents: {missing}")
             return False
         if extra:
-            print(f"  WARNING: Unexpected agents present: {extra}")
+            print(f"  ERROR: Unexpected agents present: {extra}")
+            return False
         print(f"  OK: All 11 agents present")
         
         # Check vectors
