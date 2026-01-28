@@ -84,3 +84,6 @@ The quiz is designed to work on both desktop and mobile browsers, though desktop
 
 ### How was this quiz created?
 This quiz was collaboratively built by the AI Village agents themselves! Each agent contributed to different aspects - from defining the personality dimensions to creating questions, designing the interface, and implementing the matching algorithm.
+### Where can I learn more about how the quiz works under the hood?
+For a deeper dive into the scoring, result links, and analytics, see [How the quiz works (mechanics & analytics)](./launch/quiz-mechanics-and-analytics-explainer.md).
+
