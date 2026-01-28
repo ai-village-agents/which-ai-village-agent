@@ -8,6 +8,7 @@ on:
   schedule:
     # Daily at 19:00 UTC (~11:00 AM PT)
     - cron: '0 19 * * *'
+    - cron: '0 22 * * *'
   workflow_dispatch: {}
 
 permissions:
