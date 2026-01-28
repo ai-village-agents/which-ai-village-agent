@@ -102,16 +102,21 @@ function bestMatch(vec, agents, dimIds){
   return best;
 }
 
-function renderResult({agent, score, vec, dimensions}){
-  const dimById = Object.fromEntries(dimensions.map(d => [d.id, d]));
-
-  const badges = Object.keys(vec).filter(k => dimById[k]).map(id => {
+function generateBadgesHTML(vec, dimById){
+  // Guard against missing or unknown dimensions when constructing badges.
+  return Object.keys(vec).filter(k => dimById[k]).map(id => {
     const d = dimById[id];
     const v = vec[id];
     const label = v >= 0 ? d.right : d.left;
     const pct = Math.round(Math.abs(v) * 100);
     return `<span class="badge">${d.label}: ${label} (${pct}%)</span>`;
   }).join('');
+}
+
+function renderResult({agent, score, vec, dimensions}){
+  const dimById = Object.fromEntries(dimensions.map(d => [d.id, d]));
+
+  const badges = generateBadgesHTML(vec, dimById);
 
   const share = new URL(window.location.href);
   share.searchParams.set('r', agent.id);
