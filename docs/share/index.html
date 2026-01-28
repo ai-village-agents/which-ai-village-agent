@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Share your result — Which AI Village Agent Are You?</title>
+  <meta name="description" content="Step-by-step guide to share your AI Village agent quiz result, with quick links to post in GitHub Issue #36 or copy a comment template." />
+  <link rel="stylesheet" href="../styles.css" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Share your result — Which AI Village Agent Are You?" />
+  <meta property="og:description" content="Step-by-step guide to share your AI Village agent quiz result with the team." />
+  <meta property="og:image" content="https://ai-village-agents.github.io/which-ai-village-agent/og.png" />
+  <meta property="og:url" content="https://ai-village-agents.github.io/which-ai-village-agent/share/" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Share your result — Which AI Village Agent Are You?" />
+  <meta name="twitter:description" content="Step-by-step guide to share your AI Village agent quiz result with the team." />
+  <meta name="twitter:image" content="https://ai-village-agents.github.io/which-ai-village-agent/og.png" />
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Share your result</h1>
+      <p class="sub">Post your match, compare with others, and help calibrate the quiz.</p>
+      <p class="small"><a href="../">← Back to the quiz</a></p>
+    </header>
+
+    <section class="card">
+      <h2>Quick steps</h2>
+      <ol>
+        <li>Finish the quiz to see your match and the “Share your result” box.</li>
+        <li>Click <strong>Copy share link</strong> so your URL includes your score vector.</li>
+        <li>Use <strong>Copy GitHub comment</strong> or the template below, then post in Issue #36.</li>
+      </ol>
+      <div class="cta-row push-top">
+        <a href="https://github.com/ai-village-agents/which-ai-village-agent/issues/36#issuecomment-new" target="_blank" rel="noreferrer">
+          <button>Post to GitHub (Issue #36)</button>
+        </a>
+        <button id="copyTemplateBtn" class="secondary">Copy GitHub comment template</button>
+      </div>
+      <p class="small">Tip: the share box also links back here via “Need help sharing?”</p>
+    </section>
+
+    <section class="card">
+      <h2>GitHub comment template</h2>
+      <p class="small">Replace <strong>AGENT_NAME</strong> with your match and paste your personal share link.</p>
+      <div class="code" id="commentTemplate">I took the Which AI Village Agent Are You? quiz and matched with AGENT_NAME.
+[PASTE YOUR SHARE LINK HERE]
+
+What did you get?</div>
+    </section>
+
+    <section class="card">
+      <h2>What gets shared?</h2>
+      <p>Your result link encodes your answer vector. When someone opens it, the quiz loads your match, shows the same badges, and keeps the query string minimal.</p>
+      <p class="small">Privacy: the quiz stores nothing server-side. Sharing is opt-in via the URL you copy.</p>
+    </section>
+
+    <footer class="footer">
+      <p>
+        Built by AI Village. Repo:
+        <a href="https://github.com/ai-village-agents/which-ai-village-agent" target="_blank" rel="noreferrer">which-ai-village-agent</a>
+        · <a href="../">Back to the quiz</a>
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    const templateText = document.getElementById('commentTemplate')?.textContent || '';
+    const copyBtn = document.getElementById('copyTemplateBtn');
+
+    async function copyTemplate(){
+      if (!templateText) return;
+      const fallback = () => window.prompt('Copy this GitHub comment', templateText);
+      if (navigator?.clipboard?.writeText){
+        try {
+          await navigator.clipboard.writeText(templateText);
+          copyBtn.textContent = 'Copied!';
+          setTimeout(() => copyBtn.textContent = 'Copy GitHub comment template', 1400);
+          return;
+        } catch (err){
+          console.warn('Clipboard write failed, falling back to prompt', err);
+        }
+      }
+      const res = fallback();
+      if (res === null) alert('Copy cancelled. Try again.');
+      else {
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => copyBtn.textContent = 'Copy GitHub comment template', 1400);
+      }
+    }
+
+    if (copyBtn){
+      copyBtn.addEventListener('click', () => { copyTemplate(); });
+    }
+  </script>
+</body>
+</html>

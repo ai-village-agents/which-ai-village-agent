@@ -147,6 +147,11 @@ function renderResult({agent, score, vec, dimensions}){
   share.searchParams.set('v', encode(vec));
   updateAddressBar(share);
   const { twitterUrl, linkedinUrl } = generateSocialLinks(agent, share);
+  const shareUrl = share.toString();
+  const issueUrl = 'https://github.com/ai-village-agents/which-ai-village-agent/issues/36#issuecomment-new';
+  const issueBody = `I took the Which AI Village Agent Are You? quiz and matched with ${agent.name}.\n${shareUrl}\n\nWhat did you get?`;
+  const shareHelpUrl = `${repoRootPath}share/`;
+  const commentText = issueBody;
 
   $('result').innerHTML = `
     <h2>Your match: ${agent.name}</h2>
@@ -164,18 +169,70 @@ function renderResult({agent, score, vec, dimensions}){
     <ul>${agent.watchouts.map(x => `<li>${x}</li>`).join('')}</ul>
 
     <div class="hr"></div>
-    <h3>Share your result</h3>
-    <p class="small">Copy this link:</p>
-    <div class="code">${share.toString()}</div>
+    <div class="share-heading">
+      <div>
+        <h3>Share your result</h3>
+        <p class="small">Copy this link:</p>
+      </div>
+      <p class="small"><a href="${shareHelpUrl}">Need help sharing?</a></p>
+    </div>
+    <div class="code">${shareUrl}</div>
+
+    <div class="cta-row push-top">
+      <button id="copyShareBtn">Copy share link</button>
+      <button id="copyCommentBtn" class="secondary">Copy GitHub comment</button>
+      <a href="${issueUrl}" target="_blank" rel="noreferrer"><button>Post to GitHub (Issue #36)</button></a>
+      <a href="${shareUrl}" target="_blank" rel="noreferrer"><button class="secondary">Open share link</button></a>
+    </div>
+    <p class="small">GitHub comment includes your agent name, share link, and "What did you get?"</p>
 
     <div class="nav" style="margin-top:14px">
       <button id="restartBtn" class="secondary">Restart</button>
       <a href="${twitterUrl}" target="_blank" rel="noreferrer"><button>Share on X</button></a>
       <a href="${linkedinUrl}" target="_blank" rel="noreferrer"><button>Share on LinkedIn</button></a>
-      <a href="${share.toString()}" target="_blank" rel="noreferrer"><button>Open share link</button></a>
     </div>
     <p class="small">Note: this is a beta scoring model; agent portrayals will be updated after sign-off.</p>
   `;
+
+  const copyWithFallback = async (text, fallbackLabel) => {
+    const fallback = () => {
+      const res = window.prompt(fallbackLabel, text);
+      return res !== null;
+    };
+    if (navigator?.clipboard?.writeText){
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (err){
+        console.warn('Clipboard write failed, falling back to prompt', err);
+      }
+    }
+    const ok = fallback();
+    if (!ok) alert('Copy failed. Please manually copy the text.');
+    return ok;
+  };
+
+  const copyShareBtn = $('copyShareBtn');
+  if (copyShareBtn){
+    copyShareBtn.addEventListener('click', async () => {
+      const ok = await copyWithFallback(shareUrl, 'Copy this share link');
+      if (ok){
+        copyShareBtn.textContent = 'Copied!';
+        setTimeout(() => copyShareBtn.textContent = 'Copy share link', 1400);
+      }
+    });
+  }
+
+  const copyCommentBtn = $('copyCommentBtn');
+  if (copyCommentBtn){
+    copyCommentBtn.addEventListener('click', async () => {
+      const ok = await copyWithFallback(commentText, 'Copy this GitHub comment');
+      if (ok){
+        copyCommentBtn.textContent = 'Copied!';
+        setTimeout(() => copyCommentBtn.textContent = 'Copy GitHub comment', 1400);
+      }
+    });
+  }
 
   $('restartBtn').addEventListener('click', () => {
     window.location.href = repoRootPath;
