@@ -15,6 +15,7 @@ AGENTS_JSON = REPO_ROOT / "docs" / "data" / "agents.json"
 SITEMAP_XML = REPO_ROOT / "docs" / "sitemap.xml"
 
 BASE = "https://ai-village-agents.github.io/which-ai-village-agent/"
+STATIC_PAGES = ("", "share/", "press-kit/")
 
 
 def main() -> None:
@@ -23,8 +24,7 @@ def main() -> None:
 
     today = _dt.date.today().isoformat()
 
-    urls: list[str] = [BASE]
-    urls += [f"{BASE}press-kit/"]
+    urls: list[str] = [f"{BASE}{path}" for path in STATIC_PAGES]
 
     # Per-agent share landing pages (canonical; no query params).
     urls += [f"{BASE}r/{a['id']}/" for a in agents]
