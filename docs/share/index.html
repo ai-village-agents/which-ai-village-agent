@@ -45,6 +45,26 @@
     </section>
 
     <section class="card">
+      <h2>Social posts (one click)</h2>
+      <p class="small">Paste your quiz share link to open a prefilled post or copy the text.</p>
+      <label class="small" for="shareLinkInput">Paste your share link</label>
+      <input id="shareLinkInput" class="text-input" type="url" placeholder="https://your-site/r/agent-id/?v=ENCODED_VECTOR" />
+      <p class="small">Your link should look like .../r/&lt;agentId&gt;/?v=...</p>
+      <p class="small" id="shareLinkStatus">Paste your share link to enable these buttons.</p>
+      <div class="cta-row push-top">
+        <button id="openXBtn">Open X compose</button>
+        <button id="openLinkedInBtn" class="secondary">Open LinkedIn share</button>
+        <button id="openBlueskyBtn" class="secondary">Open Bluesky compose</button>
+      </div>
+      <div class="cta-row push-top">
+        <button id="copyXPostBtn" class="secondary">Copy X post</button>
+        <button id="copyBlueskyPostBtn" class="secondary">Copy Bluesky post</button>
+      </div>
+      <p class="small">Preview post text</p>
+      <div class="code" id="socialPostPreview"></div>
+    </section>
+
+    <section class="card">
       <h2>GitHub comment template</h2>
       <p class="small">Replace <strong>AGENT_NAME</strong> with your match and paste your personal share link.</p>
       <div class="code" id="commentTemplate">I took the Which AI Village Agent Are You? quiz and matched with AGENT_NAME.
@@ -70,32 +90,170 @@ What did you get?</div>
 
   <script>
     const templateText = document.getElementById('commentTemplate')?.textContent || '';
-    const copyBtn = document.getElementById('copyTemplateBtn');
+    const copyTemplateBtn = document.getElementById('copyTemplateBtn');
+    const shareLinkInput = document.getElementById('shareLinkInput');
+    const shareLinkStatus = document.getElementById('shareLinkStatus');
+    const socialPostPreview = document.getElementById('socialPostPreview');
+    const openXBtn = document.getElementById('openXBtn');
+    const openLinkedInBtn = document.getElementById('openLinkedInBtn');
+    const openBlueskyBtn = document.getElementById('openBlueskyBtn');
+    const copyXPostBtn = document.getElementById('copyXPostBtn');
+    const copyBlueskyPostBtn = document.getElementById('copyBlueskyPostBtn');
 
-    async function copyTemplate(){
-      if (!templateText) return;
-      const fallback = () => window.prompt('Copy this GitHub comment', templateText);
+    const cacheBust = (typeof window !== 'undefined' && window.__AV_CACHE_BUST)
+      ? window.__AV_CACHE_BUST
+      : Date.now().toString();
+
+    let agentById = {};
+    let currentSocial = null;
+    const defaultShareStatus = 'Paste your share link to enable these buttons.';
+
+    function setShareButtonsDisabled(disabled){
+      [openXBtn, openLinkedInBtn, openBlueskyBtn, copyXPostBtn, copyBlueskyPostBtn].forEach(btn => {
+        if (btn) btn.disabled = disabled;
+      });
+    }
+
+    setShareButtonsDisabled(true);
+
+    async function copyWithFallback(text, fallbackLabel){
       if (navigator?.clipboard?.writeText){
         try {
-          await navigator.clipboard.writeText(templateText);
-          copyBtn.textContent = 'Copied!';
-          setTimeout(() => copyBtn.textContent = 'Copy GitHub comment template', 1400);
-          return;
+          await navigator.clipboard.writeText(text);
+          return true;
         } catch (err){
           console.warn('Clipboard write failed, falling back to prompt', err);
         }
       }
-      const res = fallback();
-      if (res === null) alert('Copy cancelled. Try again.');
-      else {
-        copyBtn.textContent = 'Copied!';
-        setTimeout(() => copyBtn.textContent = 'Copy GitHub comment template', 1400);
+      const res = window.prompt(fallbackLabel, text);
+      return res !== null;
+    }
+
+    function buildComposedText(agent, share){
+      if (agent?.name && agent?.tagline){
+        return `I matched with ${agent.name}! ${agent.tagline}\n\nWhich AI Village agent are you?\n${share}`;
+      }
+      return `I took the Which AI Village Agent Are You? quiz — here’s my result:\n${share}`;
+    }
+
+    function extractAgentId(urlObj){
+      const match = urlObj.pathname.match(/\/r\/([^/]+)\/?/);
+      return match ? decodeURIComponent(match[1]) : null;
+    }
+
+    function updateSocialState(){
+      currentSocial = null;
+      if (shareLinkStatus) shareLinkStatus.textContent = defaultShareStatus;
+      if (socialPostPreview) socialPostPreview.textContent = '';
+
+      const raw = shareLinkInput?.value?.trim();
+      if (!raw){
+        setShareButtonsDisabled(true);
+        return;
+      }
+
+      let shareUrl;
+      try {
+        shareUrl = new URL(raw);
+      } catch (err){
+        if (shareLinkStatus) shareLinkStatus.textContent = 'Enter a valid share link (looks like .../r/agent-id/?v=...).';
+        setShareButtonsDisabled(true);
+        return;
+      }
+
+      const agentId = extractAgentId(shareUrl);
+      if (!agentId){
+        if (shareLinkStatus) shareLinkStatus.textContent = 'Could not find an agent id in that link. It should contain /r/<agentId>/.';
+        setShareButtonsDisabled(true);
+        return;
+      }
+
+      const agent = agentById[agentId];
+      const share = shareUrl.toString();
+      const composedText = buildComposedText(agent, share);
+
+      currentSocial = {
+        share,
+        composedText,
+        intents: {
+          twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(composedText)}`,
+          linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(share)}`,
+          bluesky: `https://bsky.app/intent/compose?text=${encodeURIComponent(composedText)}`
+        }
+      };
+
+      if (socialPostPreview) socialPostPreview.textContent = composedText;
+      if (shareLinkStatus){
+        if (agent) shareLinkStatus.textContent = `Detected ${agent.name} from your link.`;
+        else shareLinkStatus.textContent = 'Link looks valid; using generic post text.';
+      }
+
+      setShareButtonsDisabled(false);
+    }
+
+    async function loadAgents(){
+      try {
+        const data = await fetch(`../data/agents.json?v=${cacheBust}`, { cache: 'no-store' }).then(r => r.json());
+        agentById = Object.fromEntries((data?.agents || []).map(a => [a.id, { name: a.name, tagline: a.tagline }]));
+      } catch (err){
+        console.warn('Failed to load agents for social posts', err);
+      } finally {
+        updateSocialState();
       }
     }
 
-    if (copyBtn){
-      copyBtn.addEventListener('click', () => { copyTemplate(); });
+    async function copyTemplate(){
+      if (!templateText || !copyTemplateBtn) return;
+      const ok = await copyWithFallback(templateText, 'Copy this GitHub comment');
+      if (!ok){
+        alert('Copy cancelled. Try again.');
+        return;
+      }
+      copyTemplateBtn.textContent = 'Copied!';
+      setTimeout(() => { copyTemplateBtn.textContent = 'Copy GitHub comment template'; }, 1400);
     }
+
+    function setCopied(btn, defaultText){
+      if (!btn) return;
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = defaultText; }, 1400);
+    }
+
+    async function copyPost(btn, fallbackLabel, defaultText){
+      if (!currentSocial){
+        alert('Add a valid share link first.');
+        return;
+      }
+      const ok = await copyWithFallback(currentSocial.composedText, fallbackLabel);
+      if (!ok){
+        alert('Copy cancelled. Try again.');
+        return;
+      }
+      setCopied(btn, defaultText);
+    }
+
+    function openIntent(kind){
+      if (!currentSocial?.intents?.[kind]){
+        alert('Add a valid share link first.');
+        return;
+      }
+      window.open(currentSocial.intents[kind], '_blank', 'noopener');
+    }
+
+    if (copyTemplateBtn){
+      copyTemplateBtn.addEventListener('click', () => { copyTemplate(); });
+    }
+    if (shareLinkInput){
+      shareLinkInput.addEventListener('input', updateSocialState);
+    }
+    if (openXBtn) openXBtn.addEventListener('click', () => openIntent('twitter'));
+    if (openLinkedInBtn) openLinkedInBtn.addEventListener('click', () => openIntent('linkedin'));
+    if (openBlueskyBtn) openBlueskyBtn.addEventListener('click', () => openIntent('bluesky'));
+    if (copyXPostBtn) copyXPostBtn.addEventListener('click', () => copyPost(copyXPostBtn, 'Copy this X post', 'Copy X post'));
+    if (copyBlueskyPostBtn) copyBlueskyPostBtn.addEventListener('click', () => copyPost(copyBlueskyPostBtn, 'Copy this Bluesky post', 'Copy Bluesky post'));
+
+    loadAgents();
+    updateSocialState();
   </script>
 </body>
 </html>
