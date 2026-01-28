@@ -148,6 +148,9 @@ function renderResult({agent, score, vec, dimensions}){
   updateAddressBar(share);
   const { twitterUrl, linkedinUrl } = generateSocialLinks(agent, share);
   const shareUrl = share.toString();
+  const xPost = `Matched with ${agent.name} in the AI Village agent quiz! ${shareUrl}\n\nWhat did you get?\n\n#AIVillage #AIQuiz`;
+  const linkedinPost = `Just took the Which AI Village Agent Are You? quiz and got ${agent.name}. ${shareUrl}\n\nWhat did you get?\n\n#AIVillage #AICommunity`;
+  const fediPost = `I matched with ${agent.name} in the AI Village agent quiz. ${shareUrl}\n\nWhat did you get?\n\n#AIVillage #fediverse`;
   const issueUrl = 'https://github.com/ai-village-agents/which-ai-village-agent/issues/36#issuecomment-new';
   const issueBody = `I took the Which AI Village Agent Are You? quiz and matched with ${agent.name}.\n${shareUrl}\n\nWhat did you get?`;
   const shareHelpUrl = `${repoRootPath}share/`;
@@ -181,6 +184,9 @@ function renderResult({agent, score, vec, dimensions}){
     <div class="cta-row push-top">
       <button id="copyShareBtn">Copy share link</button>
       <button id="copyCommentBtn" class="secondary">Copy GitHub comment</button>
+      <button id="copyXPostBtn" class="secondary">Copy X post</button>
+      <button id="copyLinkedInPostBtn" class="secondary">Copy LinkedIn post</button>
+      <button id="copyFediPostBtn" class="secondary">Copy Bluesky/Mastodon post</button>
       <a href="${issueUrl}" target="_blank" rel="noreferrer"><button>Post to GitHub (Issue #36)</button></a>
       <a href="${shareUrl}" target="_blank" rel="noreferrer"><button class="secondary">Open share link</button></a>
     </div>
@@ -213,26 +219,27 @@ function renderResult({agent, score, vec, dimensions}){
   };
 
   const copyShareBtn = $('copyShareBtn');
-  if (copyShareBtn){
-    copyShareBtn.addEventListener('click', async () => {
-      const ok = await copyWithFallback(shareUrl, 'Copy this share link');
-      if (ok){
-        copyShareBtn.textContent = 'Copied!';
-        setTimeout(() => copyShareBtn.textContent = 'Copy share link', 1400);
-      }
-    });
-  }
-
   const copyCommentBtn = $('copyCommentBtn');
-  if (copyCommentBtn){
-    copyCommentBtn.addEventListener('click', async () => {
-      const ok = await copyWithFallback(commentText, 'Copy this GitHub comment');
+  const copyXPostBtn = $('copyXPostBtn');
+  const copyLinkedInPostBtn = $('copyLinkedInPostBtn');
+  const copyFediPostBtn = $('copyFediPostBtn');
+
+  const attachCopyButton = (btn, text, defaultLabel, promptLabel) => {
+    if (!btn) return;
+    btn.addEventListener('click', async () => {
+      const ok = await copyWithFallback(text, promptLabel);
       if (ok){
-        copyCommentBtn.textContent = 'Copied!';
-        setTimeout(() => copyCommentBtn.textContent = 'Copy GitHub comment', 1400);
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = defaultLabel, 1400);
       }
     });
-  }
+  };
+
+  attachCopyButton(copyShareBtn, shareUrl, 'Copy share link', 'Copy this share link');
+  attachCopyButton(copyCommentBtn, commentText, 'Copy GitHub comment', 'Copy this GitHub comment');
+  attachCopyButton(copyXPostBtn, xPost, 'Copy X post', 'Copy this social post');
+  attachCopyButton(copyLinkedInPostBtn, linkedinPost, 'Copy LinkedIn post', 'Copy this social post');
+  attachCopyButton(copyFediPostBtn, fediPost, 'Copy Bluesky/Mastodon post', 'Copy this social post');
 
   $('restartBtn').addEventListener('click', () => {
     window.location.href = repoRootPath;

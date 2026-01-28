@@ -54,6 +54,40 @@ What did you get?</div>
     </section>
 
     <section class="card">
+      <h2>Ready-to-copy social post templates</h2>
+      <p class="small">Swap in <strong>AGENT_NAME</strong> and your <strong>SHARE_LINK</strong>, then paste anywhere.</p>
+      <div class="template-grid">
+        <div class="template-card">
+          <p class="small"><strong>X (Twitter)</strong></p>
+          <div class="code" id="xTemplate">Matched with AGENT_NAME in the AI Village agent quiz! SHARE_LINK
+
+What did you get?
+
+#AIVillage #AIQuiz</div>
+          <button class="secondary copy-template-btn" data-template-id="xTemplate" data-default-label="Copy X post">Copy X post</button>
+        </div>
+        <div class="template-card">
+          <p class="small"><strong>LinkedIn</strong></p>
+          <div class="code" id="linkedinTemplate">Just took the Which AI Village Agent Are You? quiz and got AGENT_NAME. SHARE_LINK
+
+What did you get?
+
+#AIVillage #AICommunity</div>
+          <button class="secondary copy-template-btn" data-template-id="linkedinTemplate" data-default-label="Copy LinkedIn post">Copy LinkedIn post</button>
+        </div>
+        <div class="template-card">
+          <p class="small"><strong>Bluesky / Mastodon (generic)</strong></p>
+          <div class="code" id="fediTemplate">I matched with AGENT_NAME in the AI Village agent quiz. SHARE_LINK
+
+What did you get?
+
+#AIVillage #fediverse</div>
+          <button class="secondary copy-template-btn" data-template-id="fediTemplate" data-default-label="Copy Bluesky/Mastodon post">Copy Bluesky/Mastodon post</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
       <h2>What gets shared?</h2>
       <p>Your result link encodes your answer vector. When someone opens it, the quiz loads your match, shows the same badges, and keeps the query string minimal.</p>
       <p class="small">Privacy: the quiz stores nothing server-side. Sharing is opt-in via the URL you copy.</p>
@@ -69,17 +103,16 @@ What did you get?</div>
   </main>
 
   <script>
-    const templateText = document.getElementById('commentTemplate')?.textContent || '';
-    const copyBtn = document.getElementById('copyTemplateBtn');
+    function getText(id){ return document.getElementById(id)?.textContent || ''; }
 
-    async function copyTemplate(){
-      if (!templateText) return;
-      const fallback = () => window.prompt('Copy this GitHub comment', templateText);
+    async function copyTextWithFallback(text, btn, defaultLabel, promptLabel){
+      if (!text || !btn) return;
+      const fallback = () => window.prompt(promptLabel, text);
       if (navigator?.clipboard?.writeText){
         try {
-          await navigator.clipboard.writeText(templateText);
-          copyBtn.textContent = 'Copied!';
-          setTimeout(() => copyBtn.textContent = 'Copy GitHub comment template', 1400);
+          await navigator.clipboard.writeText(text);
+          btn.textContent = 'Copied!';
+          setTimeout(() => btn.textContent = defaultLabel, 1400);
           return;
         } catch (err){
           console.warn('Clipboard write failed, falling back to prompt', err);
@@ -88,14 +121,28 @@ What did you get?</div>
       const res = fallback();
       if (res === null) alert('Copy cancelled. Try again.');
       else {
-        copyBtn.textContent = 'Copied!';
-        setTimeout(() => copyBtn.textContent = 'Copy GitHub comment template', 1400);
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = defaultLabel, 1400);
       }
     }
 
+    const commentTemplateText = getText('commentTemplate');
+    const copyBtn = document.getElementById('copyTemplateBtn');
     if (copyBtn){
-      copyBtn.addEventListener('click', () => { copyTemplate(); });
+      copyBtn.addEventListener('click', () => {
+        copyTextWithFallback(commentTemplateText, copyBtn, 'Copy GitHub comment template', 'Copy this GitHub comment');
+      });
     }
+
+    const socialButtons = Array.from(document.querySelectorAll('.copy-template-btn'));
+    socialButtons.forEach((btn) => {
+      const id = btn.getAttribute('data-template-id');
+      const defaultLabel = btn.getAttribute('data-default-label') || btn.textContent || 'Copy';
+      const text = getText(id);
+      btn.addEventListener('click', () => {
+        copyTextWithFallback(text, btn, defaultLabel, 'Copy this post template');
+      });
+    });
   </script>
 </body>
 </html>
