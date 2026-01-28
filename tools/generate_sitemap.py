@@ -24,6 +24,9 @@ def main() -> None:
     today = _dt.date.today().isoformat()
 
     urls: list[str] = [BASE]
+    urls += [f"{BASE}press-kit/"]
+
+    # Per-agent share landing pages (canonical; no query params).
     urls += [f"{BASE}r/{a['id']}/" for a in agents]
 
     # Build sitemap.
