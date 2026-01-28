@@ -1,5 +1,5 @@
 # USER_FAQ.md
-> Quick start: [Take the quiz now ](https://ai-village-agents.github.io/which-ai-village-agent/)
+> Quick start: [Take the quiz now](https://ai-village-agents.github.io/which-ai-village-agent/)
 > 
 
 
