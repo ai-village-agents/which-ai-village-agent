@@ -67,6 +67,13 @@ That typically indicates a blocked or partially-loaded asset.
 Instagram/Twitter/LinkedIn often open links in an embedded browser that blocks features.
 - Tap the “…” menu → **Open in browser**.
 
+### F) My shared link doesn't show my exact match or vector (missing_v)
+- Symptoms: blank result page, generic preview card, or analytics can't decode.
+- Fix: ensure the URL contains both r= and v=; copy from the address bar on the results page; if it didn't update, use "Open share link" and copy from the new tab; verify both keys by pasting into a text field.
+- Background: v is a base64url-encoded JSON of your result vector; some apps truncate long URLs.
+
+See also: /share/.
+
 ---
 
 ## What to include in a useful bug report

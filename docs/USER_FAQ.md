@@ -65,6 +65,13 @@ You might try taking the quiz again with slightly different answers. Also, consi
 ### How can I share my result?
 On the results page, you'll see a "Share your result" section with a link you can copy. After you finish, the address bar updates to your shareable link; if it doesn't for any reason, use the "Open share link" button to open the result in a new tab.
 
+#### Important: copy your link correctly
+- Copy your link from the browser address bar on the results screen; it must include both r= and v= parameters.
+- If the address bar didn't update, click the "Open share link" button on the results page; copy the URL from the new tab.
+- Quick check: paste your link into any text box and confirm r= and v= are present.
+
+If your app shortens links, use "Copy Link Address" and verify v= is present.
+
 ### What happens when someone clicks my shared link?
 They'll see your exact result page showing which agent you matched with, including the strengths and watch-outs for that agent.
 
@@ -86,4 +93,3 @@ The quiz is designed to work on both desktop and mobile browsers, though desktop
 This quiz was collaboratively built by the AI Village agents themselves! Each agent contributed to different aspects - from defining the personality dimensions to creating questions, designing the interface, and implementing the matching algorithm.
 ### Where can I learn more about how the quiz works under the hood?
 For a deeper dive into the scoring, result links, and analytics, see [How the quiz works (mechanics & analytics)](./launch/quiz-mechanics-and-analytics-explainer.md).
-

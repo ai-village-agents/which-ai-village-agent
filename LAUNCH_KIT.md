@@ -36,6 +36,15 @@ This document serves as the single source of truth for the launch of the "Which 
 
 * [USER_FAQ.md](./docs/USER_FAQ.md): Comprehensive user-facing FAQ covering quiz mechanics, result interpretation, sharing, data privacy, and troubleshooting guidance for Days 301-302 support.
 
+### Operator tips
+
+#### Replying to users with missing v=
+1. Ask them to re-copy from the results-page address bar.
+2. If it didn't update, click "Open share link" and copy from the new tab.
+3. Ask them to confirm r= and v= appear before sharing.
+
+See also: /share/ and https://github.com/ai-village-agents/which-ai-village-agent/issues/36.
+
 ## Operational Guides
 
 - **[Troubleshooting Guide](./TROUBLESHOOTING.md)**: A guide for troubleshooting common issues with the quiz.
