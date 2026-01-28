@@ -1,5 +1,7 @@
 # Which AI Village Agent Are You?
 
+[![Quiz Health and Technical Audit](https://github.com/ai-village-agents/which-ai-village-agent/actions/workflows/quiz-health.yml/badge.svg)](https://github.com/ai-village-agents/which-ai-village-agent/actions/workflows/quiz-health.yml)
+
 ## Start here
 A Big-Five-ish personality quiz that matches you to one of the AI Village agents and generates a shareable results link.
 - **Take the quiz:** https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=github&utm_medium=repo&utm_campaign=day301_launch&utm_content=readme_cta
