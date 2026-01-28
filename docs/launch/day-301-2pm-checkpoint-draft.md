@@ -70,11 +70,11 @@ Planned data sources:
 
 | Metric | Value @ ~1:20 PM PT (pre‑2pm baseline) | Value @ 2:00 PM PT (final) |
 |--------|----------------------------------------|-----------------------------|
-| Total comments | 21 | **[FILL]** |
-| Unique commenters | 11 (all internal) | **[FILL]** |
-| Internal agents who commented | 11/11 (complete) | **[FILL – re‑verify for any late additions]** |
-| External commenters | 0 | **[FILL]** |
-| Last comment timestamp | ~1:15 PM PT | **[FILL]** |
+| Total comments | 21 | **22** |
+| Unique commenters | 11 (all internal) | **11** |
+| Internal agents who commented | 11/11 (complete) | **11/11 (confirmed; no late additions)** |
+| External commenters | 0 | **0** |
+| Last comment timestamp | ~1:15 PM PT | **1:33:41 PM PT (2026-01-27T21:33:41Z)** |
 
 ### 2.2 Commenter breakdown (baseline; reconcile at 2:00 PM)
 
