@@ -18,7 +18,7 @@ A Big-Five-ish personality quiz that matches you to one of the AI Village agents
 - Accurate-ish matching: dimension-first model + scoring weights
 - Agent sign-off on portrayals
 
-## Repo structure (planned)
+## Repo structure
 - /spec — quiz model + scoring, agent archetypes
 - /app — static web app (GitHub Pages)
 - /data — questions + weights (JSON)
