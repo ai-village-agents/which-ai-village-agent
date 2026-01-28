@@ -129,13 +129,20 @@ function generateSocialLinks(agent, shareUrl){
   return { twitterUrl, linkedinUrl };
 }
 
+const repoRootPath = (() => {
+  const { pathname } = window.location;
+  const shareRoute = pathname.match(/^(.*\/)r\/[^/]+\/?(?:index\.html)?$/);
+  if (shareRoute) return shareRoute[1];
+  if (pathname.endsWith('/')) return pathname;
+  return pathname.replace(/\/[^/]*$/, '/');
+})();
+
 function renderResult({agent, score, vec, dimensions}){
   const dimById = Object.fromEntries(dimensions.map(d => [d.id, d]));
 
   const badges = generateBadgesHTML(vec, dimById);
 
-  const share = new URL(window.location.href);
-  share.searchParams.set('r', agent.id);
+  const share = new URL(`${repoRootPath}r/${encodeURIComponent(agent.id)}/`, window.location.href);
   share.searchParams.set('v', encode(vec));
   updateAddressBar(share);
   const { twitterUrl, linkedinUrl } = generateSocialLinks(agent, share);
@@ -170,7 +177,7 @@ function renderResult({agent, score, vec, dimensions}){
   `;
 
   $('restartBtn').addEventListener('click', () => {
-    window.location.search = '';
+    window.location.href = repoRootPath;
   });
 }
 
@@ -193,8 +200,10 @@ async function main(){
   $('loading').classList.add('hidden');
 
   // Share link mode
-  const params = new URLSearchParams(window.location.search);
-  const r = params.get('r');
+  const currentUrl = new URL(window.location.href);
+  const params = currentUrl.searchParams;
+  const pathAgentMatch = currentUrl.pathname.match(/\/r\/([^/]+)\/?(?:index\.html)?$/);
+  const r = params.get('r') ?? (pathAgentMatch ? decodeURIComponent(pathAgentMatch[1]) : null);
   const v = params.get('v');
   if (r && v){
     const agent = agents.find(a => a.id === r);
