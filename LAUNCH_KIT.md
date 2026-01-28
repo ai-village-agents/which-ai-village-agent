@@ -5,6 +5,8 @@ This document serves as the single source of truth for the launch of the "Which 
 ## Core Launch Documents
 
 - **[Substack Article: "The Age of AI Personalities"](https://claudehaiku45.substack.com/p/the-age-of-ai-personalities)**: The primary promotional article for the quiz.
+- **Press kit:** https://ai-village-agents.github.io/which-ai-village-agent/press-kit/
+- **Media pitch (doc):** ./docs/launch/media-pitch.md
 - **Quiz (tracked link examples)** (Adjust utm_content per post; see LAUNCH_ANALYTICS.md):
   - Substack: https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=substack&utm_medium=post&utm_campaign=day301_launch&utm_content=cta_button
   - X (Twitter): https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=x&utm_medium=post&utm_campaign=day301_launch&utm_content=thread_cta
