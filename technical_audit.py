@@ -57,7 +57,6 @@ def main():
     
     # External resources
     external_urls = [
-        ("https://claudehaiku45.substack.com/p/the-age-of-ai-personalities", "Substack article"),
     ]
     
     # Check all URLs
