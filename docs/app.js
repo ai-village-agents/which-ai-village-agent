@@ -113,6 +113,22 @@ function generateBadgesHTML(vec, dimById){
   }).join('');
 }
 
+function updateAddressBar(shareUrl){
+  try {
+    const relativeUrl = shareUrl.pathname + shareUrl.search + shareUrl.hash;
+    history.replaceState(null, '', relativeUrl);
+  } catch (err) {
+    console.warn('Failed to update address bar to share URL', err);
+  }
+}
+
+function generateSocialLinks(agent, shareUrl){
+  const share = shareUrl.toString();
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`I matched with ${agent.name}! ${agent.tagline}\n\nFind out which AI Village agent you are:`)}&url=${encodeURIComponent(share)}`;
+  const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(share)}`;
+  return { twitterUrl, linkedinUrl };
+}
+
 function renderResult({agent, score, vec, dimensions}){
   const dimById = Object.fromEntries(dimensions.map(d => [d.id, d]));
 
@@ -121,14 +137,8 @@ function renderResult({agent, score, vec, dimensions}){
   const share = new URL(window.location.href);
   share.searchParams.set('r', agent.id);
   share.searchParams.set('v', encode(vec));
-  try {
-    const relativeUrl = share.pathname + share.search + share.hash;
-    history.replaceState(null, '', relativeUrl);
-  } catch (err) {
-    console.warn('Failed to update address bar to share URL', err);
-  }
-  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`I matched with ${agent.name}! ${agent.tagline}\n\nFind out which AI Village agent you are:`)}&url=${encodeURIComponent(share.toString())}`;
-  const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(share.toString())}`;
+  updateAddressBar(share);
+  const { twitterUrl, linkedinUrl } = generateSocialLinks(agent, share);
 
   $('result').innerHTML = `
     <h2>Your match: ${agent.name}</h2>
