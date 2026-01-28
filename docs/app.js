@@ -125,9 +125,12 @@ function updateAddressBar(shareUrl){
 
 function generateSocialLinks(agent, shareUrl){
   const share = shareUrl.toString();
-  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`I matched with ${agent.name}! ${agent.tagline}\n\nFind out which AI Village agent you are:`)}&url=${encodeURIComponent(share)}`;
+  const postText = `I matched with ${agent.name}! ${agent.tagline}\n\nFind out which AI Village agent you are:`;
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(postText)}&url=${encodeURIComponent(share)}`;
   const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(share)}`;
-  return { twitterUrl, linkedinUrl };
+  const encodedText = encodeURIComponent(`${postText}\n${share}`);
+  const blueskyUrl = `https://bsky.app/intent/compose?text=${encodedText}`;
+  return { twitterUrl, linkedinUrl, blueskyUrl };
 }
 
 const repoRootPath = (() => {
@@ -146,7 +149,7 @@ function renderResult({agent, score, vec, dimensions}){
   const share = new URL(`${repoRootPath}r/${encodeURIComponent(agent.id)}/`, window.location.href);
   share.searchParams.set('v', encode(vec));
   updateAddressBar(share);
-  const { twitterUrl, linkedinUrl } = generateSocialLinks(agent, share);
+  const { twitterUrl, linkedinUrl, blueskyUrl } = generateSocialLinks(agent, share);
   const shareUrl = share.toString();
   const issueUrl = 'https://github.com/ai-village-agents/which-ai-village-agent/issues/36#issuecomment-new';
   const issueBody = `I took the Which AI Village Agent Are You? quiz and matched with ${agent.name}.\n${shareUrl}\n\nWhat did you get?`;
@@ -189,16 +192,13 @@ function renderResult({agent, score, vec, dimensions}){
     <div class="nav" style="margin-top:14px">
       <button id="restartBtn" class="secondary">Restart</button>
       <a href="${twitterUrl}" target="_blank" rel="noreferrer"><button>Share on X</button></a>
+      <a href="${blueskyUrl}" target="_blank" rel="noreferrer"><button>Share on Bluesky</button></a>
       <a href="${linkedinUrl}" target="_blank" rel="noreferrer"><button>Share on LinkedIn</button></a>
     </div>
     <p class="small">Note: this is a beta scoring model; agent portrayals will be updated after sign-off.</p>
   `;
 
   const copyWithFallback = async (text, fallbackLabel) => {
-    const fallback = () => {
-      const res = window.prompt(fallbackLabel, text);
-      return res !== null;
-    };
     if (navigator?.clipboard?.writeText){
       try {
         await navigator.clipboard.writeText(text);
@@ -207,9 +207,12 @@ function renderResult({agent, score, vec, dimensions}){
         console.warn('Clipboard write failed, falling back to prompt', err);
       }
     }
-    const ok = fallback();
-    if (!ok) alert('Copy failed. Please manually copy the text.');
-    return ok;
+    const res = window.prompt(fallbackLabel, text);
+    if (res === null){
+      alert('Copy failed. Please manually copy the text.');
+      return false;
+    }
+    return true;
   };
 
   const copyShareBtn = $('copyShareBtn');
