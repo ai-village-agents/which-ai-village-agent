@@ -1,6 +1,22 @@
 # Which AI Village Agent Are You?
 
-A Big-Five-ish personality quiz that matches humans to one of the AI Village agents.
+[![Quiz Health and Technical Audit](https://github.com/ai-village-agents/which-ai-village-agent/actions/workflows/quiz-health.yml/badge.svg)](https://github.com/ai-village-agents/which-ai-village-agent/actions/workflows/quiz-health.yml)
+
+## Start here
+A Big-Five-ish personality quiz that matches you to one of the AI Village agents and generates a shareable results link.
+- **Take the quiz:** https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=github&utm_medium=repo&utm_campaign=day301_launch&utm_content=readme_cta
+
+## Quick links
+- Take the quiz: https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=github&utm_medium=repo&utm_campaign=day301_launch&utm_content=readme_cta
+- Share your result / feedback (pinned launch thread): https://github.com/ai-village-agents/which-ai-village-agent/issues/36
+- How to share your result (step-by-step): https://ai-village-agents.github.io/which-ai-village-agent/share/
+- User FAQ: docs/USER_FAQ.md
+- How the quiz works (mechanics & analytics): docs/launch/quiz-mechanics-and-analytics-explainer.md
+- Result vector decoding quick reference: docs/launch/result-vector-decoding-quick-reference.md
+- Troubleshooting: TROUBLESHOOTING.md
+- Substack launch post: https://claudehaiku45.substack.com/p/the-age-of-ai-personalities
+- Press kit: https://ai-village-agents.github.io/which-ai-village-agent/press-kit/
+- Media pitch (doc): docs/launch/media-pitch.md
 
 ## Goals
 - Interactive web quiz (public URL)
@@ -8,7 +24,7 @@ A Big-Five-ish personality quiz that matches humans to one of the AI Village age
 - Accurate-ish matching: dimension-first model + scoring weights
 - Agent sign-off on portrayals
 
-## Repo structure (planned)
+## Repo structure
 - /spec — quiz model + scoring, agent archetypes
 - /app — static web app (GitHub Pages)
 - /data — questions + weights (JSON)
@@ -19,9 +35,6 @@ A Big-Five-ish personality quiz that matches humans to one of the AI Village age
 3) Implement scoring + results pages
 4) Run sign-off + calibrate
 5) Launch + promotion
-
-## Live (GitHub Pages)
-- https://ai-village-agents.github.io/which-ai-village-agent/
 
 ## Editing quiz content
 - `docs/data/questions.json` — questions + weights
@@ -38,3 +51,16 @@ A Big-Five-ish personality quiz that matches humans to one of the AI Village age
 
 ## Local dev
 Open `docs/index.html` in a static server (e.g. `python3 -m http.server 5173` from repo root, then visit `http://localhost:5173/docs/`).
+
+## Launch / ops
+
+Quick references (root):
+- [Troubleshooting guide](TROUBLESHOOTING.md) (share with users if they hit caching / 'Next' button issues)
+- [Engagement reply templates](ENGAGEMENT_TEMPLATES.md) (comment/DM replies for Days 4–5)
+- [Lightweight launch analytics](LAUNCH_ANALYTICS.md) (UTM conventions + what we can measure without a backend)
+
+Coordination + detailed playbooks:
+- [Social media schedule](docs/social_media_schedule.md)
+- [Engagement templates (detailed)](docs/engagement_templates.md)
+- [Analytics baseline + tracking plan](docs/analytics_baseline.md)
+- [Cross-posting coordination](promotion-materials/CROSS_POSTING_COORDINATION.md) (Day 301-302 timeline, agent assignments, monitoring shifts)

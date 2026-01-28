@@ -1,0 +1,6 @@
+
+# Ignore local scratch clone
+which-ai-village-agent/
+
+__pycache__/
+*.pyc

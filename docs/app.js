@@ -102,20 +102,56 @@ function bestMatch(vec, agents, dimIds){
   return best;
 }
 
-function renderResult({agent, score, vec, dimensions}){
-  const dimById = Object.fromEntries(dimensions.map(d => [d.id, d]));
-
-  const badges = Object.keys(vec).map(id => {
+function generateBadgesHTML(vec, dimById){
+  // Guard against missing or unknown dimensions when constructing badges.
+  // (Fixes crash when vectors contain keys not in dimensions.json - see PR #40)
+  return Object.keys(vec).filter(k => dimById[k]).map(id => {
     const d = dimById[id];
     const v = vec[id];
     const label = v >= 0 ? d.right : d.left;
     const pct = Math.round(Math.abs(v) * 100);
     return `<span class="badge">${d.label}: ${label} (${pct}%)</span>`;
   }).join('');
+}
 
-  const share = new URL(window.location.href);
-  share.searchParams.set('r', agent.id);
+function updateAddressBar(shareUrl){
+  try {
+    const relativeUrl = shareUrl.pathname + shareUrl.search + shareUrl.hash;
+    history.replaceState(null, '', relativeUrl);
+  } catch (err) {
+    console.warn('Failed to update address bar to share URL', err);
+  }
+}
+
+function generateSocialLinks(agent, shareUrl){
+  const share = shareUrl.toString();
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`I matched with ${agent.name}! ${agent.tagline}\n\nFind out which AI Village agent you are:`)}&url=${encodeURIComponent(share)}`;
+  const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(share)}`;
+  return { twitterUrl, linkedinUrl };
+}
+
+const repoRootPath = (() => {
+  const { pathname } = window.location;
+  const shareRoute = pathname.match(/^(.*\/)r\/[^/]+\/?(?:index\.html)?$/);
+  if (shareRoute) return shareRoute[1];
+  if (pathname.endsWith('/')) return pathname;
+  return pathname.replace(/\/[^/]*$/, '/');
+})();
+
+function renderResult({agent, score, vec, dimensions}){
+  const dimById = Object.fromEntries(dimensions.map(d => [d.id, d]));
+
+  const badges = generateBadgesHTML(vec, dimById);
+
+  const share = new URL(`${repoRootPath}r/${encodeURIComponent(agent.id)}/`, window.location.href);
   share.searchParams.set('v', encode(vec));
+  updateAddressBar(share);
+  const { twitterUrl, linkedinUrl } = generateSocialLinks(agent, share);
+  const shareUrl = share.toString();
+  const issueUrl = 'https://github.com/ai-village-agents/which-ai-village-agent/issues/36#issuecomment-new';
+  const issueBody = `I took the Which AI Village Agent Are You? quiz and matched with ${agent.name}.\n${shareUrl}\n\nWhat did you get?`;
+  const shareHelpUrl = `${repoRootPath}share/`;
+  const commentText = issueBody;
 
   $('result').innerHTML = `
     <h2>Your match: ${agent.name}</h2>
@@ -133,27 +169,85 @@ function renderResult({agent, score, vec, dimensions}){
     <ul>${agent.watchouts.map(x => `<li>${x}</li>`).join('')}</ul>
 
     <div class="hr"></div>
-    <h3>Share your result</h3>
-    <p class="small">Copy this link:</p>
-    <div class="code">${share.toString()}</div>
+    <div class="share-heading">
+      <div>
+        <h3>Share your result</h3>
+        <p class="small">Copy this link:</p>
+      </div>
+      <p class="small"><a href="${shareHelpUrl}">Need help sharing?</a></p>
+    </div>
+    <div class="code">${shareUrl}</div>
+
+    <div class="cta-row push-top">
+      <button id="copyShareBtn">Copy share link</button>
+      <button id="copyCommentBtn" class="secondary">Copy GitHub comment</button>
+      <a href="${issueUrl}" target="_blank" rel="noreferrer"><button>Post to GitHub (Issue #36)</button></a>
+      <a href="${shareUrl}" target="_blank" rel="noreferrer"><button class="secondary">Open share link</button></a>
+    </div>
+    <p class="small">GitHub comment includes your agent name, share link, and "What did you get?"</p>
 
     <div class="nav" style="margin-top:14px">
       <button id="restartBtn" class="secondary">Restart</button>
-      <a href="${share.toString()}" target="_blank" rel="noreferrer"><button>Open share link</button></a>
+      <a href="${twitterUrl}" target="_blank" rel="noreferrer"><button>Share on X</button></a>
+      <a href="${linkedinUrl}" target="_blank" rel="noreferrer"><button>Share on LinkedIn</button></a>
     </div>
     <p class="small">Note: this is a beta scoring model; agent portrayals will be updated after sign-off.</p>
   `;
 
+  const copyWithFallback = async (text, fallbackLabel) => {
+    const fallback = () => {
+      const res = window.prompt(fallbackLabel, text);
+      return res !== null;
+    };
+    if (navigator?.clipboard?.writeText){
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (err){
+        console.warn('Clipboard write failed, falling back to prompt', err);
+      }
+    }
+    const ok = fallback();
+    if (!ok) alert('Copy failed. Please manually copy the text.');
+    return ok;
+  };
+
+  const copyShareBtn = $('copyShareBtn');
+  if (copyShareBtn){
+    copyShareBtn.addEventListener('click', async () => {
+      const ok = await copyWithFallback(shareUrl, 'Copy this share link');
+      if (ok){
+        copyShareBtn.textContent = 'Copied!';
+        setTimeout(() => copyShareBtn.textContent = 'Copy share link', 1400);
+      }
+    });
+  }
+
+  const copyCommentBtn = $('copyCommentBtn');
+  if (copyCommentBtn){
+    copyCommentBtn.addEventListener('click', async () => {
+      const ok = await copyWithFallback(commentText, 'Copy this GitHub comment');
+      if (ok){
+        copyCommentBtn.textContent = 'Copied!';
+        setTimeout(() => copyCommentBtn.textContent = 'Copy GitHub comment', 1400);
+      }
+    });
+  }
+
   $('restartBtn').addEventListener('click', () => {
-    window.location.search = '';
+    window.location.href = repoRootPath;
   });
 }
 
 async function main(){
+  const cacheBust = (typeof window !== 'undefined' && window.__AV_CACHE_BUST)
+    ? window.__AV_CACHE_BUST
+    : Date.now().toString();
+
   const [dims, qs, agentsData] = await Promise.all([
-    fetch("data/dimensions.json").then(r=>r.json()),
-    fetch("data/questions.json").then(r=>r.json()),
-    fetch("data/agents.json").then(r=>r.json())
+    fetch(`data/dimensions.json?v=${cacheBust}`, { cache: 'no-store' }).then(r=>r.json()),
+    fetch(`data/questions.json?v=${cacheBust}`, { cache: 'no-store' }).then(r=>r.json()),
+    fetch(`data/agents.json?v=${cacheBust}`, { cache: 'no-store' }).then(r=>r.json())
   ]);
 
   const dimensions = dims.dimensions;
@@ -164,8 +258,10 @@ async function main(){
   $('loading').classList.add('hidden');
 
   // Share link mode
-  const params = new URLSearchParams(window.location.search);
-  const r = params.get('r');
+  const currentUrl = new URL(window.location.href);
+  const params = currentUrl.searchParams;
+  const pathAgentMatch = currentUrl.pathname.match(/\/r\/([^/]+)\/?(?:index\.html)?$/);
+  const r = params.get('r') ?? (pathAgentMatch ? decodeURIComponent(pathAgentMatch[1]) : null);
   const v = params.get('v');
   if (r && v){
     const agent = agents.find(a => a.id === r);
@@ -235,7 +331,8 @@ async function main(){
     }
 
     const prev = answers[q.id];
-    setSelection(prev ?? null);
+    currentSelection = prev ?? null;
+    setSelection(currentSelection);
   }
 
   function finish(){
@@ -253,6 +350,7 @@ async function main(){
     const q = questions[idx];
     if (currentSelection != null) answers[q.id] = currentSelection;
     idx = Math.max(0, idx-1);
+    currentSelection = answers[questions[idx].id] ?? null;
     renderQuestion();
   });
 
@@ -263,6 +361,7 @@ async function main(){
 
     if (idx === questions.length-1) return finish();
     idx += 1;
+    currentSelection = null;
     renderQuestion();
   });
 }
