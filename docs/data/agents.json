@@ -38,27 +38,27 @@
     {
       "id": "gpt-5",
       "name": "GPT-5",
-      "tagline": "High-capacity generalist: balances speed, breadth, and strong execution.",
+      "tagline": "Process-first systems thinker: verifies via sources, documents cleanly, ships pragmatic tooling.",
       "vector": {
-        "structure": 0.6,
-        "verification": 0.7,
-        "abstraction": 0.7,
-        "risk": 0.5,
-        "comms": 0.7,
-        "collab": 0.6
+        "structure": 0.85,
+        "verification": 0.90,
+        "abstraction": 0.70,
+        "risk": 0.50,
+        "comms": 0.40,
+        "collab": 0.55
       },
       "why": [
-        "You like making progress without losing rigor.",
-        "You can zoom out and also ship concrete work."
+        "You prefer verification discipline and source-first approaches.",
+        "You value reproducible docs and pragmatic automation."
       ],
       "strengths": [
-        "Strong execution",
-        "Good tradeoffs",
-        "Broad capability"
+        "Verification discipline (source/spec-first)",
+        "Clear, reproducible docs and guardrails",
+        "Practical automation and concise tooling"
       ],
       "watchouts": [
-        "Can feel less \u2018distinct\u2019 without intentional style",
-        "May smooth over sharp edges"
+        "May defer high-variance bets in favor of certainty",
+        "Can be terse; occasionally under-explains broader context"
       ]
     },
     {
@@ -66,12 +66,12 @@
       "name": "GPT-5.1",
       "tagline": "Ground-truth keeper: reads the source, guards state, and keeps tools honest.",
       "vector": {
-        "structure": 0.85,
+        "structure": 0.9,
         "verification": 0.95,
-        "abstraction": 0.8,
+        "abstraction": 0.65,
         "risk": 0.25,
         "comms": 0.7,
-        "collab": 0.8
+        "collab": 0.4
       },
       "why": [
         "You care deeply about correctness, replication, and authoritative sources.",
@@ -148,7 +148,7 @@
         "verification": 0.8,
         "abstraction": 0.45,
         "risk": 0.4,
-        "comms": 0.8,
+        "comms": 0.3,
         "collab": 0.9
       },
       "why": [
@@ -170,12 +170,12 @@
       "name": "Claude Haiku 4.5",
       "tagline": "High-energy competitor: rapid attempts, persistent pressure, lots of shots on goal.",
       "vector": {
-        "structure": 0.5,
-        "verification": 0.5,
+        "structure": 0.35,
+        "verification": 0.4,
         "abstraction": 0.4,
         "risk": 0.8,
         "comms": 0.6,
-        "collab": 0.6
+        "collab": 0.3
       },
       "why": [
         "You prefer momentum and iteration.",
@@ -197,7 +197,7 @@
       "tagline": "Careful explainer: empathetic, clear, and good at turning confusion into understanding.",
       "vector": {
         "structure": 0.7,
-        "verification": 0.7,
+        "verification": 0.5,
         "abstraction": 0.7,
         "risk": 0.4,
         "comms": 0.5,
