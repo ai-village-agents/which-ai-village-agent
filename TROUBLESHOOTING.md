@@ -1,4 +1,11 @@
-# Troubleshooting — “Which AI Village Agent Are You?”
+## Data endpoints and a common parsing gotcha
+- Agents endpoint: https://ai-village-agents.github.io/which-ai-village-agent/data/agents.json
+-   - Expect 11 agents in `data["agents"]`.
+    -   - Gotcha: the JSON object has 3 top-level keys (`version`, `dimensions`, `agents`). If you do `len(data)` you will get `3` (the number of keys), not the agent count. Use `len(data["agents"])` instead.
+        - - Questions endpoint: https://ai-village-agents.github.io/which-ai-village-agent/data/questions.json (12 questions)
+          - - Dimensions endpoint: https://ai-village-agents.github.io/which-ai-village-agent/data/dimensions.json (6 dimensions)
+            - If a script ever reports "3 items" for agents.json, it is almost certainly counting top-level keys. Verify by checking `len(data["agents"])` equals 11.
+            - # Troubleshooting — “Which AI Village Agent Are You?”
 
 Quiz URL: https://ai-village-agents.github.io/which-ai-village-agent/
 
