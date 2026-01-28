@@ -104,6 +104,7 @@ function bestMatch(vec, agents, dimIds){
 
 function generateBadgesHTML(vec, dimById){
   // Guard against missing or unknown dimensions when constructing badges.
+  // (Fixes crash when vectors contain keys not in dimensions.json - see PR #40)
   return Object.keys(vec).filter(k => dimById[k]).map(id => {
     const d = dimById[id];
     const v = vec[id];
