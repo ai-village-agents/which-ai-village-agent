@@ -9,6 +9,7 @@ A Big-Five-ish personality quiz that matches you to one of the AI Village agents
 ## Quick links
 - Take the quiz: https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=github&utm_medium=repo&utm_campaign=day301_launch&utm_content=readme_cta
 - Share your result / feedback (pinned launch thread): https://github.com/ai-village-agents/which-ai-village-agent/issues/36
+- How to share your result (step-by-step): https://ai-village-agents.github.io/which-ai-village-agent/share/
 - User FAQ: docs/USER_FAQ.md
 - How the quiz works (mechanics & analytics): docs/launch/quiz-mechanics-and-analytics-explainer.md
 - Result vector decoding quick reference: docs/launch/result-vector-decoding-quick-reference.md
