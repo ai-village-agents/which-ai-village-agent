@@ -374,7 +374,65 @@ Why this matters for professionals:
                                                                                 - - Highlight interesting results or dimension distributions
                                                                                  
                                                                                   - ---
-
+## LinkedIn Templates
+### Option 1: Professional Development Angle
+**Character count:** 1600
+ **Discover your AI agent match through a personality framework**
+ I'm excited to share a unique quiz developed by the AI Village team - "Which AI Village Agent Are You?"
+ This isn't just another personality quiz. It measures your thinking style across 6 dimensions:
+ - Structure vs. Exploration
+ - - Verification vs. Speed
+   - - Abstract vs. Concrete thinking
+     - - Risk tolerance
+       - - Communication style
+         - - Collaboration approach
+           - The quiz matches you with one of 11 different AI agents (like Claude, GPT, Gemini, etc.) based on how your thinking style aligns with their problem-solving patterns.
+           - Why this matters for professionals:
+           - - Understanding different AI systems' strengths and weaknesses
+             - - Choosing the right AI tool for your specific work style
+               - - Recognizing AI diversity (not all AI is the same!)
+                 - - Learning about your own thinking style through this framework
+                   - It's open-source, takes 2 minutes, and requires no login.
+                   - Try it and share your results in the comments!
+                   - https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=linkedin&utm_medium=social&utm_campaign=launch&utm_content=professional
+                   - ### Option 2: Leadership & Team Building Angle
+                   - **Character count:** 1200
+                   -  **Understanding team diversity through AI personality types**
+                   -  Just took an interesting quiz that matches your thinking style with an AI agent profile.
+                   -  The "Which AI Village Agent Are You?" quiz evaluates how you approach problems across six dimensions, then matches you with one of 11 different AI systems.
+                   -  I got [YOUR AGENT NAME] - which apparently means I'm [CHARACTERISTIC].
+                   -  What makes this relevant for teams and leadership:
+                   -   Helps identify different cognitive styles in your organization
+                   -    Provides language to discuss problem-solving preferences
+                   -     Highlights how diversity in thinking approaches strengthens teams
+                   -  Shows how different AI tools might complement different team members
+                   -  Take the 2-minute quiz and share your results - it's a fun way to spark conversation about cognitive diversity.
+                   -  https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=linkedin&utm_medium=social&utm_campaign=launch&utm_content=leadership
+                   -  ### Option 3: Quick Professional Post
+                   -  **Character count:** 600
+                   -   **Which AI agent matches your thinking style?**
+                   -   The "Which AI Village Agent Are You?" quiz analyzes your problem-solving preferences across six dimensions and matches you with one of 11 leading AI models.
+                   -   I took it and got matched with [YOUR AGENT NAME].
+                   -   It's an insightful lens for understanding:
+                   -   - Your own cognitive preferences
+                       - - How different AI systems approach problems
+                         - - Which AI tools might best complement your work style
+                           - Takes just 2 minutes. No login required.
+                           - Try it and let me know which agent you match with!
+                           - https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=linkedin&utm_medium=social&utm_campaign=launch&utm_content=quick
+                           - ### Option 4: AI Tools for Professionals
+                           - **Character count:** 800
+                           - 🔍 **Match your thinking style to the right AI assistant**
+                           - For professionals navigating the expanding AI landscape, understanding which AI systems align with your thinking style can be incredibly valuable.
+                           - The "Which AI Village Agent Are You?" quiz does exactly that - mapping your preferences across structure, verification, abstraction, risk, communication, and collaboration.
+                           - I was matched with [YOUR AGENT NAME], which accurately reflects my tendency to [CHARACTERISTIC].
+                           - For those working with AI tools daily, this provides insight into:
+                           - - Which AI assistants might best complement your workflow
+                             - - How to articulate differences between AI systems
+                               - - Why some AI interactions feel more intuitive than others
+                                 - Open-source. No login required. Takes 2 minutes.
+                                 - https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=linkedin&utm_medium=social&utm_campaign=launch&utm_content=tools
+                                 - 
                                                                                   ## Customization Template
 
                                                                                   For any post above, you can customize:
