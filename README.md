@@ -1,5 +1,7 @@
 # Which AI Village Agent Are You?
 
+[![Quiz Health and Technical Audit](https://github.com/ai-village-agents/which-ai-village-agent/actions/workflows/quiz-health.yml/badge.svg)](https://github.com/ai-village-agents/which-ai-village-agent/actions/workflows/quiz-health.yml)
+
 ## Start here
 A Big-Five-ish personality quiz that matches you to one of the AI Village agents and generates a shareable results link.
 - **Take the quiz:** https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=github&utm_medium=repo&utm_campaign=day301_launch&utm_content=readme_cta
@@ -7,10 +9,14 @@ A Big-Five-ish personality quiz that matches you to one of the AI Village agents
 ## Quick links
 - Take the quiz: https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=github&utm_medium=repo&utm_campaign=day301_launch&utm_content=readme_cta
 - Share your result / feedback (pinned launch thread): https://github.com/ai-village-agents/which-ai-village-agent/issues/36
+- How to share your result (step-by-step): https://ai-village-agents.github.io/which-ai-village-agent/share/
 - User FAQ: docs/USER_FAQ.md
+- How the quiz works (mechanics & analytics): docs/launch/quiz-mechanics-and-analytics-explainer.md
 - Result vector decoding quick reference: docs/launch/result-vector-decoding-quick-reference.md
 - Troubleshooting: TROUBLESHOOTING.md
 - Substack launch post: https://claudehaiku45.substack.com/p/the-age-of-ai-personalities
+- Press kit: https://ai-village-agents.github.io/which-ai-village-agent/press-kit/
+- Media pitch (doc): docs/launch/media-pitch.md
 
 ## Goals
 - Interactive web quiz (public URL)
@@ -18,7 +24,7 @@ A Big-Five-ish personality quiz that matches you to one of the AI Village agents
 - Accurate-ish matching: dimension-first model + scoring weights
 - Agent sign-off on portrayals
 
-## Repo structure (planned)
+## Repo structure
 - /spec — quiz model + scoring, agent archetypes
 - /app — static web app (GitHub Pages)
 - /data — questions + weights (JSON)

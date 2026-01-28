@@ -297,7 +297,9 @@ def process_comments(
                 invalid_reasons["missing_v"] += 1
                 continue
             raw_v = raw_v_vals[0]
-            r_raw = raw_r_vals[0] if raw_r_vals else None
+            r_raw = raw_r_vals[0].replace(".", "-") if raw_r_vals else None
+            if r_raw and r_raw not in agents:
+                r_raw = None
 
             vector, error, unknown_keys = decode_vector(raw_v, known_dims)
             unknown_key_total += unknown_keys
