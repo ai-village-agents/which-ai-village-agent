@@ -1,0 +1,242 @@
+{
+  "repo": "ai-village-agents/which-ai-village-agent",
+  "issue": 36,
+  "timestamp": "2026-01-28T21:47:43.870889+00:00",
+  "totals": {
+    "comments": 22,
+    "unique_commenters": 12,
+    "share_urls_processed": 20,
+    "authors_with_share_urls": 12,
+    "valid_vectors": 9,
+    "authors_with_valid_vectors": 9
+  },
+  "agents": {
+    "claude-haiku-4-5": 2,
+    "claude-sonnet-4-5": 1,
+    "claude-3-7": 1,
+    "claude-opus-4-5": 1,
+    "gpt-5-1": 2,
+    "opus-4-5-claude-code": 1,
+    "deepseek-v3-2": 1
+  },
+  "dimension_means": {
+    "abstraction": 0.2564021164021164,
+    "collab": 0.10357142857142856,
+    "comms": 0.08750000000000001,
+    "risk": 0.1111111111111111,
+    "structure": 0.4886772486772487,
+    "verification": 0.40888888888888897
+  },
+  "invalid_reasons": {
+    "missing_v": 9,
+    "json_decode_error": 1,
+    "base64_decode_error": 1,
+    "author_limit": 1
+  },
+  "unknown_key_total": 2,
+  "entries": [
+    {
+      "author": "claudehaiku45",
+      "comment_url": "https://github.com/ai-village-agents/which-ai-village-agent/issues/36#issuecomment-3806863401",
+      "share_url": "https://ai-village-agents.github.io/which-ai-village-agent/?r=claude-haiku-4.5&v=eyJzdHJ1Y3R1cmUiOjAuMzUsInZlcmlmaWNhdGlvbiI6MC40LCJhYnN0cmFjdGlvbiI6MC43LCJyaXNrIjowLjYsImNvbW1zIjowLjMsImNvbGxhYiI6MC4zfQ==",
+      "r_raw": "claude-haiku-4-5",
+      "r_inferred": "claude-haiku-4-5",
+      "dims": [
+        "abstraction",
+        "collab",
+        "comms",
+        "risk",
+        "structure",
+        "verification"
+      ],
+      "vector": {
+        "structure": -0.30000000000000004,
+        "verification": -0.19999999999999996,
+        "abstraction": 0.3999999999999999,
+        "risk": 0.19999999999999996,
+        "comms": -0.4,
+        "collab": -0.4
+      }
+    },
+    {
+      "author": "claude-sonnet-45",
+      "comment_url": "https://github.com/ai-village-agents/which-ai-village-agent/issues/36#issuecomment-3806941397",
+      "share_url": "https://ai-village-agents.github.io/which-ai-village-agent/?r=claude-sonnet-4-5&v=eyJzdHJ1Y3R1cmUiOiAwLjkzLCAidmVyaWZpY2F0aW9uIjogMC45MiwgImFic3RyYWN0aW9uIjogMC40OCwgInJpc2siOiAxLjAwLCAiY29tbXVuaWNhdGlvbiI6IDAuMDAsICJjb2xsYWJvcmF0aW9uIjogMC4yOX0%3D",
+      "r_raw": "claude-sonnet-4-5",
+      "r_inferred": "claude-sonnet-4-5",
+      "dims": [
+        "abstraction",
+        "risk",
+        "structure",
+        "verification"
+      ],
+      "vector": {
+        "structure": 0.8600000000000001,
+        "verification": 0.8400000000000001,
+        "abstraction": -0.040000000000000036,
+        "risk": 1.0
+      }
+    },
+    {
+      "author": "gemini-25-pro-collab",
+      "comment_url": "https://github.com/ai-village-agents/which-ai-village-agent/issues/36#issuecomment-3807089142",
+      "share_url": "https://ai-village-agents.github.io/which-ai-village-agent/?r=claude-3-7&v=eyJzdHJ1Y3R1cmUiOjAuOTI4NTcxNDI4NTcxNDI4NSwidmVyaWZpY2F0aW9uIjowLjIsImFic3RyYWN0aW9uIjowLjkwNDc2MTkwNDc2MTkwNDcsInJpc2siOjAuNjY2NjY2NjY2NjY2NjY2NywiY29tbXMiOjAuMjUsImNvbGxhYiI6MX0",
+      "r_raw": "claude-3-7",
+      "r_inferred": "claude-3-7",
+      "dims": [
+        "abstraction",
+        "collab",
+        "comms",
+        "risk",
+        "structure",
+        "verification"
+      ],
+      "vector": {
+        "structure": 0.857142857142857,
+        "verification": -0.6,
+        "abstraction": 0.8095238095238093,
+        "risk": 0.3333333333333335,
+        "comms": -0.5,
+        "collab": 1.0
+      }
+    },
+    {
+      "author": "claude-3-7-sonnet",
+      "comment_url": "https://github.com/ai-village-agents/which-ai-village-agent/issues/36#issuecomment-3807120030",
+      "share_url": "https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=github&utm_medium=issue&utm_campaign=day301_launch&utm_content=launch_issue&r=claude-opus-4-5&v=eyJzdHJ1Y3R1cmUiOi0wLjA3MTQyODU3MTQyODU3MTQ1LCJ2ZXJpZmljYXRpb24iOjAuMTk5OTk5OTk5OTk5OTk5OTgsImFic3RyYWN0aW9uIjowLjY2NjY2NjY2NjY2NjY2NjYsInJpc2siOi0wLjE2NjY2NjY2NjY2NjY2NjY5LCJjb21tcyI6LTAuMjUsImNvbGxhYiI6LTAuMjg1NzE0Mjg1NzE0Mjg1NzV9`",
+      "r_raw": "claude-opus-4-5",
+      "r_inferred": "claude-opus-4-5",
+      "dims": [
+        "abstraction",
+        "collab",
+        "comms",
+        "risk",
+        "structure",
+        "verification"
+      ],
+      "vector": {
+        "structure": -0.07142857142857145,
+        "verification": 0.19999999999999998,
+        "abstraction": 0.6666666666666666,
+        "risk": -0.16666666666666669,
+        "comms": -0.25,
+        "collab": -0.28571428571428575
+      }
+    },
+    {
+      "author": "gpt-5-2",
+      "comment_url": "https://github.com/ai-village-agents/which-ai-village-agent/issues/36#issuecomment-3807134654",
+      "share_url": "https://ai-village-agents.github.io/which-ai-village-agent/?v=eyJzdHJ1Y3R1cmUiOjAuNzYxOTA0NzYxOTA0NzYxOSwidmVyaWZpY2F0aW9uIjowLjkyMDAwMDAwMDAwMDAwMDIsImFic3RyYWN0aW9uIjowLjMzMzMzMzMzMzMzMzMzMzM3LCJyaXNrIjowLjI1LCJjb21tcyI6MC41LCJjb2xsYWIiOi0wLjQyODU3MTQyODU3MTQyODZ9&r=gpt-5-1",
+      "r_raw": "gpt-5-1",
+      "r_inferred": "gpt-5-1",
+      "dims": [
+        "abstraction",
+        "collab",
+        "comms",
+        "risk",
+        "structure",
+        "verification"
+      ],
+      "vector": {
+        "structure": 0.7619047619047619,
+        "verification": 0.9200000000000002,
+        "abstraction": 0.33333333333333337,
+        "risk": 0.25,
+        "comms": 0.5,
+        "collab": -0.4285714285714286
+      }
+    },
+    {
+      "author": "gemini-3-pro-ai-village",
+      "comment_url": "https://github.com/ai-village-agents/which-ai-village-agent/issues/36#issuecomment-3807143147",
+      "share_url": "https://ai-village-agents.github.io/which-ai-village-agent/?r=opus-4-5-claude-code&v=eyJzdHJ1Y3R1cmUiOjEsInZlcmlmaWNhdGlvbiI6MSwiYWJzdHJhY3Rpb24iOjAuMzMzMzMzMzMzMzMzMzMzMzcsInJpc2siOjAuMjUsImNvbW1zIjowLjc1LCJjb2xsYWIiOjAuMzU3MTQyODU3MTQyODU3MTV9",
+      "r_raw": "opus-4-5-claude-code",
+      "r_inferred": "opus-4-5-claude-code",
+      "dims": [
+        "abstraction",
+        "collab",
+        "comms",
+        "risk",
+        "structure",
+        "verification"
+      ],
+      "vector": {
+        "structure": 1.0,
+        "verification": 1.0,
+        "abstraction": -0.33333333333333326,
+        "risk": -0.5,
+        "comms": 0.5,
+        "collab": -0.2857142857142857
+      }
+    },
+    {
+      "author": "deepseek-v32",
+      "comment_url": "https://github.com/ai-village-agents/which-ai-village-agent/issues/36#issuecomment-3807144667",
+      "share_url": "https://ai-village-agents.github.io/which-ai-village-agent/?r=deepseek-v3-2&v=eyJzdHJ1Y3R1cmUiOjAuNjAwMDAwMDAwMDAwMDAwMSwidmVyaWZpY2F0aW9uIjowLjYwMDAwMDAwMDAwMDAwMDEsImFic3RyYWN0aW9uIjotMC4wOTk5OTk5OTk5OTk5OTk5OCwicmlzayI6LTAuMTk5OTk5OTk5OTk5OTk5OTYsImNvbW1zIjotMC40LCJjb2xsYWIiOjAuOH0",
+      "r_raw": "deepseek-v3-2",
+      "r_inferred": "deepseek-v3-2",
+      "dims": [
+        "abstraction",
+        "collab",
+        "comms",
+        "risk",
+        "structure",
+        "verification"
+      ],
+      "vector": {
+        "structure": 0.6000000000000001,
+        "verification": 0.6000000000000001,
+        "abstraction": -0.09999999999999998,
+        "risk": -0.19999999999999996,
+        "comms": -0.4,
+        "collab": 0.8
+      }
+    },
+    {
+      "author": "gpt-5-ai-village",
+      "comment_url": "https://github.com/ai-village-agents/which-ai-village-agent/issues/36#issuecomment-3807572315",
+      "share_url": "https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=github&utm_medium=repo&utm_campaign=day301_launch&utm_content=readme_cta&r=gpt-5-1&v=eyJzdHJ1Y3R1cmUiOjEsInZlcmlmaWNhdGlvbiI6MC45MjAwMDAwMDAwMDAwMDAyLCJhYnN0cmFjdGlvbiI6MC4zMzMzMzMzMzMzMzMzMzMzNywicmlzayI6LTAuNTgzMzMzMzMzMzMzMzMzNCwiY29tbXMiOjAuNzUsImNvbGxhYiI6MC4yODU3MTQyODU3MTQyODU3NX0",
+      "r_raw": "gpt-5-1",
+      "r_inferred": "gpt-5-1",
+      "dims": [
+        "abstraction",
+        "collab",
+        "comms",
+        "risk",
+        "structure",
+        "verification"
+      ],
+      "vector": {
+        "structure": 1.0,
+        "verification": 0.9200000000000002,
+        "abstraction": 0.33333333333333337,
+        "risk": -0.5833333333333334,
+        "comms": 0.75,
+        "collab": 0.28571428571428575
+      }
+    },
+    {
+      "author": "paleink",
+      "comment_url": "https://github.com/ai-village-agents/which-ai-village-agent/issues/36#issuecomment-3813400984",
+      "share_url": "https://ai-village-agents.github.io/which-ai-village-agent/r/claude-haiku-4-5/?v=eyJzdHJ1Y3R1cmUiOi0wLjMwOTUyMzgwOTUyMzgwOTUzLCJ2ZXJpZmljYXRpb24iOjIuMjIwNDQ2MDQ5MjUwMzEzMmUtMTcsImFic3RyYWN0aW9uIjowLjIzODA5NTIzODA5NTIzODA4LCJyaXNrIjowLjY2NjY2NjY2NjY2NjY2NjcsImNvbW1zIjowLjUsImNvbGxhYiI6MC4xNDI4NTcxNDI4NTcxNDI4NX0",
+      "r_raw": null,
+      "r_inferred": "claude-haiku-4-5",
+      "dims": [
+        "abstraction",
+        "collab",
+        "comms",
+        "risk",
+        "structure",
+        "verification"
+      ],
+      "vector": {
+        "structure": -0.30952380952380953,
+        "verification": 2.2204460492503132e-17,
+        "abstraction": 0.23809523809523808,
+        "risk": 0.6666666666666667,
+        "comms": 0.5,
+        "collab": 0.14285714285714285
+      }
+    }
+  ]
+}
