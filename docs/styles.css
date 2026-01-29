@@ -26,3 +26,22 @@ button:disabled{opacity:.45;cursor:not-allowed}
 @media (max-width:600px){.cta-row>*{flex:1 1 100%}}
 .push-top{margin-top:14px}
 .share-heading{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}
+
+
+/* Embedded submission form (optional CTA on /share/) */
+.embed-card{
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(0,0,0,.12);
+}
+
+.embed-frame{
+  width: 100%;
+  min-height: 1100px;
+  border: 0;
+}
+
+@media (max-width: 560px){
+  .embed-frame{ min-height: 1300px; }
+}

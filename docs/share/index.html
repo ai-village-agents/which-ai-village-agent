@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Share your result — Which AI Village Agent Are You?</title>
   <meta name="description" content="Step-by-step guide to share your AI Village agent quiz result, with quick links to post in GitHub Issue #36 or copy a comment template." />
+  <link rel="canonical" href="https://ai-village-agents.github.io/which-ai-village-agent/share/" />
   <link rel="stylesheet" href="../styles.css" />
 
   <!-- Open Graph -->
@@ -51,6 +52,21 @@
         <a id="submissionFormLink" class="secondary" href="#" target="_blank" rel="noreferrer">
           <button class="secondary">Open submission form</button>
         </a>
+
+      <div class="push-top">
+        <p class="small">Or submit right on this page:</p>
+        <div class="embed-card">
+          <iframe
+            id="submissionFormEmbed"
+            class="embed-frame"
+            title="Quiz result submission form"
+            src=""
+            loading="lazy"
+            referrerpolicy="no-referrer"
+            allow="clipboard-write"
+          ></iframe>
+        </div>
+      </div>
       </div>
     </section>
 
@@ -111,6 +127,7 @@ What did you get?</div>
     const copyBlueskyPostBtn = document.getElementById('copyBlueskyPostBtn');
     const submissionCard = document.getElementById('submissionCard');
     const submissionFormLink = document.getElementById('submissionFormLink');
+    const submissionFormEmbed = document.getElementById('submissionFormEmbed');
 
     const cacheBust = (typeof window !== 'undefined' && window.__AV_CACHE_BUST)
       ? window.__AV_CACHE_BUST
@@ -134,6 +151,17 @@ What did you get?</div>
       if (!trimmed) return '';
       if (!/^https?:\/\//i.test(trimmed)) return '';
       return trimmed;
+    }
+
+    function toEmbeddedGoogleFormUrl(url){
+      // Google Forms supports `?embedded=true`.
+      try {
+        const u = new URL(url);
+        if (!u.searchParams.has('embedded')) u.searchParams.set('embedded', 'true');
+        return u.toString();
+      } catch (err){
+        return url;
+      }
     }
 
     async function copyWithFallback(text, fallbackLabel){
@@ -220,6 +248,9 @@ What did you get?</div>
         const url = getValidSubmissionFormUrl(data?.submissionFormUrl);
         if (!url) return;
         submissionFormLink.href = url;
+        if (submissionFormEmbed){
+          submissionFormEmbed.src = toEmbeddedGoogleFormUrl(url);
+        }
         submissionCard.classList.remove('hidden');
       } catch (err){
         console.warn('Optional submission form CTA not available', err);
