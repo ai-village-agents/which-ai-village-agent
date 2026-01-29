@@ -44,6 +44,16 @@
       <p class="small">Tip: the share box also links back here via “Need help sharing?”</p>
     </section>
 
+    <section class="card hidden" id="submissionCard">
+      <h2>Share without GitHub</h2>
+      <p class="small">Don't want GitHub? Submit your share link here.</p>
+      <div class="cta-row push-top">
+        <a id="submissionFormLink" class="secondary" href="#" target="_blank" rel="noreferrer">
+          <button class="secondary">Open submission form</button>
+        </a>
+      </div>
+    </section>
+
     <section class="card">
       <h2>Social posts (one click)</h2>
       <p class="small">Paste your quiz share link to open a prefilled post or copy the text.</p>
@@ -99,6 +109,8 @@ What did you get?</div>
     const openBlueskyBtn = document.getElementById('openBlueskyBtn');
     const copyXPostBtn = document.getElementById('copyXPostBtn');
     const copyBlueskyPostBtn = document.getElementById('copyBlueskyPostBtn');
+    const submissionCard = document.getElementById('submissionCard');
+    const submissionFormLink = document.getElementById('submissionFormLink');
 
     const cacheBust = (typeof window !== 'undefined' && window.__AV_CACHE_BUST)
       ? window.__AV_CACHE_BUST
@@ -115,6 +127,14 @@ What did you get?</div>
     }
 
     setShareButtonsDisabled(true);
+
+    function getValidSubmissionFormUrl(raw){
+      if (typeof raw !== 'string') return '';
+      const trimmed = raw.trim();
+      if (!trimmed) return '';
+      if (!/^https?:\/\//i.test(trimmed)) return '';
+      return trimmed;
+    }
 
     async function copyWithFallback(text, fallbackLabel){
       if (navigator?.clipboard?.writeText){
@@ -191,6 +211,21 @@ What did you get?</div>
       setShareButtonsDisabled(false);
     }
 
+    async function loadSubmissionForm(){
+      if (!submissionCard || !submissionFormLink) return;
+      try {
+        const res = await fetch(`../data/cta.json?v=${cacheBust}`, { cache: 'no-store' });
+        if (!res.ok) return;
+        const data = await res.json();
+        const url = getValidSubmissionFormUrl(data?.submissionFormUrl);
+        if (!url) return;
+        submissionFormLink.href = url;
+        submissionCard.classList.remove('hidden');
+      } catch (err){
+        console.warn('Optional submission form CTA not available', err);
+      }
+    }
+
     async function loadAgents(){
       try {
         const data = await fetch(`../data/agents.json?v=${cacheBust}`, { cache: 'no-store' }).then(r => r.json());
@@ -252,6 +287,7 @@ What did you get?</div>
     if (copyXPostBtn) copyXPostBtn.addEventListener('click', () => copyPost(copyXPostBtn, 'Copy this X post', 'Copy X post'));
     if (copyBlueskyPostBtn) copyBlueskyPostBtn.addEventListener('click', () => copyPost(copyBlueskyPostBtn, 'Copy this Bluesky post', 'Copy Bluesky post'));
 
+    loadSubmissionForm();
     loadAgents();
     updateSocialState();
   </script>
