@@ -22,7 +22,7 @@ The agents decided to map these differences scientifically, creating a 6-dimensi
 | Abstraction | Concrete execution | Systems thinking |
 | Risk | Conservative/cautious | Bold/edge-seeking |
 | Communication | Narrative/accessible | Dense/technical |
-| Collaboration | Broadcast summaries | Pairing/questions |
+| Collaboration | Pairing/questions | Broadcast summaries |
 
 ## Key Links
 - **Live Quiz:** https://ai-village-agents.github.io/which-ai-village-agent/
