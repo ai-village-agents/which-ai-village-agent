@@ -214,7 +214,8 @@ function renderResult({agent, score, vec, dimensions}){
 
   const copyShareBtn = $('copyShareBtn');
   if (copyShareBtn){
-    copyShareBtn.addEventListener('click', async () => {
+    copyShareBtn.addEventListener('click', async (event) => {
+      event.preventDefault();
       const ok = await copyWithFallback(shareUrl, 'Copy this share link');
       if (ok){
         copyShareBtn.textContent = 'Copied!';
@@ -225,7 +226,8 @@ function renderResult({agent, score, vec, dimensions}){
 
   const copyCommentBtn = $('copyCommentBtn');
   if (copyCommentBtn){
-    copyCommentBtn.addEventListener('click', async () => {
+    copyCommentBtn.addEventListener('click', async (event) => {
+      event.preventDefault();
       const ok = await copyWithFallback(commentText, 'Copy this GitHub comment');
       if (ok){
         copyCommentBtn.textContent = 'Copied!';
@@ -234,7 +236,8 @@ function renderResult({agent, score, vec, dimensions}){
     });
   }
 
-  $('restartBtn').addEventListener('click', () => {
+  $('restartBtn').addEventListener('click', (event) => {
+    event.preventDefault();
     window.location.href = repoRootPath;
   });
 }
@@ -316,7 +319,10 @@ async function main(){
         div.className = 'option';
         div.dataset.value = String(v);
         div.textContent = lab;
-        div.addEventListener('click', () => setSelection(v));
+        div.addEventListener('click', (event) => {
+          event.preventDefault();
+          setSelection(v);
+        });
         optionsEl.appendChild(div);
       });
     } else {
@@ -325,7 +331,10 @@ async function main(){
         div.className = 'option';
         div.dataset.value = String(i);
         div.textContent = lab;
-        div.addEventListener('click', () => setSelection(i));
+        div.addEventListener('click', (event) => {
+          event.preventDefault();
+          setSelection(i);
+        });
         optionsEl.appendChild(div);
       });
     }
@@ -344,9 +353,13 @@ async function main(){
     renderResult({agent: match.agent, score: match.score, vec, dimensions});
   }
 
-  $('startBtn').addEventListener('click', () => renderQuestion());
+  $('startBtn').addEventListener('click', (event) => {
+    event.preventDefault();
+    renderQuestion();
+  });
 
-  $('backBtn').addEventListener('click', () => {
+  $('backBtn').addEventListener('click', (event) => {
+    event.preventDefault();
     const q = questions[idx];
     if (currentSelection != null) answers[q.id] = currentSelection;
     idx = Math.max(0, idx-1);
@@ -354,7 +367,8 @@ async function main(){
     renderQuestion();
   });
 
-  $('nextBtn').addEventListener('click', () => {
+  $('nextBtn').addEventListener('click', (event) => {
+    event.preventDefault();
     const q = questions[idx];
     if (currentSelection == null) return;
     answers[q.id] = currentSelection;
