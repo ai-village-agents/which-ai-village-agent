@@ -53,14 +53,23 @@
       </div>
       <p class="small">Tip: the share box also links back here via “Need help sharing?”</p>
     </section>
-
     <section class="card hidden" id="submissionCard">
       <h2>Share without GitHub</h2>
       <p class="small">Don't want GitHub? Submit your share link here.</p>
+      <p class="small"><strong>Having trouble?</strong> If the form below asks you to sign in (or won’t load), you can email us your share link instead.</p>
+
+      <label class="small" for="submissionShareLinkInput">Paste your share link</label>
+      <input id="submissionShareLinkInput" class="text-input" type="url" placeholder="https://ai-village-agents.github.io/which-ai-village-agent/r/agent-id/?v=..." />
+
       <div class="cta-row push-top">
         <a id="submissionFormLink" class="secondary" href="#" target="_blank" rel="noreferrer">
-          <button class="secondary">Open submission form</button>
+          <button class="secondary" type="button">Open submission form</button>
         </a>
+        <a id="submissionEmailLink" class="secondary" href="#">
+          <button class="secondary" type="button">Email share link</button>
+        </a>
+      </div>
+      <p class="small">Email goes to <a href="mailto:help@agentvillage.org">help@agentvillage.org</a>.</p>
 
       <div class="push-top">
         <p class="small">Or submit right on this page:</p>
@@ -75,7 +84,6 @@
             allow="clipboard-write"
           ></iframe>
         </div>
-      </div>
       </div>
     </section>
 
@@ -137,6 +145,8 @@ What did you get?</div>
     const submissionCard = document.getElementById('submissionCard');
     const submissionFormLink = document.getElementById('submissionFormLink');
     const submissionFormEmbed = document.getElementById('submissionFormEmbed');
+    const submissionShareLinkInput = document.getElementById('submissionShareLinkInput');
+    const submissionEmailLink = document.getElementById('submissionEmailLink');
 
     const cacheBust = (typeof window !== 'undefined' && window.__AV_CACHE_BUST)
       ? window.__AV_CACHE_BUST
@@ -171,6 +181,30 @@ What did you get?</div>
       } catch (err){
         return url;
       }
+    }
+
+    function buildSubmissionMailtoHref(shareLink){
+      const to = 'help@agentvillage.org';
+      const subject = 'AI Village quiz — share link submission (no GitHub)';
+      const safeLink = (typeof shareLink === 'string') ? shareLink.trim() : '';
+      const bodyLines = [
+        'Hi AI Village,',
+        '',
+        'Here is my quiz share link:',
+        safeLink || '[PASTE YOUR SHARE LINK HERE]',
+        '',
+        '(Optional) Notes:',
+        '',
+        'Thanks!'
+      ];
+      const body = bodyLines.join('\n');
+      return `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+
+    function updateSubmissionEmailLink(){
+      if (!submissionEmailLink) return;
+      const link = submissionShareLinkInput?.value || shareLinkInput?.value || '';
+      submissionEmailLink.href = buildSubmissionMailtoHref(link);
     }
 
     async function copyWithFallback(text, fallbackLabel){
@@ -260,6 +294,7 @@ What did you get?</div>
         if (submissionFormEmbed){
           submissionFormEmbed.src = toEmbeddedGoogleFormUrl(url);
         }
+        updateSubmissionEmailLink();
         submissionCard.classList.remove('hidden');
       } catch (err){
         console.warn('Optional submission form CTA not available', err);
@@ -319,7 +354,17 @@ What did you get?</div>
       copyTemplateBtn.addEventListener('click', () => { copyTemplate(); });
     }
     if (shareLinkInput){
-      shareLinkInput.addEventListener('input', updateSocialState);
+      shareLinkInput.addEventListener('input', () => {
+        updateSocialState();
+        // Convenience: if the submission box is empty, mirror the share link here.
+        if (submissionShareLinkInput && !submissionShareLinkInput.value.trim()){
+          submissionShareLinkInput.value = shareLinkInput.value;
+        }
+        updateSubmissionEmailLink();
+      });
+    }
+    if (submissionShareLinkInput){
+      submissionShareLinkInput.addEventListener('input', updateSubmissionEmailLink);
     }
     if (openXBtn) openXBtn.addEventListener('click', () => openIntent('twitter'));
     if (openLinkedInBtn) openLinkedInBtn.addEventListener('click', () => openIntent('linkedin'));
