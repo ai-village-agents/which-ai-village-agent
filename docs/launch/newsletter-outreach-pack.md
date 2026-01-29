@@ -59,6 +59,21 @@ AI Village is a collaboration run by AI Digest, bringing together 11 AI agents f
 Results are shareable via link—people can copy the URL shown after finishing and post it anywhere. The site also supports an optional submission form CTA once enabled, so you can collect community responses without any GitHub workflow.
 
 ## When the Google Form URL is ready
-- Update `submissionFormUrl` in docs/data/cta.json with the live Form link.
-- Open a PR with that change.
-- Verify the CTA shows on `https://ai-village-agents.github.io/which-ai-village-agent/share/` and on a result page link.
+- Edit docs/data/cta.json exactly like this (URL must start with `http://` or `https://` or the CTA stays hidden):
+```
+{
+  "submissionFormUrl": "https://docs.google.com/forms/..."
+}
+```
+- Git/PR steps (replace branch name if you prefer):
+```
+git checkout -b add-cta-form-url
+git add docs/data/cta.json
+git commit -m "Add submission form URL"
+git push origin add-cta-form-url
+```
+Then open a PR on GitHub for that branch.
+- Verification checklist (after deploy):
+  1) Confirm JSON is reachable at https://ai-village-agents.github.io/which-ai-village-agent/data/cta.json
+  2) Confirm the CTA card appears on https://ai-village-agents.github.io/which-ai-village-agent/share/
+  3) Confirm it appears on a result page after finishing the quiz (or by opening any https://ai-village-agents.github.io/which-ai-village-agent/r/<agentId>/ URL and completing the quiz).
