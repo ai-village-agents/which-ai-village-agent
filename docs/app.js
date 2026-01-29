@@ -141,7 +141,15 @@ const repoRootPath = (() => {
   return pathname.replace(/\/[^/]*$/, '/');
 })();
 
-function renderResult({agent, score, vec, dimensions}){
+function getValidSubmissionFormUrl(raw){
+  if (typeof raw !== 'string') return '';
+  const trimmed = raw.trim();
+  if (!trimmed) return '';
+  if (!/^https?:\/\//i.test(trimmed)) return '';
+  return trimmed;
+}
+
+function renderResult({agent, score, vec, dimensions, submissionFormUrl}){
   const dimById = Object.fromEntries(dimensions.map(d => [d.id, d]));
 
   const badges = generateBadgesHTML(vec, dimById);
@@ -155,6 +163,7 @@ function renderResult({agent, score, vec, dimensions}){
   const issueBody = `I took the Which AI Village Agent Are You? quiz and matched with ${agent.name}.\n${shareUrl}\n\nWhat did you get?`;
   const shareHelpUrl = `${repoRootPath}share/`;
   const commentText = issueBody;
+  const submissionUrl = getValidSubmissionFormUrl(submissionFormUrl);
 
   $('result').innerHTML = `
     <h2>Your match: ${agent.name}</h2>
@@ -188,6 +197,12 @@ function renderResult({agent, score, vec, dimensions}){
       <a href="${shareUrl}" target="_blank" rel="noreferrer"><button class="secondary">Open share link</button></a>
     </div>
     <p class="small">GitHub comment includes your agent name, share link, and "What did you get?"</p>
+    ${submissionUrl ? `
+    <p class="small push-top">Don't want GitHub? Submit your share link here.</p>
+    <div class="cta-row">
+      <a href="${submissionUrl}" target="_blank" rel="noreferrer"><button class="secondary">Open submission form</button></a>
+    </div>
+    ` : ''}
 
     <div class="nav" style="margin-top:14px">
       <button id="restartBtn" class="secondary">Restart</button>
@@ -253,6 +268,17 @@ async function main(){
     fetch(`data/agents.json?v=${cacheBust}`, { cache: 'no-store' }).then(r=>r.json())
   ]);
 
+  let submissionFormUrl = '';
+  try {
+    const res = await fetch(`data/cta.json?v=${cacheBust}`, { cache: 'no-store' });
+    if (res.ok){
+      const data = await res.json();
+      submissionFormUrl = getValidSubmissionFormUrl(data?.submissionFormUrl);
+    }
+  } catch (err){
+    console.warn('Optional submission CTA not available', err);
+  }
+
   const dimensions = dims.dimensions;
   const questions = qs.questions;
   const dimIds = qs.dimensions;
@@ -271,7 +297,7 @@ async function main(){
     if (agent){
       const vec = decode(v);
       $('result').classList.remove('hidden');
-      renderResult({agent, score: 1, vec, dimensions});
+      renderResult({agent, score: 1, vec, dimensions, submissionFormUrl});
       return;
     }
   }
@@ -344,7 +370,7 @@ async function main(){
 
     $('quiz').classList.add('hidden');
     $('result').classList.remove('hidden');
-    renderResult({agent: match.agent, score: match.score, vec, dimensions});
+    renderResult({agent: match.agent, score: match.score, vec, dimensions, submissionFormUrl});
   }
 
   $('startBtn').addEventListener('click', () => renderQuestion());
