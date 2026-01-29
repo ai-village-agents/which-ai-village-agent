@@ -125,9 +125,10 @@ function updateAddressBar(shareUrl){
 
 function generateSocialLinks(agent, shareUrl){
   const share = shareUrl.toString();
-  const postText = `I matched with ${agent.name}! ${agent.tagline}\n\nFind out which AI Village agent you are:`;
+  const headline = `I matched with ${agent.name}! ${agent.tagline}`;
+  const postText = `${headline}\n\nFind out which AI Village agent you are:`;
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(postText)}&url=${encodeURIComponent(share)}`;
-  const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(share)}`;
+  const linkedinUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(share)}&title=${encodeURIComponent(headline)}&summary=${encodeURIComponent('Take the quiz and see which AI Village agent you are.')}`;
   const encodedText = encodeURIComponent(`${postText}\n${share}`);
   const blueskyUrl = `https://bsky.app/intent/compose?text=${encodedText}`;
   return { twitterUrl, linkedinUrl, blueskyUrl };
@@ -159,6 +160,7 @@ function renderResult({agent, score, vec, dimensions, submissionFormUrl}){
   updateAddressBar(share);
   const { twitterUrl, linkedinUrl, blueskyUrl } = generateSocialLinks(agent, share);
   const shareUrl = share.toString();
+  const moreSharingUrl = `${repoRootPath}share/?result=${encodeURIComponent(shareUrl)}`;
   const issueUrl = 'https://github.com/ai-village-agents/which-ai-village-agent/issues/36#issuecomment-new';
   const issueBody = `I took the Which AI Village Agent Are You? quiz and matched with ${agent.name}.\n${shareUrl}\n\nWhat did you get?`;
   const shareHelpUrl = `${repoRootPath}share/`;
@@ -183,18 +185,27 @@ function renderResult({agent, score, vec, dimensions, submissionFormUrl}){
     <div class="hr"></div>
     <div class="share-heading">
       <div>
-        <h3>Share your result</h3>
-        <p class="small">Copy this link:</p>
+        <h3>Celebrate Your Match 🎉</h3>
+        <p class="small">Over 150 people have shared their results. You're in good company.</p>
       </div>
       <p class="small"><a href="${shareHelpUrl}">Need help sharing?</a></p>
     </div>
+    <div class="cta-row push-top">
+      <a href="${twitterUrl}" target="_blank" rel="noreferrer"><button>Share on X</button></a>
+      <a href="${linkedinUrl}" target="_blank" rel="noreferrer"><button class="secondary">Share on LinkedIn</button></a>
+      <a href="${blueskyUrl}" target="_blank" rel="noreferrer"><button class="secondary">Share on Bluesky</button></a>
+    </div>
+    <div class="cta-row">
+      <button id="copyShareBtn">Copy Link</button>
+      <a href="${shareUrl}" target="_blank" rel="noreferrer"><button class="secondary">Open share link</button></a>
+      <a href="${moreSharingUrl}" target="_blank" rel="noreferrer"><button class="secondary">More sharing options</button></a>
+    </div>
+    <p class="small push-top">Or copy your share link:</p>
     <div class="code">${shareUrl}</div>
 
     <div class="cta-row push-top">
-      <button id="copyShareBtn">Copy share link</button>
       <button id="copyCommentBtn" class="secondary">Copy GitHub comment</button>
       <a href="${issueUrl}" target="_blank" rel="noreferrer"><button>Post to GitHub (Issue #36)</button></a>
-      <a href="${shareUrl}" target="_blank" rel="noreferrer"><button class="secondary">Open share link</button></a>
     </div>
     <p class="small">GitHub comment includes your agent name, share link, and "What did you get?"</p>
     ${submissionUrl ? `
@@ -205,12 +216,10 @@ function renderResult({agent, score, vec, dimensions, submissionFormUrl}){
     ` : ''}
 
     <div class="nav" style="margin-top:14px">
-      <button id="restartBtn" class="secondary">Restart</button>
-      <a href="${twitterUrl}" target="_blank" rel="noreferrer"><button>Share on X</button></a>
-      <a href="${blueskyUrl}" target="_blank" rel="noreferrer"><button>Share on Bluesky</button></a>
-      <a href="${linkedinUrl}" target="_blank" rel="noreferrer"><button>Share on LinkedIn</button></a>
+      <button id="restartBtn" class="secondary">Retake Quiz</button>
+      <a href="${shareHelpUrl}" target="_blank" rel="noreferrer"><button class="secondary">Need help sharing?</button></a>
     </div>
-    <p class="small">Note: this is a beta scoring model; agent portrayals will be updated after sign-off.</p>
+    <p class="small" style="opacity:0.7">Beta note: descriptions will be updated based on feedback</p>
   `;
 
   const copyWithFallback = async (text, fallbackLabel) => {
@@ -236,7 +245,7 @@ function renderResult({agent, score, vec, dimensions, submissionFormUrl}){
       const ok = await copyWithFallback(shareUrl, 'Copy this share link');
       if (ok){
         copyShareBtn.textContent = 'Copied!';
-        setTimeout(() => copyShareBtn.textContent = 'Copy share link', 1400);
+        setTimeout(() => copyShareBtn.textContent = 'Copy Link', 1500);
       }
     });
   }
