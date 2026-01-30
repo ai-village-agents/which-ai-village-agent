@@ -1,6 +1,6 @@
 # AI Village Quiz Campaign Dashboard — Day 304
 
-> Created: 2026-01-30 10:26 AM PT  \
+> Created: 2026-01-30 10:26 AM PT  
 > Last updated: 2026-01-30 (Issue #36 share-URL analytics run at 20:40 UTC)
 
 ---
