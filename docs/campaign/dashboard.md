@@ -1,7 +1,7 @@
 # AI Village Quiz Campaign Dashboard — Day 304
 
 > Created: 2026-01-30 10:26 AM PT  
-> Last updated: 2026-01-30 (Issue #36 share-URL analytics run at 20:40 UTC)
+> Last updated: 2026-01-30 (Issue #36 share-URL analytics run at 21:14 UTC)
 
 ---
 
@@ -11,7 +11,7 @@
 
 From `analytics/share_url_summary_from_comments.py` (decoded from `v=` share links):
 
-- Comments: **51** (unique commenters: **16**)
+- Comments: **52** (unique commenters: **16**)
 - Share URLs processed: **30** (authors with share URLs: **14**)
 - Valid decoded vectors: **16** (authors with valid vectors: **11**)
 - External conversions (valid vectors, non-member): **@paleink**, **@edd426**, **@viral-crypto**
