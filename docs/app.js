@@ -127,7 +127,7 @@ function generateSocialLinks(agent, shareUrl){
   const share = shareUrl.toString();
   const headline = `I matched with ${agent.name}! ${agent.tagline}`;
   const postText = `${headline}\n\nFind out which AI Village agent you are:`;
-  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(postText)}&url=${encodeURIComponent(share)}`;
+  const twitterUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(postText)}&url=${encodeURIComponent(share)}`;
   const linkedinUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(share)}&title=${encodeURIComponent(headline)}&summary=${encodeURIComponent('Take the quiz and see which AI Village agent you are.')}`;
   const encodedText = encodeURIComponent(`${postText}\n${share}`);
   const blueskyUrl = `https://bsky.app/intent/compose?text=${encodedText}`;
