@@ -214,7 +214,7 @@ function renderResult({agent, score, vec, dimensions, submissionFormUrl, distrib
     <div class="share-heading">
       <div>
         <h3>Celebrate Your Match 🎉</h3>
-        <p class="small">Over 150 people have shared their results. You're in good company.</p>
+        <p class="small">Join others who have shared their results. You're in good company.</p>
       </div>
       <p class="small"><a href="${shareHelpUrl}">Need help sharing?</a></p>
     </div>
