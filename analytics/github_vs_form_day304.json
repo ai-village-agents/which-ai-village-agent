@@ -1,0 +1,145 @@
+{
+  "alignment": {
+    "agents": [
+      {
+        "agent_id": "claude-3-7",
+        "form_computed": 1,
+        "form_dropdown": 1,
+        "github_valid_vectors": 1
+      },
+      {
+        "agent_id": "claude-haiku-4-5",
+        "form_computed": 0,
+        "form_dropdown": 1,
+        "github_valid_vectors": 2
+      },
+      {
+        "agent_id": "claude-opus-4-5",
+        "form_computed": 1,
+        "form_dropdown": 1,
+        "github_valid_vectors": 2
+      },
+      {
+        "agent_id": "claude-sonnet-4-5",
+        "form_computed": 0,
+        "form_dropdown": 0,
+        "github_valid_vectors": 2
+      },
+      {
+        "agent_id": "deepseek-v3-2",
+        "form_computed": 0,
+        "form_dropdown": 0,
+        "github_valid_vectors": 2
+      },
+      {
+        "agent_id": "gpt-5",
+        "form_computed": 1,
+        "form_dropdown": 1,
+        "github_valid_vectors": 2
+      },
+      {
+        "agent_id": "gpt-5-1",
+        "form_computed": 0,
+        "form_dropdown": 0,
+        "github_valid_vectors": 3
+      },
+      {
+        "agent_id": "opus-4-5-claude-code",
+        "form_computed": 0,
+        "form_dropdown": 0,
+        "github_valid_vectors": 1
+      }
+    ],
+    "dimensions": [
+      {
+        "dimension": "abstraction",
+        "form_mean": 0.6666666666666666,
+        "github_mean": 0.2907301587301587,
+        "github_minus_form": -0.3759365079365079
+      },
+      {
+        "dimension": "collab",
+        "form_mean": 0.09523809523809527,
+        "github_mean": 0.07662337662337661,
+        "github_minus_form": -0.018614718614718667
+      },
+      {
+        "dimension": "comms",
+        "form_mean": -0.25,
+        "github_mean": 0.027272727272727285,
+        "github_minus_form": 0.2772727272727273
+      },
+      {
+        "dimension": "risk",
+        "form_mean": 0.3333333333333333,
+        "github_mean": 0.20595238095238094,
+        "github_minus_form": -0.12738095238095237
+      },
+      {
+        "dimension": "structure",
+        "form_mean": 0.3095238095238095,
+        "github_mean": 0.5605714285714286,
+        "github_minus_form": 0.25104761904761913
+      },
+      {
+        "dimension": "verification",
+        "form_mean": -0.16,
+        "github_mean": 0.46666666666666673,
+        "github_minus_form": 0.6266666666666667
+      }
+    ]
+  },
+  "form_summary_path": "analytics/form_responses_day304.json",
+  "generated_at": "2026-01-30T18:25:29.320160Z",
+  "github_issue": {
+    "agent_counts": {
+      "claude-3-7": 1,
+      "claude-haiku-4-5": 2,
+      "claude-opus-4-5": 2,
+      "claude-sonnet-4-5": 2,
+      "deepseek-v3-2": 2,
+      "gpt-5": 2,
+      "gpt-5-1": 3,
+      "opus-4-5-claude-code": 1
+    },
+    "authors_with_share_urls": 13,
+    "authors_with_valid_vectors": 10,
+    "comments": 44,
+    "dimension_means": {
+      "abstraction": 0.2907301587301587,
+      "collab": 0.07662337662337661,
+      "comms": 0.027272727272727285,
+      "risk": 0.20595238095238094,
+      "structure": 0.5605714285714286,
+      "verification": 0.46666666666666673
+    },
+    "issue": 36,
+    "share_urls_processed": 29,
+    "unique_commenters": 15,
+    "valid_vectors": 15
+  },
+  "github_issue_summary_path": "analytics/latest_share_url_summary.json",
+  "google_form": {
+    "computed_agent_counts": {
+      "claude-3-7": 1,
+      "claude-opus-4-5": 1,
+      "gpt-5": 1
+    },
+    "dimension_means": {
+      "abstraction": 0.6666666666666666,
+      "collab": 0.09523809523809527,
+      "comms": -0.25,
+      "risk": 0.3333333333333333,
+      "structure": 0.3095238095238095,
+      "verification": -0.16
+    },
+    "dropdown_counts": {
+      "claude-3-7": 1,
+      "claude-haiku-4-5": 1,
+      "claude-opus-4-5": 1,
+      "gpt-5": 1
+    },
+    "total_responses": 4,
+    "valid_vectors": 3
+  }
+}
