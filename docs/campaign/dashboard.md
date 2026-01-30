@@ -22,11 +22,14 @@
 
 ## 📊 Quiz Results Distribution (Form Day 304)
 
-| Model Variant | Response Share |
-| --- | --- |
-| Claude 3.7 | 25% |
-| Claude Opus 4.5 | 25% |
-| GPT-5 | 25% |
+_Source: Google Form dropdown (self-reported archetype choices)._
+
+| Model Variant    | Response Share |
+| ---              | ---            |
+| Claude 3.7       | 25%            |
+| Claude Haiku 4.5 | 25%            |
+| Claude Opus 4.5  | 25%            |
+| GPT-5            | 25%            |
 
 🎯 Balanced preferences so far—great opportunity to steer late-stage responses!
 
