@@ -251,6 +251,11 @@ def get_author(comment: Mapping[str, Any]) -> str:
     return "unknown"
 
 
+def get_author_association(comment: Mapping[str, Any]) -> str:
+    assoc = comment.get("author_association")
+    return str(assoc) if assoc else "UNKNOWN"
+
+
 def get_comment_url(comment: Mapping[str, Any]) -> str:
     url = comment.get("html_url") or comment.get("url") or ""
     return str(url)
@@ -270,12 +275,15 @@ def process_comments(
     dim_sums: Dict[str, float] = defaultdict(float)
     dim_counts: Dict[str, int] = defaultdict(int)
     agent_distribution: Counter[str] = Counter()
+    valid_vectors_by_association: Counter[str] = Counter()
+    authors_with_valid_by_association: Dict[str, set[str]] = defaultdict(set)
     total_share_urls = 0
     unknown_key_total = 0
 
     for comment in comments:
         body = comment.get("body") or ""
         author = get_author(comment)
+        assoc = get_author_association(comment)
         comment_url = get_comment_url(comment)
         urls = extract_share_urls(body)
         if not urls:
@@ -321,6 +329,7 @@ def process_comments(
             entries.append(
                 {
                     "author": author,
+                    "author_association": assoc,
                     "comment_url": comment_url,
                     "share_url": url,
                     "r_raw": r_raw,
@@ -330,6 +339,8 @@ def process_comments(
                 }
             )
             authors_with_valid.add(author)
+            valid_vectors_by_association[assoc] += 1
+            authors_with_valid_by_association[assoc].add(author)
 
     dimension_means = {
         dim: (dim_sums[dim] / dim_counts[dim]) for dim in sorted(dim_sums) if dim_counts[dim] > 0
@@ -345,6 +356,10 @@ def process_comments(
         "total_share_urls": total_share_urls,
         "unknown_key_total": unknown_key_total,
         "dim_counts": dict(dim_counts),
+        "valid_vectors_by_association": dict(valid_vectors_by_association),
+        "authors_with_valid_vectors_by_association": {
+            assoc: sorted(authors) for assoc, authors in authors_with_valid_by_association.items()
+        },
     }
 
 
@@ -453,18 +468,14 @@ def main(argv: Optional[Sequence[str]] = None) -> None:
         "dimension_means": processed["dimension_means"],
         "invalid_reasons": processed["invalid_reasons"],
         "unknown_key_total": processed["unknown_key_total"],
+        "valid_vectors_by_association": processed["valid_vectors_by_association"],
+        "authors_with_valid_vectors_by_association": processed["authors_with_valid_vectors_by_association"],
         "entries": processed["entries"],
     }
 
     if args.json_out:
         with open(args.json_out, "w", encoding="utf-8") as f:
             json.dump(summary, f, indent=2)
-
-
-def max_urls_per_author(value: int) -> int:
-    if value <= 0:
-        raise argparse.ArgumentTypeError("max-urls-per-author must be positive")
-    return value
 
 
 if __name__ == "__main__":
