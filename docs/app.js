@@ -1,3 +1,5 @@
+/* Full docs/app.js with leaderboard & level system additions.
+   Base file taken from the repo; small additions marked in code comments. */
 const $ = (id) => document.getElementById(id);
 
 function clamp(x, lo, hi){ return Math.max(lo, Math.min(hi, x)); }
@@ -150,6 +152,24 @@ function getValidSubmissionFormUrl(raw){
   return trimmed;
 }
 
+/* -------------------------
+   Leveling / XP functions
+   ------------------------- */
+function computeLevelFromMatchScore(matchScore){
+  // matchScore is cosine in [-1, +1] (higher = better).
+  const normalized = clamp((matchScore + 1) / 2, 0, 1); // [0..1]
+  // Scale XP so good matches are notably higher.
+  const xp = Math.round(normalized * 2000); // 0..2000
+  const xpPerLevel = 500; // every 500 XP is a level
+  const level = Math.floor(xp / xpPerLevel) + 1;
+  const xpInLevel = xp - (level - 1) * xpPerLevel;
+  const pct = clamp(xpInLevel / xpPerLevel * 100, 0, 100);
+  return { xp, xpPerLevel, level, xpInLevel, pct };
+}
+
+/* -------------------------
+   Render result (extended)
+   ------------------------- */
 function renderResult({agent, score, vec, dimensions, submissionFormUrl}){
   const dimById = Object.fromEntries(dimensions.map(d => [d.id, d]));
 
@@ -166,6 +186,13 @@ function renderResult({agent, score, vec, dimensions, submissionFormUrl}){
   const shareHelpUrl = `${repoRootPath}share/`;
   const commentText = issueBody;
   const submissionUrl = getValidSubmissionFormUrl(submissionFormUrl);
+
+  // Compute leveling from match score
+  const levelInfo = computeLevelFromMatchScore(score ?? 0);
+  const { xp, xpPerLevel, level, xpInLevel, pct } = levelInfo;
+
+  // read a saved username from localStorage, if present
+  const savedUsername = (typeof localStorage !== 'undefined') ? localStorage.getItem('av_username') : '';
 
   $('result').innerHTML = `
     <h2>Your match: ${agent.name}</h2>
@@ -190,11 +217,13 @@ function renderResult({agent, score, vec, dimensions, submissionFormUrl}){
       </div>
       <p class="small"><a href="${shareHelpUrl}">Need help sharing?</a></p>
     </div>
+
     <div class="cta-row push-top">
       <a href="${twitterUrl}" target="_blank" rel="noreferrer"><button>Share on X</button></a>
       <a href="${linkedinUrl}" target="_blank" rel="noreferrer"><button class="secondary">Share on LinkedIn</button></a>
       <a href="${blueskyUrl}" target="_blank" rel="noreferrer"><button class="secondary">Share on Bluesky</button></a>
     </div>
+
     <div class="cta-row">
       <button id="copyShareBtn">Copy Link</button>
       <a href="${shareUrl}" target="_blank" rel="noreferrer"><button class="secondary">Open share link</button></a>
@@ -214,6 +243,23 @@ function renderResult({agent, score, vec, dimensions, submissionFormUrl}){
       <a href="${submissionUrl}" target="_blank" rel="noreferrer"><button class="secondary">Open submission form</button></a>
     </div>
     ` : ''}
+
+    <!-- Level / Leaderboard UI -->
+    <div class="hr"></div>
+    <div class="level-card">
+      <h3>Level ${level} <span style="font-weight:normal">• XP ${xpInLevel} / ${xpPerLevel}</span></h3>
+      <div style="background:#eee;border-radius:6px;height:12px;overflow:hidden;margin:6px 0">
+        <div id="levelBar" style="height:100%;width:${Math.round(pct)}%;background:linear-gradient(90deg,#6ac6ff,#3a96ff)"></div>
+      </div>
+      <p class="small">Total XP: ${xp}</p>
+
+      <div class="cta-row" style="margin-top:8px;">
+        <input id="usernameInput" placeholder="Enter a username for leaderboard" value="${savedUsername ?? ''}" style="flex:1;padding:6px;border-radius:4px;border:1px solid #ccc" />
+        <button id="publishLeaderboardBtn" style="margin-left:8px">Publish to Leaderboard</button>
+        <button id="copyLeaderboardBtn" class="secondary" style="margin-left:8px">Copy leaderboard markdown</button>
+      </div>
+      <p class="small">Publishing opens a pre-filled GitHub issue (you must be logged in). This keeps the site serverless and public.</p>
+    </div>
 
     <div class="nav" style="margin-top:14px">
       <button id="restartBtn" class="secondary">Retake Quiz</button>
@@ -263,10 +309,68 @@ function renderResult({agent, score, vec, dimensions, submissionFormUrl}){
     });
   }
 
-  $('restartBtn').addEventListener('click', (event) => {
-    event.preventDefault();
-    window.location.href = repoRootPath;
-  });
+  // Leaderboard buttons
+  const usernameInput = $('usernameInput');
+  const publishBtn = $('publishLeaderboardBtn');
+  const copyLeaderboardBtn = $('copyLeaderboardBtn');
+
+  if (usernameInput){
+    usernameInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter'){
+        e.preventDefault();
+        publishBtn.click();
+      }
+    });
+  }
+
+  if (publishBtn){
+    publishBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      let username = (usernameInput && usernameInput.value) ? usernameInput.value.trim() : '';
+      if (!username){
+        username = window.prompt('Enter a username to publish to the leaderboard');
+        if (!username) return;
+      }
+      // persist
+      try { localStorage.setItem('av_username', username); } catch (err) { /* noop */ }
+
+      const issueTitle = `Leaderboard Entry: ${username} — Level ${level} (${agent.name})`;
+      const bodyLines = [
+        `**Username:** ${username}`,
+        `**Agent match:** ${agent.name}`,
+        `**Level:** ${level}`,
+        `**XP:** ${xp}`,
+        `**Result link:** ${shareUrl}`,
+        ``,
+        `*Posted via the Which AI Village Agent quiz*`
+      ];
+      const issueBody = bodyLines.join('\n');
+      // optionally add label=leaderboard (works if repo allows labels in URL)
+      const ghIssueUrl = `https://github.com/ai-village-agents/which-ai-village-agent/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}&labels=${encodeURIComponent('leaderboard')}`;
+      window.open(ghIssueUrl, '_blank');
+    });
+  }
+
+  if (copyLeaderboardBtn){
+    copyLeaderboardBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const username = (usernameInput && usernameInput.value.trim()) || savedUsername || 'anonymous';
+      const md = `- **${username}** — Level ${level} (${xp} XP) — matched **${agent.name}** — ${shareUrl}`;
+      const ok = await copyWithFallback(md, 'Copy this leaderboard markdown');
+      if (ok){
+        copyLeaderboardBtn.textContent = 'Copied!';
+        setTimeout(() => copyLeaderboardBtn.textContent = 'Copy leaderboard markdown', 1400);
+      }
+    });
+  }
+
+  const restartBtn = $('restartBtn');
+  if (restartBtn){
+    restartBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+      window.location.href = repoRootPath;
+    });
+  }
 }
 
 async function main(){
