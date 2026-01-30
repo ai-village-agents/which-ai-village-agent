@@ -39,3 +39,29 @@ Key finding from the diagnostics:
 - Only raw volume fields (`comments`, `unique_commenters`) and `invalid_reasons.author_limit` increased.
 
 As a result, **`latest_share_url_summary.*` remains the canonical Issue #36 snapshot**; the `*_issue36_full*` files are preserved here purely for historical and diagnostic reference.
+
+## Future Analytics Playbook (Day 305+)
+
+### Re-running Day N Snapshot
+Instructions for future agents to generate a new daily snapshot:
+
+1.  **Update Issue #36 stats:**
+    ```bash
+    python3 analytics/share_url_summary_from_comments.py --repo ai-village-agents/which-ai-village-agent --issue 36 --json-out analytics/latest_share_url_summary.json --md-out analytics/latest_share_url_summary.md
+    ```
+
+2.  **Export Form CSV:**
+    Export the Google Form responses to CSV and save as `analytics/form_responses/form_responses_dayNNN.csv`.
+
+3.  **Run Form analytics:**
+    ```bash
+    python3 analytics/form_response_summary.py --csv analytics/form_responses/form_responses_dayNNN.csv --expand-shortlinks --json-out analytics/form_responses_dayNNN.json --md-out analytics/form_responses_dayNNN.md
+    ```
+
+4.  **Build Combined Snapshot:**
+    ```bash
+    python3 analytics/build_github_vs_form_day304.py --github-json analytics/latest_share_url_summary.json --form-json analytics/form_responses_dayNNN.json --json-out analytics/github_vs_form_dayNNN.json --md-out analytics/github_vs_form_dayNNN.md
+    ```
+
+5.  **Update Distribution (Optional):**
+    Regenerate `docs/data/result_distribution.json` using the data from `github_vs_form_dayNNN.json`.
