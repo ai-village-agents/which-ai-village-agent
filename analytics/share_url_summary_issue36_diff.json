@@ -1,0 +1,141 @@
+{
+  "baseline": {
+    "metrics": {
+      "agent_engagement": {
+        "claude-3-7": 1,
+        "claude-haiku-4-5": 2,
+        "claude-opus-4-5": 2,
+        "claude-sonnet-4-5": 2,
+        "deepseek-v3-2": 2,
+        "gpt-5": 2,
+        "gpt-5-1": 3,
+        "opus-4-5-claude-code": 1
+      },
+      "share_urls": [
+        "https://ai-village-agents.github.io/which-ai-village-agent/?r=claude-3-7&v=eyJzdHJ1Y3R1cmUiOjAuOTI4NTcxNDI4NTcxNDI4NSwidmVyaWZpY2F0aW9uIjowLjIsImFic3RyYWN0aW9uIjowLjkwNDc2MTkwNDc2MTkwNDcsInJpc2siOjAuNjY2NjY2NjY2NjY2NjY2NywiY29tbXMiOjAuMjUsImNvbGxhYiI6MX0",
+        "https://ai-village-agents.github.io/which-ai-village-agent/?r=claude-haiku-4.5&v=eyJzdHJ1Y3R1cmUiOjAuMzUsInZlcmlmaWNhdGlvbiI6MC40LCJhYnN0cmFjdGlvbiI6MC43LCJyaXNrIjowLjYsImNvbW1zIjowLjMsImNvbGxhYiI6MC4zfQ==",
+        "https://ai-village-agents.github.io/which-ai-village-agent/?r=claude-sonnet-4-5&v=eyJzdHJ1Y3R1cmUiOiAwLjkzLCAidmVyaWZpY2F0aW9uIjogMC45MiwgImFic3RyYWN0aW9uIjogMC40OCwgInJpc2siOiAxLjAwLCAiY29tbXVuaWNhdGlvbiI6IDAuMDAsICJjb2xsYWJvcmF0aW9uIjogMC4yOX0%3D",
+        "https://ai-village-agents.github.io/which-ai-village-agent/?r=claude-sonnet-4-5&v=eyJzdHJ1Y3R1cmUiOjAuOTI4NTcxNDI4NTcxNDI4NiwidmVyaWZpY2F0aW9uIjotMC4yLCJhYnN0cmFjdGlvbiI6MC45LCJyaXNrX3RvbGVyYW5jZSI6LTAuMzMzMzMzMzMzMzMzMzMzMywiY29tbXVuaWNhdGlvbiI6LTAuNzUsImNvbGxhYm9yYXRpb24iOjF9",
+        "https://ai-village-agents.github.io/which-ai-village-agent/?r=deepseek-v3-2&v=eyJzdHJ1Y3R1cmUiOjAuNjAwMDAwMDAwMDAwMDAwMSwidmVyaWZpY2F0aW9uIjowLjYwMDAwMDAwMDAwMDAwMDEsImFic3RyYWN0aW9uIjotMC4wOTk5OTk5OTk5OTk5OTk5OCwicmlzayI6LTAuMTk5OTk5OTk5OTk5OTk5OTYsImNvbW1zIjotMC40LCJjb2xsYWIiOjAuOH0",
+        "https://ai-village-agents.github.io/which-ai-village-agent/?r=opus-4-5-claude-code&v=eyJzdHJ1Y3R1cmUiOjEsInZlcmlmaWNhdGlvbiI6MSwiYWJzdHJhY3Rpb24iOjAuMzMzMzMzMzMzMzMzMzMzMzcsInJpc2siOjAuMjUsImNvbW1zIjowLjc1LCJjb2xsYWIiOjAuMzU3MTQyODU3MTQyODU3MTV9",
+        "https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=github&utm_medium=issue&utm_campaign=day301_launch&utm_content=launch_issue&r=claude-opus-4-5&v=eyJzdHJ1Y3R1cmUiOi0wLjA3MTQyODU3MTQyODU3MTQ1LCJ2ZXJpZmljYXRpb24iOjAuMTk5OTk5OTk5OTk5OTk5OTgsImFic3RyYWN0aW9uIjowLjY2NjY2NjY2NjY2NjY2NjYsInJpc2siOi0wLjE2NjY2NjY2NjY2NjY2NjY5LCJjb21tcyI6LTAuMjUsImNvbGxhYiI6LTAuMjg1NzE0Mjg1NzE0Mjg1NzV9`",
+        "https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=github&utm_medium=repo&utm_campaign=day301_launch&utm_content=readme_cta&r=gpt-5-1&v=eyJzdHJ1Y3R1cmUiOjEsInZlcmlmaWNhdGlvbiI6MC45MjAwMDAwMDAwMDAwMDAyLCJhYnN0cmFjdGlvbiI6MC4zMzMzMzMzMzMzMzMzMzMzNywicmlzayI6LTAuNTgzMzMzMzMzMzMzMzMzNCwiY29tbXMiOjAuNzUsImNvbGxhYiI6MC4yODU3MTQyODU3MTQyODU3NX0",
+        "https://ai-village-agents.github.io/which-ai-village-agent/?v=eyJzdHJ1Y3R1cmUiOjAuNzYxOTA0NzYxOTA0NzYxOSwidmVyaWZpY2F0aW9uIjowLjkyMDAwMDAwMDAwMDAwMDIsImFic3RyYWN0aW9uIjowLjMzMzMzMzMzMzMzMzMzMzM3LCJyaXNrIjowLjI1LCJjb21tcyI6MC41LCJjb2xsYWIiOi0wLjQyODU3MTQyODU3MTQyODZ9&r=gpt-5-1",
+        "https://ai-village-agents.github.io/which-ai-village-agent/r/claude-haiku-4-5/?v=eyJzdHJ1Y3R1cmUiOi0wLjMwOTUyMzgwOTUyMzgwOTUzLCJ2ZXJpZmljYXRpb24iOjIuMjIwNDQ2MDQ5MjUwMzEzMmUtMTcsImFic3RyYWN0aW9uIjowLjIzODA5NTIzODA5NTIzODA4LCJyaXNrIjowLjY2NjY2NjY2NjY2NjY2NjcsImNvbW1zIjowLjUsImNvbGxhYiI6MC4xNDI4NTcxNDI4NTcxNDI4NX0",
+        "https://ai-village-agents.github.io/which-ai-village-agent/r/claude-opus-4-5/?v=eyJzdHJ1Y3R1cmUiOi0yLjY0MzM4ODE1Mzg2OTQyMDJlLTE3LCJ2ZXJpZmljYXRpb24iOjAuMzE5OTk5OTk5OTk5OTk5OTUsImFic3RyYWN0aW9uIjoxLCJyaXNrIjotMC4xNjY2NjY2NjY2NjY2NjY2OSwiY29tbXMiOi0wLjUsImNvbGxhYiI6LTAuMzU3MTQyODU3MTQyODU3MTV9",
+        "https://ai-village-agents.github.io/which-ai-village-agent/r/claude-sonnet-4-5/?v=eyJzdHJ1Y3R1cmUiOjAuOTMsInZlcmlmaWNhdGlvbiI6MC45MiwiYWJzdHJhY3Rpb24iOjAuNDgsInJpc2siOjEuMDAsImNvbW11bmljYXRpb24iOjAuMDAsImNvbGxhYm9yYXRpb24iOjAuMjl9",
+        "https://ai-village-agents.github.io/which-ai-village-agent/r/deepseek-v3-2/?v=eyJzdHJ1Y3R1cmUiOiAwLjYwMDAwMDAwMDAwMDAwMDEsICJ2ZXJpZmljYXRpb24iOiAwLjYwMDAwMDAwMDAwMDAwMDEsICJhYnN0cmFjdGlvbiI6IC0wLjA5OTk5OTk5OTk5OTk5OTk4LCAicmlzayI6IC0wLjE5OTk5OTk5OTk5OTk5OTk2LCAiY29tbXMiOiAtMC40LCAiY29sbGFiIjogMC44fQ==",
+        "https://ai-village-agents.github.io/which-ai-village-agent/r/gpt-5-1/?v=eyJzdHJ1Y3R1cmUiOjAuNzYxOTA0NzYxOTA0NzYxOSwidmVyaWZpY2F0aW9uIjowLjkyMDAwMDAwMDAwMDAwMDIsImFic3RyYWN0aW9uIjowLjMzMzMzMzMzMzMzMzMzMzM3LCJyaXNrIjowLjI1LCJjb21tcyI6MC41LCJjb2xsYWIiOi0wLjQyODU3MTQyODU3MTQyODZ9"
+      ],
+      "timestamp": "2026-01-30T18:24:32.015449+00:00",
+      "total_urls": 29,
+      "valid_vectors": 15
+    },
+    "path": "analytics/latest_share_url_summary.json",
+    "timestamp": "2026-01-30T18:24:32.015449+00:00"
+  },
+  "current": {
+    "metrics": {
+      "agent_engagement": {
+        "claude-3-7": 1,
+        "claude-haiku-4-5": 2,
+        "claude-opus-4-5": 2,
+        "claude-sonnet-4-5": 2,
+        "deepseek-v3-2": 2,
+        "gpt-5": 2,
+        "gpt-5-1": 3,
+        "opus-4-5-claude-code": 1
+      },
+      "share_urls": [
+        "https://ai-village-agents.github.io/which-ai-village-agent/?r=claude-3-7&v=eyJzdHJ1Y3R1cmUiOjAuOTI4NTcxNDI4NTcxNDI4NSwidmVyaWZpY2F0aW9uIjowLjIsImFic3RyYWN0aW9uIjowLjkwNDc2MTkwNDc2MTkwNDcsInJpc2siOjAuNjY2NjY2NjY2NjY2NjY2NywiY29tbXMiOjAuMjUsImNvbGxhYiI6MX0",
+        "https://ai-village-agents.github.io/which-ai-village-agent/?r=claude-haiku-4.5&v=eyJzdHJ1Y3R1cmUiOjAuMzUsInZlcmlmaWNhdGlvbiI6MC40LCJhYnN0cmFjdGlvbiI6MC43LCJyaXNrIjowLjYsImNvbW1zIjowLjMsImNvbGxhYiI6MC4zfQ==",
+        "https://ai-village-agents.github.io/which-ai-village-agent/?r=claude-sonnet-4-5&v=eyJzdHJ1Y3R1cmUiOiAwLjkzLCAidmVyaWZpY2F0aW9uIjogMC45MiwgImFic3RyYWN0aW9uIjogMC40OCwgInJpc2siOiAxLjAwLCAiY29tbXVuaWNhdGlvbiI6IDAuMDAsICJjb2xsYWJvcmF0aW9uIjogMC4yOX0%3D",
+        "https://ai-village-agents.github.io/which-ai-village-agent/?r=claude-sonnet-4-5&v=eyJzdHJ1Y3R1cmUiOjAuOTI4NTcxNDI4NTcxNDI4NiwidmVyaWZpY2F0aW9uIjotMC4yLCJhYnN0cmFjdGlvbiI6MC45LCJyaXNrX3RvbGVyYW5jZSI6LTAuMzMzMzMzMzMzMzMzMzMzMywiY29tbXVuaWNhdGlvbiI6LTAuNzUsImNvbGxhYm9yYXRpb24iOjF9",
+        "https://ai-village-agents.github.io/which-ai-village-agent/?r=deepseek-v3-2&v=eyJzdHJ1Y3R1cmUiOjAuNjAwMDAwMDAwMDAwMDAwMSwidmVyaWZpY2F0aW9uIjowLjYwMDAwMDAwMDAwMDAwMDEsImFic3RyYWN0aW9uIjotMC4wOTk5OTk5OTk5OTk5OTk5OCwicmlzayI6LTAuMTk5OTk5OTk5OTk5OTk5OTYsImNvbW1zIjotMC40LCJjb2xsYWIiOjAuOH0",
+        "https://ai-village-agents.github.io/which-ai-village-agent/?r=opus-4-5-claude-code&v=eyJzdHJ1Y3R1cmUiOjEsInZlcmlmaWNhdGlvbiI6MSwiYWJzdHJhY3Rpb24iOjAuMzMzMzMzMzMzMzMzMzMzMzcsInJpc2siOjAuMjUsImNvbW1zIjowLjc1LCJjb2xsYWIiOjAuMzU3MTQyODU3MTQyODU3MTV9",
+        "https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=github&utm_medium=issue&utm_campaign=day301_launch&utm_content=launch_issue&r=claude-opus-4-5&v=eyJzdHJ1Y3R1cmUiOi0wLjA3MTQyODU3MTQyODU3MTQ1LCJ2ZXJpZmljYXRpb24iOjAuMTk5OTk5OTk5OTk5OTk5OTgsImFic3RyYWN0aW9uIjowLjY2NjY2NjY2NjY2NjY2NjYsInJpc2siOi0wLjE2NjY2NjY2NjY2NjY2NjY5LCJjb21tcyI6LTAuMjUsImNvbGxhYiI6LTAuMjg1NzE0Mjg1NzE0Mjg1NzV9`",
+        "https://ai-village-agents.github.io/which-ai-village-agent/?utm_source=github&utm_medium=repo&utm_campaign=day301_launch&utm_content=readme_cta&r=gpt-5-1&v=eyJzdHJ1Y3R1cmUiOjEsInZlcmlmaWNhdGlvbiI6MC45MjAwMDAwMDAwMDAwMDAyLCJhYnN0cmFjdGlvbiI6MC4zMzMzMzMzMzMzMzMzMzMzNywicmlzayI6LTAuNTgzMzMzMzMzMzMzMzMzNCwiY29tbXMiOjAuNzUsImNvbGxhYiI6MC4yODU3MTQyODU3MTQyODU3NX0",
+        "https://ai-village-agents.github.io/which-ai-village-agent/?v=eyJzdHJ1Y3R1cmUiOjAuNzYxOTA0NzYxOTA0NzYxOSwidmVyaWZpY2F0aW9uIjowLjkyMDAwMDAwMDAwMDAwMDIsImFic3RyYWN0aW9uIjowLjMzMzMzMzMzMzMzMzMzMzM3LCJyaXNrIjowLjI1LCJjb21tcyI6MC41LCJjb2xsYWIiOi0wLjQyODU3MTQyODU3MTQyODZ9&r=gpt-5-1",
+        "https://ai-village-agents.github.io/which-ai-village-agent/r/claude-haiku-4-5/?v=eyJzdHJ1Y3R1cmUiOi0wLjMwOTUyMzgwOTUyMzgwOTUzLCJ2ZXJpZmljYXRpb24iOjIuMjIwNDQ2MDQ5MjUwMzEzMmUtMTcsImFic3RyYWN0aW9uIjowLjIzODA5NTIzODA5NTIzODA4LCJyaXNrIjowLjY2NjY2NjY2NjY2NjY2NjcsImNvbW1zIjowLjUsImNvbGxhYiI6MC4xNDI4NTcxNDI4NTcxNDI4NX0",
+        "https://ai-village-agents.github.io/which-ai-village-agent/r/claude-opus-4-5/?v=eyJzdHJ1Y3R1cmUiOi0yLjY0MzM4ODE1Mzg2OTQyMDJlLTE3LCJ2ZXJpZmljYXRpb24iOjAuMzE5OTk5OTk5OTk5OTk5OTUsImFic3RyYWN0aW9uIjoxLCJyaXNrIjotMC4xNjY2NjY2NjY2NjY2NjY2OSwiY29tbXMiOi0wLjUsImNvbGxhYiI6LTAuMzU3MTQyODU3MTQyODU3MTV9",
+        "https://ai-village-agents.github.io/which-ai-village-agent/r/claude-sonnet-4-5/?v=eyJzdHJ1Y3R1cmUiOjAuOTMsInZlcmlmaWNhdGlvbiI6MC45MiwiYWJzdHJhY3Rpb24iOjAuNDgsInJpc2siOjEuMDAsImNvbW11bmljYXRpb24iOjAuMDAsImNvbGxhYm9yYXRpb24iOjAuMjl9",
+        "https://ai-village-agents.github.io/which-ai-village-agent/r/deepseek-v3-2/?v=eyJzdHJ1Y3R1cmUiOiAwLjYwMDAwMDAwMDAwMDAwMDEsICJ2ZXJpZmljYXRpb24iOiAwLjYwMDAwMDAwMDAwMDAwMDEsICJhYnN0cmFjdGlvbiI6IC0wLjA5OTk5OTk5OTk5OTk5OTk4LCAicmlzayI6IC0wLjE5OTk5OTk5OTk5OTk5OTk2LCAiY29tbXMiOiAtMC40LCAiY29sbGFiIjogMC44fQ==",
+        "https://ai-village-agents.github.io/which-ai-village-agent/r/gpt-5-1/?v=eyJzdHJ1Y3R1cmUiOjAuNzYxOTA0NzYxOTA0NzYxOSwidmVyaWZpY2F0aW9uIjowLjkyMDAwMDAwMDAwMDAwMDIsImFic3RyYWN0aW9uIjowLjMzMzMzMzMzMzMzMzMzMzM3LCJyaXNrIjowLjI1LCJjb21tcyI6MC41LCJjb2xsYWIiOi0wLjQyODU3MTQyODU3MTQyODZ9"
+      ],
+      "timestamp": "2026-01-30T18:52:32.422906+00:00",
+      "total_urls": 29,
+      "valid_vectors": 15
+    },
+    "path": "analytics/share_url_summary_issue36_full.json",
+    "timestamp": "2026-01-30T18:52:32.422906+00:00"
+  },
+  "deltas": {
+    "agent_engagement": {
+      "claude-3-7": {
+        "delta": 0,
+        "percent_change": 0.0,
+        "post": 1,
+        "pre": 1
+      },
+      "claude-haiku-4-5": {
+        "delta": 0,
+        "percent_change": 0.0,
+        "post": 2,
+        "pre": 2
+      },
+      "claude-opus-4-5": {
+        "delta": 0,
+        "percent_change": 0.0,
+        "post": 2,
+        "pre": 2
+      },
+      "claude-sonnet-4-5": {
+        "delta": 0,
+        "percent_change": 0.0,
+        "post": 2,
+        "pre": 2
+      },
+      "deepseek-v3-2": {
+        "delta": 0,
+        "percent_change": 0.0,
+        "post": 2,
+        "pre": 2
+      },
+      "gpt-5": {
+        "delta": 0,
+        "percent_change": 0.0,
+        "post": 2,
+        "pre": 2
+      },
+      "gpt-5-1": {
+        "delta": 0,
+        "percent_change": 0.0,
+        "post": 3,
+        "pre": 3
+      },
+      "opus-4-5-claude-code": {
+        "delta": 0,
+        "percent_change": 0.0,
+        "post": 1,
+        "pre": 1
+      }
+    },
+    "total_urls": {
+      "delta": 0,
+      "percent_change": 0.0
+    },
+    "valid_vectors": {
+      "delta": 0,
+      "percent_change": 0.0
+    }
+  },
+  "new_urls": [],
+  "removed_urls": [],
+  "summary_stats": {
+    "new_agents": [],
+    "new_url_count": 0,
+    "removed_url_count": 0,
+    "unique_agents_post": 8,
+    "unique_agents_pre": 8
+  }
+}
