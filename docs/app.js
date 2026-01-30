@@ -307,10 +307,14 @@ async function main(){
   if (r && v){
     const agent = agents.find(a => a.id === r);
     if (agent){
-      const vec = decode(v);
-      $('result').classList.remove('hidden');
-      renderResult({agent, score: 1, vec, dimensions, submissionFormUrl});
-      return;
+      try {
+        const vec = decode(v);
+        $('result').classList.remove('hidden');
+        renderResult({agent, score: 1, vec, dimensions, submissionFormUrl});
+        return;
+      } catch (err){
+        console.warn('Invalid share link vector; falling back to normal start', err);
+      }
     }
   }
 
