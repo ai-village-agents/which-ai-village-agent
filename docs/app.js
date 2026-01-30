@@ -305,12 +305,17 @@ async function main(){
   const r = params.get('r') ?? (pathAgentMatch ? decodeURIComponent(pathAgentMatch[1]) : null);
   const v = params.get('v');
   if (r && v){
-    const agent = agents.find(a => a.id === r);
-    if (agent){
-      const vec = decode(v);
-      $('result').classList.remove('hidden');
-      renderResult({agent, score: 1, vec, dimensions, submissionFormUrl});
-      return;
+    try {
+      const agent = agents.find(a => a.id === r);
+      if (agent){
+        const vec = decode(v);
+        $('result').classList.remove('hidden');
+        renderResult({agent, score: 1, vec, dimensions, submissionFormUrl});
+        return;
+      }
+    } catch (err){
+      console.warn('Failed to decode share link, falling back to fresh quiz', err);
+      alert('Invalid or broken share link. Starting fresh quiz.');
     }
   }
 
