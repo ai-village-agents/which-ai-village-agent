@@ -1,0 +1,75 @@
+{
+  "computed_agent_counts": {
+    "claude-3-7": 1,
+    "claude-opus-4-5": 1,
+    "gpt-5": 1
+  },
+  "csv_path": "/home/computeruse/Downloads/AI Village Quiz Result Feedback (Quick Form) (Responses) - Form Responses 1.csv",
+  "dimension_means": {
+    "abstraction": 0.6666666666666666,
+    "collab": 0.09523809523809527,
+    "comms": -0.25,
+    "risk": 0.3333333333333333,
+    "structure": 0.3095238095238095,
+    "verification": -0.16
+  },
+  "dropdown_counts": {
+    "claude-3-7": 1,
+    "claude-haiku-4-5": 1,
+    "claude-opus-4-5": 1,
+    "gpt-5": 1
+  },
+  "entries": [
+    {
+      "computed_agent_id": "claude-3-7",
+      "computed_similarity": 0.3097844172805935,
+      "dropdown_agent_id": "claude-3-7",
+      "final_url": "https://ai-village-agents.github.io/which-ai-village-agent/r/claude-3-7/?v=eyJzdHJ1Y3R1cmUiOi0yLjY0MzM4ODE1Mzg2OTQyMDJlLTE3LCJ2ZXJpZmljYXRpb24iOi0wLjcyLCJhYnN0cmFjdGlvbiI6MSwicmlzayI6MSwiY29tbXMiOi0wLjI1LCJjb2xsYWIiOjAuNDI4NTcxNDI4NTcxNDI4Nn0",
+      "invalid_reason": null,
+      "raw_url": "https://ai-village-agents.github.io/which-ai-village-agent/r/claude-3-7/?v=eyJzdHJ1Y3R1cmUiOi0yLjY0MzM4ODE1Mzg2OTQyMDJlLTE3LCJ2ZXJpZmljYXRpb24iOi0wLjcyLCJhYnN0cmFjdGlvbiI6MSwicmlzayI6MSwiY29tbXMiOi0wLjI1LCJjb2xsYWIiOjAuNDI4NTcxNDI4NTcxNDI4Nn0  ",
+      "timestamp": null,
+      "url_agent_id": "claude-3-7"
+    },
+    {
+      "computed_agent_id": null,
+      "computed_similarity": null,
+      "dropdown_agent_id": "claude-haiku-4-5",
+      "final_url": "https://shorturl.at/X0h0U",
+      "invalid_reason": null,
+      "raw_url": "https://shorturl.at/X0h0U",
+      "timestamp": null,
+      "url_agent_id": null
+    },
+    {
+      "computed_agent_id": "claude-opus-4-5",
+      "computed_similarity": 0.3411712902130455,
+      "dropdown_agent_id": "claude-opus-4-5",
+      "final_url": "https://ai-village-agents.github.io/which-ai-village-agent/?r=claude-opus-4-5&v=eyJzdHJ1Y3R1cmUiOjAuMjM4MDk1MjM4MDk1MjM4MDUsInZlcmlmaWNhdGlvbiI6LTAuMzIsImFic3RyYWN0aW9uIjowLjA5NTIzODA5NTIzODA5NTI2LCJyaXNrIjotMC4yNSwiY29tbXMiOi0wLjI1LCJjb2xsYWIiOi0wLjU3MTQyODU3MTQyODU3MTR9",
+      "invalid_reason": null,
+      "raw_url": "https://ai-village-agents.github.io/which-ai-village-agent/?r=claude-opus-4-5&v=eyJzdHJ1Y3R1cmUiOjAuMjM4MDk1MjM4MDk1MjM4MDUsInZlcmlmaWNhdGlvbiI6LTAuMzIsImFic3RyYWN0aW9uIjowLjA5NTIzODA5NTIzODA5NTI2LCJyaXNrIjotMC4yNSwiY29tbXMiOi0wLjI1LCJjb2xsYWIiOi0wLjU3MTQyODU3MTQyODU3MTR9",
+      "timestamp": null,
+      "url_agent_id": "claude-opus-4-5"
+    },
+    {
+      "computed_agent_id": "gpt-5",
+      "computed_similarity": 0.8646868160070644,
+      "dropdown_agent_id": "gpt-5",
+      "final_url": "https://ai-village-agents.github.io/which-ai-village-agent/r/gpt-5/?v=eyJzdHJ1Y3R1cmUiOjAuNjkwNDc2MTkwNDc2MTkwNSwidmVyaWZpY2F0aW9uIjowLjU2LCJhYnN0cmFjdGlvbiI6MC45MDQ3NjE5MDQ3NjE5MDQ3LCJyaXNrIjowLjI1LCJjb21tcyI6LTAuMjUsImNvbGxhYiI6MC40Mjg1NzE0Mjg1NzE0Mjg2fQ",
+      "invalid_reason": null,
+      "raw_url": "https://ai-village-agents.github.io/which-ai-village-agent/r/gpt-5/?v=eyJzdHJ1Y3R1cmUiOjAuNjkwNDc2MTkwNDc2MTkwNSwidmVyaWZpY2F0aW9uIjowLjU2LCJhYnN0cmFjdGlvbiI6MC45MDQ3NjE5MDQ3NjE5MDQ3LCJyaXNrIjowLjI1LCJjb21tcyI6LTAuMjUsImNvbGxhYiI6MC40Mjg1NzE0Mjg1NzE0Mjg2fQ",
+      "timestamp": null,
+      "url_agent_id": "gpt-5"
+    }
+  ],
+  "generated_at": "2026-01-30T18:09:56.807922Z",
+  "invalid_reasons": {},
+  "mismatches_dropdown_vs_computed": 0,
+  "mismatches_dropdown_vs_url": 0,
+  "total_responses": 4,
+  "url_agent_counts": {
+    "claude-3-7": 1,
+    "claude-opus-4-5": 1,
+    "gpt-5": 1
+  },
+  "valid_vectors": 3
+}
