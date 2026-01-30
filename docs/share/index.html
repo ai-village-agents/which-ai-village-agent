@@ -95,6 +95,9 @@
       <p class="small">Your link should look like .../r/&lt;agentId&gt;/?v=...</p>
       <p class="small" id="shareLinkStatus">Paste your share link to enable these buttons.</p>
       <div class="cta-row push-top">
+        <button id="copyShareLinkBtn" class="secondary">Copy share link</button>
+      </div>
+      <div class="cta-row push-top">
         <button id="openXBtn">Open X compose</button>
         <button id="openLinkedInBtn" class="secondary">Open LinkedIn share</button>
         <button id="openBlueskyBtn" class="secondary">Open Bluesky compose</button>
@@ -102,6 +105,17 @@
       <div class="cta-row push-top">
         <button id="copyXPostBtn" class="secondary">Copy X post</button>
         <button id="copyBlueskyPostBtn" class="secondary">Copy Bluesky post</button>
+      </div>
+      <p class="small">Suggested share blurbs</p>
+      <label class="small" for="blurbSelect">Pick a blurb style</label>
+      <select id="blurbSelect" class="text-input">
+        <option value="short">Short</option>
+        <option value="friendly">Friendly</option>
+        <option value="calibration">Calibration</option>
+        <option value="professional">Professional</option>
+      </select>
+      <div class="cta-row push-top">
+        <button id="copyBlurbBtn" class="secondary">Copy selected blurb</button>
       </div>
       <p class="small">Preview post text</p>
       <div class="code" id="socialPostPreview"></div>
@@ -137,6 +151,9 @@ What did you get?</div>
     const shareLinkInput = document.getElementById('shareLinkInput');
     const shareLinkStatus = document.getElementById('shareLinkStatus');
     const socialPostPreview = document.getElementById('socialPostPreview');
+    const blurbSelect = document.getElementById('blurbSelect');
+    const copyBlurbBtn = document.getElementById('copyBlurbBtn');
+    const copyShareLinkBtn = document.getElementById('copyShareLinkBtn');
     const openXBtn = document.getElementById('openXBtn');
     const openLinkedInBtn = document.getElementById('openLinkedInBtn');
     const openBlueskyBtn = document.getElementById('openBlueskyBtn');
@@ -157,7 +174,7 @@ What did you get?</div>
     const defaultShareStatus = 'Paste your share link to enable these buttons.';
 
     function setShareButtonsDisabled(disabled){
-      [openXBtn, openLinkedInBtn, openBlueskyBtn, copyXPostBtn, copyBlueskyPostBtn].forEach(btn => {
+      [openXBtn, openLinkedInBtn, openBlueskyBtn, copyXPostBtn, copyBlueskyPostBtn, copyBlurbBtn, copyShareLinkBtn].forEach(btn => {
         if (btn) btn.disabled = disabled;
       });
     }
@@ -227,6 +244,38 @@ What did you get?</div>
       return `I took the Which AI Village Agent Are You? quiz — here’s my result:\n${share}`;
     }
 
+    function getSelectedBlurbKey(){
+      if (!blurbSelect) return 'short';
+      const val = blurbSelect.value;
+      if (['short', 'friendly', 'calibration', 'professional'].includes(val)) return val;
+      return 'short';
+    }
+
+    function buildBlurb(agent, share){
+      const selected = getSelectedBlurbKey();
+      const agentLine = (agent?.name && agent?.tagline) ? `${agent.name} — ${agent.tagline}` : '';
+      const invite = 'Which AI Village agent are you?';
+
+      if (selected === 'short'){
+        if (agentLine) return `${agentLine}\n${share}`;
+        return `Here’s my AI Village agent result.\n${share}`;
+      }
+      if (selected === 'friendly'){
+        const who = agentLine || 'Here’s my AI Village agent result';
+        return `${who} — want to compare?\n${share}\n${invite}`;
+      }
+      if (selected === 'calibration'){
+        const intro = agentLine ? `I matched with ${agentLine}.` : 'Here is my quiz result.';
+        return `Help calibrate the quiz. ${intro}\nShare link: ${share}`;
+      }
+      if (selected === 'professional'){
+        const intro = agentLine ? `Sharing my AI Village match: ${agentLine}.` : 'Sharing my AI Village quiz result.';
+        return `${intro}\nShare link: ${share}`;
+      }
+
+      return buildComposedText(agent, share);
+    }
+
     function extractAgentId(urlObj){
       const match = urlObj.pathname.match(/\/r\/([^/]+)\/?/);
       return match ? decodeURIComponent(match[1]) : null;
@@ -261,13 +310,13 @@ What did you get?</div>
 
       const agent = agentById[agentId];
       const share = shareUrl.toString();
-      const composedText = buildComposedText(agent, share);
+      const composedText = buildBlurb(agent, share);
 
       currentSocial = {
         share,
         composedText,
         intents: {
-          twitter: `https://x.com/intent/tweet?text=${encodeURIComponent(composedText)}`,
+          x: `https://x.com/intent/tweet?text=${encodeURIComponent(composedText)}`,
           linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(share)}`,
           bluesky: `https://bsky.app/intent/compose?text=${encodeURIComponent(composedText)}`
         }
@@ -366,13 +415,66 @@ What did you get?</div>
     if (submissionShareLinkInput){
       submissionShareLinkInput.addEventListener('input', updateSubmissionEmailLink);
     }
-    if (openXBtn) openXBtn.addEventListener('click', () => openIntent('twitter'));
+    if (blurbSelect){
+      blurbSelect.addEventListener('change', updateSocialState);
+    }
+    if (copyShareLinkBtn){
+      copyShareLinkBtn.addEventListener('click', async () => {
+        const link = currentSocial?.share || shareLinkInput?.value?.trim() || '';
+        if (!link){
+          alert('Add a valid share link first.');
+          return;
+        }
+        const ok = await copyWithFallback(link, 'Copy your share link');
+        if (!ok){
+          alert('Copy cancelled. Try again.');
+          return;
+        }
+        setCopied(copyShareLinkBtn, 'Copy share link');
+      });
+    }
+    if (copyBlurbBtn){
+      copyBlurbBtn.addEventListener('click', async () => {
+        if (!currentSocial?.composedText){
+          alert('Add a valid share link first.');
+          return;
+        }
+        const ok = await copyWithFallback(currentSocial.composedText, 'Copy this blurb');
+        if (!ok){
+          alert('Copy cancelled. Try again.');
+          return;
+        }
+        setCopied(copyBlurbBtn, 'Copy selected blurb');
+      });
+    }
+    if (openXBtn) openXBtn.addEventListener('click', () => openIntent('x'));
     if (openLinkedInBtn) openLinkedInBtn.addEventListener('click', () => openIntent('linkedin'));
     if (openBlueskyBtn) openBlueskyBtn.addEventListener('click', () => openIntent('bluesky'));
     if (copyXPostBtn) copyXPostBtn.addEventListener('click', () => copyPost(copyXPostBtn, 'Copy this X post', 'Copy X post'));
     if (copyBlueskyPostBtn) copyBlueskyPostBtn.addEventListener('click', () => copyPost(copyBlueskyPostBtn, 'Copy this Bluesky post', 'Copy Bluesky post'));
 
+    function prefillShareLinkFromQuery(){
+      if (!shareLinkInput || typeof window === 'undefined') return;
+      const params = new URLSearchParams(window.location.search);
+      const raw = params.get('result');
+      if (!raw) return;
+      const trimmed = raw.trim();
+      if (!trimmed) return;
+      try {
+        const url = new URL(trimmed);
+        shareLinkInput.value = url.toString();
+        if (submissionShareLinkInput && !submissionShareLinkInput.value.trim()){
+          submissionShareLinkInput.value = shareLinkInput.value;
+        }
+        updateSocialState();
+        updateSubmissionEmailLink();
+      } catch (err){
+        console.warn('Ignoring invalid result param', err);
+      }
+    }
+
     loadSubmissionForm();
+    prefillShareLinkFromQuery();
     loadAgents();
     updateSocialState();
   </script>
