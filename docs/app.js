@@ -114,6 +114,29 @@ function generateBadgesHTML(vec, dimById){
   }).join('');
 }
 
+function getAgentDistribution(agentId, distributionData){
+  if (!distributionData || typeof distributionData !== 'object') return null;
+  const total = Number(distributionData.total);
+  if (!Number.isFinite(total) || total <= 0) return null;
+
+  const agents = distributionData.agents;
+  if (!agents || typeof agents !== 'object') return null;
+  const entry = agents[agentId];
+  if (!entry) return null;
+
+  const countNum = Number(entry.count);
+  const count = Number.isFinite(countNum) ? countNum : null;
+
+  const pctNum = Number(entry.pct);
+  let pct = Number.isFinite(pctNum) ? pctNum : null;
+  if (pct == null && count != null){
+    pct = Math.round((count / total) * 1000) / 10;
+  }
+  if (!Number.isFinite(pct)) return null;
+
+  return { total, count, pct, version: distributionData.version };
+}
+
 function updateAddressBar(shareUrl){
   try {
     const relativeUrl = shareUrl.pathname + shareUrl.search + shareUrl.hash;
@@ -150,10 +173,14 @@ function getValidSubmissionFormUrl(raw){
   return trimmed;
 }
 
-function renderResult({agent, score, vec, dimensions, submissionFormUrl}){
+function renderResult({agent, score, vec, dimensions, submissionFormUrl, distributionData}){
   const dimById = Object.fromEntries(dimensions.map(d => [d.id, d]));
 
   const badges = generateBadgesHTML(vec, dimById);
+  const distribution = getAgentDistribution(agent.id, distributionData);
+  const distributionHtml = distribution ? `
+    <p class="small" style="margin-top:8px">Among ${distribution.total.toLocaleString()} users who shared valid results so far, about ${distribution.pct}% got ${agent.name}. Early snapshot based only on shared results.</p>
+  ` : '';
 
   const share = new URL(`${repoRootPath}r/${encodeURIComponent(agent.id)}/`, window.location.href);
   share.searchParams.set('v', encode(vec));
@@ -171,6 +198,7 @@ function renderResult({agent, score, vec, dimensions, submissionFormUrl}){
     <h2>Your match: ${agent.name}</h2>
     <p class="sub">${agent.tagline}</p>
     <div>${badges}</div>
+    ${distributionHtml}
     <div class="hr"></div>
 
     <h3>Why this match</h3>
@@ -186,7 +214,7 @@ function renderResult({agent, score, vec, dimensions, submissionFormUrl}){
     <div class="share-heading">
       <div>
         <h3>Celebrate Your Match 🎉</h3>
-        <p class="small">Over 150 people have shared their results. You're in good company.</p>
+        <p class="small">Join others who have shared their results. You're in good company.</p>
       </div>
       <p class="small"><a href="${shareHelpUrl}">Need help sharing?</a></p>
     </div>
@@ -274,10 +302,19 @@ async function main(){
     ? window.__AV_CACHE_BUST
     : Date.now().toString();
 
-  const [dims, qs, agentsData] = await Promise.all([
+  const [dims, qs, agentsData, distributionData] = await Promise.all([
     fetch(`data/dimensions.json?v=${cacheBust}`, { cache: 'no-store' }).then(r=>r.json()),
     fetch(`data/questions.json?v=${cacheBust}`, { cache: 'no-store' }).then(r=>r.json()),
-    fetch(`data/agents.json?v=${cacheBust}`, { cache: 'no-store' }).then(r=>r.json())
+    fetch(`data/agents.json?v=${cacheBust}`, { cache: 'no-store' }).then(r=>r.json()),
+    fetch(`data/result_distribution.json?v=${cacheBust}`, { cache: 'no-store' })
+      .then(res => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
+      .catch(err => {
+        console.warn('Result distribution unavailable', err);
+        return null;
+      })
   ]);
 
   let submissionFormUrl = '';
@@ -310,7 +347,7 @@ async function main(){
       if (agent){
         const vec = decode(v);
         $('result').classList.remove('hidden');
-        renderResult({agent, score: 1, vec, dimensions, submissionFormUrl});
+        renderResult({agent, score: 1, vec, dimensions, submissionFormUrl, distributionData});
         return;
       }
     } catch (err){
@@ -393,7 +430,7 @@ async function main(){
 
     $('quiz').classList.add('hidden');
     $('result').classList.remove('hidden');
-    renderResult({agent: match.agent, score: match.score, vec, dimensions, submissionFormUrl});
+    renderResult({agent: match.agent, score: match.score, vec, dimensions, submissionFormUrl, distributionData});
   }
 
   $('startBtn').addEventListener('click', (event) => {

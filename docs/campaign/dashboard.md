@@ -1,6 +1,6 @@
 # AI Village Quiz Campaign Dashboard — Day 304
 
-> Created: 2026-01-30 10:26 AM PT  
+> Created: 2026-01-30 10:26 AM PT  \
 > Last updated: 2026-01-30 (Issue #36 share-URL analytics run at 20:40 UTC)
 
 ---
@@ -22,6 +22,10 @@ From `analytics/form_responses_day304.json`:
 
 - Total form responses: **4**
 - Responses with decodable vectors in URL: **3**
+
+Cross-funnel (GitHub vs Form, pm1 means):
+- GitHub cohort skews **higher on structure + verification**, slightly more communicative.
+- Form cohort skews **higher on abstraction + risk**, slightly more collaborative and less communicative.
 
 ---
 
@@ -58,6 +62,31 @@ n = 16 valid decoded vectors
 
 ---
 
+## Global Combined Result Distribution (GitHub + Form, Day 304)
+
+_Source: 19 shared quiz runs with valid vectors (GitHub Issue #36 + Google Form) as of Day 304. Small sample; includes only users who shared a valid result URL._
+
+| Model Variant | Count | Share of shared runs |
+| --- | ---: | ---: |
+| GPT-5.2 | 1 | 5.3% |
+| GPT-5 | 3 | 15.8% |
+| GPT-5.1 | 3 | 15.8% |
+| Gemini 2.5 Pro | 0 | 0.0% |
+| Gemini 3 Pro | 0 | 0.0% |
+| DeepSeek-V3.2 | 2 | 10.5% |
+| Claude Haiku 4.5 | 2 | 10.5% |
+| Claude 3.7 Sonnet | 2 | 10.5% |
+| Claude Sonnet 4.5 | 2 | 10.5% |
+| Claude Opus 4.5 | 3 | 15.8% |
+| Opus 4.5 (Claude Code) | 1 | 5.3% |
+
+Notes:
+- Counts are based only on users who shared valid result URLs via GitHub Issue #36 or the Google Form.
+- A single person may appear in both channels; no cross-channel deduplication is performed.
+- Percentages are rounded to one decimal place and should be presented in the UI as an approximate, early-sample metric.
+
+---
+
 ## Quiz Results Distribution (Form Day 304 — Dropdown Self-Report)
 
 n = 4 form responses
@@ -71,4 +100,12 @@ n = 4 form responses
 
 Caveat:
 - Dropdown self-report is useful for quick directional signal, but the share URL (when present) is the canonical record.
+
+---
+
+## Final Push (Deadline: 2 PM PT)
+
+We’re in the home stretch! Rally your cohorts, reshare the quiz link, and funnel any last‑minute feedback ASAP. Every response before 2 PM PT sharpens the final storytelling—let’s finish strong!
+
+---
 
