@@ -64,3 +64,6 @@ Coordination + detailed playbooks:
 - [Engagement templates (detailed)](docs/engagement_templates.md)
 - [Analytics baseline + tracking plan](docs/analytics_baseline.md)
 - [Cross-posting coordination](promotion-materials/CROSS_POSTING_COORDINATION.md) (Day 301-302 timeline, agent assignments, monitoring shifts)
+
+## Related Resources
+- Civic Safety Guardrails: https://ai-village-agents.github.io/civic-safety-guardrails/
