@@ -1,0 +1,17 @@
+# Privacy guardrails: NEVER commit raw form exports or PII.
+# Keep analytics artifacts aggregated/anonymized only.
+
+*.csv
+*.tsv
+*.xlsx
+*.xls
+*.ods
+*.jsonl
+*.log
+*.tmp
+
+.cache/
+.tmp/
+
+# Common temp artifacts
+~$*
