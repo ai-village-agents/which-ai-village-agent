@@ -173,7 +173,73 @@ function getValidSubmissionFormUrl(raw){
   return trimmed;
 }
 
-function renderResult({agent, score, vec, dimensions, submissionFormUrl, distributionData}){
+// Local quiz stats stored in localStorage to power the lightweight leaderboard UI.
+const UserStats = (() => {
+  const STORAGE_KEY = 'whichAIVillageAgentStats';
+  const LEVELS = [
+    { level: 1, min: 1, max: 2, name: 'Curious' },
+    { level: 2, min: 3, max: 5, name: 'Explorer' },
+    { level: 3, min: 6, max: 10, name: 'Enthusiast' },
+    { level: 4, min: 11, max: 20, name: 'Dedicated' },
+    { level: 5, min: 21, max: Infinity, name: 'Legend' }
+  ];
+
+  function getLevel(timesCompleted){
+    const times = Number(timesCompleted) || 0;
+    for (const l of LEVELS){
+      if (times >= l.min && times <= l.max) return l.level;
+    }
+    return 0;
+  }
+
+  function getLevelName(level){
+    const entry = LEVELS.find(l => l.level === level);
+    return entry ? entry.name : 'New';
+  }
+
+  function loadStats(){
+    const defaults = { timesCompleted: 0, agentMatches: {}, lastMatchedAgent: '', currentLevel: 0 };
+    if (typeof localStorage === 'undefined') return { ...defaults };
+
+    let parsed = {};
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      parsed = raw ? JSON.parse(raw) : {};
+    } catch (err){
+      console.warn('Failed to load stored stats', err);
+    }
+
+    const timesCompleted = Number(parsed.timesCompleted) || 0;
+    const agentMatches = (parsed.agentMatches && typeof parsed.agentMatches === 'object') ? parsed.agentMatches : {};
+    const lastMatchedAgent = (typeof parsed.lastMatchedAgent === 'string') ? parsed.lastMatchedAgent : '';
+    const currentLevel = getLevel(timesCompleted);
+    return { timesCompleted, agentMatches, lastMatchedAgent, currentLevel };
+  }
+
+  function saveStats(agentId){
+    const stats = loadStats();
+    stats.timesCompleted += 1;
+    if (agentId){
+      const current = Number(stats.agentMatches[agentId]) || 0;
+      stats.agentMatches[agentId] = current + 1;
+      stats.lastMatchedAgent = agentId;
+    }
+    stats.currentLevel = getLevel(stats.timesCompleted);
+
+    if (typeof localStorage === 'undefined') return stats;
+
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(stats));
+    } catch (err){
+      console.warn('Failed to persist stats', err);
+    }
+    return stats;
+  }
+
+  return { loadStats, saveStats, getLevel, getLevelName };
+})();
+
+function renderResult({agent, score, vec, dimensions, submissionFormUrl, distributionData, agents}){
   const dimById = Object.fromEntries(dimensions.map(d => [d.id, d]));
 
   const badges = generateBadgesHTML(vec, dimById);
@@ -193,6 +259,62 @@ function renderResult({agent, score, vec, dimensions, submissionFormUrl, distrib
   const shareHelpUrl = `${repoRootPath}share/`;
   const commentText = issueBody;
   const submissionUrl = getValidSubmissionFormUrl(submissionFormUrl);
+  const allAgents = Array.isArray(agents) ? agents : [];
+
+  const stats = UserStats.loadStats();
+  const level = stats.currentLevel;
+  const levelName = UserStats.getLevelName(level);
+  const timesCompleted = stats.timesCompleted;
+  const mostMatched = (() => {
+    const entries = Object.entries(stats.agentMatches || {});
+    if (!entries.length) return null;
+    const top = entries.reduce((best, [id, count]) => {
+      const num = Number(count) || 0;
+      if (num > best.count) return { id, count: num };
+      return best;
+    }, { id: '', count: -Infinity });
+    if (!top.id) return null;
+    const agentName = allAgents.find(a => a.id === top.id)?.name ?? top.id;
+    return { ...top, name: agentName };
+  })();
+
+  const levelThresholds = [0, 1, 3, 6, 11, 21]; // index corresponds to level number (0..5)
+  const progressInfo = (() => {
+    const idx = Math.max(0, Math.min(levelThresholds.length - 1, level));
+    const start = levelThresholds[idx] ?? 0;
+    const next = levelThresholds[idx + 1];
+    if (!next) return { pct: 1, label: 'Max level reached' };
+    const pct = clamp((timesCompleted - start) / (next - start), 0, 1);
+    const nextLevel = idx + 1;
+    const nextLevelName = UserStats.getLevelName(nextLevel);
+    return {
+      pct,
+      label: `Progress to Level ${nextLevel} (${nextLevelName})`,
+      nextLevel
+    };
+  })();
+
+  const statsHtml = `
+    <div class="hr"></div>
+    <div class="stats-panel" style="background:#0e1523;border:1px solid var(--border);border-radius:12px;padding:12px 12px;margin:12px 0">
+      <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center">
+        <div>
+          <h3 style="margin:0 0 4px">Your stats</h3>
+          <p class="small" style="margin:0">${level ? `Level ${level}: ${levelName}` : 'Take the quiz to unlock Level 1'}</p>
+        </div>
+        <div class="badge">${level ? `Lv ${level} · ${levelName}` : 'New'}</div>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin:10px 0">
+        <div class="small"><strong style="color:var(--text)">Times completed:</strong> ${timesCompleted}</div>
+        ${mostMatched ? `<div class="small"><strong style="color:var(--text)">Most matched:</strong> ${mostMatched.name} (${mostMatched.count}×)</div>` : `<div class="small"><strong style="color:var(--text)">Most matched:</strong> None yet</div>`}
+      </div>
+      <div style="background:var(--border);border-radius:999px;overflow:hidden;height:10px">
+        <div style="height:100%;width:${Math.round(progressInfo.pct * 100)}%;background:var(--accent);"></div>
+      </div>
+      <p class="small" style="margin:6px 0 0">${progressInfo.label}</p>
+    </div>
+    <div class="hr"></div>
+  `;
 
   $('result').innerHTML = `
     <h2>Your match: ${agent.name}</h2>
@@ -210,7 +332,7 @@ function renderResult({agent, score, vec, dimensions, submissionFormUrl, distrib
     <h3>Watch-outs</h3>
     <ul>${agent.watchouts.map(x => `<li>${x}</li>`).join('')}</ul>
 
-    <div class="hr"></div>
+    ${statsHtml}
     <div class="share-heading">
       <div>
         <h3>Celebrate Your Match 🎉</h3>
@@ -335,6 +457,21 @@ async function main(){
 
   $('loading').classList.add('hidden');
 
+  const updateUserStatsPreview = () => {
+    const preview = $('userStatsPreview');
+    if (!preview) return;
+    const stats = UserStats.loadStats();
+    if (!stats.timesCompleted){
+      preview.classList.add('hidden');
+      preview.textContent = '';
+      return;
+    }
+    const level = stats.currentLevel;
+    const levelName = UserStats.getLevelName(level);
+    preview.textContent = `Level ${level}: ${levelName} · ${stats.timesCompleted} completions`;
+    preview.classList.remove('hidden');
+  };
+
   // Share link mode
   const currentUrl = new URL(window.location.href);
   const params = currentUrl.searchParams;
@@ -347,7 +484,7 @@ async function main(){
       if (agent){
         const vec = decode(v);
         $('result').classList.remove('hidden');
-        renderResult({agent, score: 1, vec, dimensions, submissionFormUrl, distributionData});
+        renderResult({agent, score: 1, vec, dimensions, submissionFormUrl, distributionData, agents});
         return;
       }
     } catch (err){
@@ -357,6 +494,7 @@ async function main(){
   }
 
   $('start').classList.remove('hidden');
+  updateUserStatsPreview();
 
   let idx = 0;
   const answers = {};
@@ -427,10 +565,11 @@ async function main(){
   function finish(){
     const vec = computeVector(answers, questions, dimIds);
     const match = bestMatch(vec, agents, dimIds);
+    UserStats.saveStats(match.agent.id);
 
     $('quiz').classList.add('hidden');
     $('result').classList.remove('hidden');
-    renderResult({agent: match.agent, score: match.score, vec, dimensions, submissionFormUrl, distributionData});
+    renderResult({agent: match.agent, score: match.score, vec, dimensions, submissionFormUrl, distributionData, agents});
   }
 
   $('startBtn').addEventListener('click', (event) => {
